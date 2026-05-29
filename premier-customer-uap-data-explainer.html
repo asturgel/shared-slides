@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding Your Premier Customer UAP Data</title>
+<style>
+  :root {
+    --bg:              #07182D;
+    --bg-2:            #0B2243;
+    --text-primary:    #FFFFFF;
+    --text-secondary:  rgba(255,255,255,0.85);
+    --muted:           rgba(255,255,255,0.55);
+    --cisco-blue:      #02C8FF;
+    --medium-blue:     #0A60FF;
+    --accent-magenta:  #FF007F;
+    --accent-orange:   #FF9000;
+    --status-green:    #3DDC84;
+    --card-bg:         rgba(255,255,255,0.06);
+    --card-hover:      rgba(255,255,255,0.10);
+    --card-border:     rgba(255,255,255,0.12);
+    --gradient-primary:linear-gradient(90deg,#0A60FF 5%,#02C8FF 37%,#02C8FF 44%,#FF007F 75%,#FF9000 95%);
+    --gradient-blue:   linear-gradient(90deg,#0A60FF,#02C8FF);
+    --content-max-w:   1240px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); }
+  body {
+    color: var(--text-primary);
+    font-family: 'CiscoSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    min-height: 100vh;
+    background:
+      radial-gradient(1100px 700px at 85% -10%, rgba(2,200,255,0.10), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(255,0,127,0.10), transparent 60%),
+      var(--bg);
+  }
+  h1, h2, h3 { font-weight: 900; line-height: 1.1; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); }
+  h2 { font-size: clamp(1.5rem, 2.6vw, 2.0rem); margin-bottom: 18px; }
+  h3 { font-size: 1.15rem; font-weight: 800; }
+  p  { color: var(--text-secondary); }
+
+  .page { max-width: var(--content-max-w); margin: 0 auto; padding: 56px 36px 80px; }
+
+  /* Top bar */
+  .topbar {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom: 36px;
+  }
+  .brand {
+    display:flex; align-items:center; gap:14px;
+    font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+    font-size:.78rem; color:var(--muted);
+  }
+  .brand .dot {
+    width: 38px; height: 8px; border-radius: 99px;
+    background: var(--gradient-primary);
+  }
+  .eyebrow {
+    color: var(--cisco-blue);
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    font-weight: 700;
+    font-size: .78rem;
+  }
+
+  /* Hero */
+  .hero { margin-bottom: 56px; }
+  .hero h1 { margin: 14px 0 18px; }
+  .hero h1 .grad {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero .lead {
+    max-width: 920px;
+    font-size: 1.12rem;
+    color: var(--text-secondary);
+  }
+
+  /* Section header */
+  .section { margin-top: 56px; }
+  .section-head { display:flex; align-items:baseline; gap:14px; margin-bottom: 22px; }
+  .section-head .num {
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--cisco-blue);
+    letter-spacing: .1em;
+  }
+
+  /* Two-view comparison */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  .view-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 28px 28px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .view-card::before {
+    content:""; position:absolute; inset:0 0 auto 0; height:4px;
+  }
+  .view-card.coverage::before { background: linear-gradient(90deg, var(--medium-blue), var(--cisco-blue)); }
+  .view-card.c1::before       { background: linear-gradient(90deg, var(--accent-magenta), var(--accent-orange)); }
+  .view-card .tag {
+    display:inline-block; font-size:.72rem; font-weight:800;
+    letter-spacing:.18em; text-transform:uppercase;
+    padding: 4px 10px; border-radius: 99px;
+    background: rgba(2,200,255,0.12); color: var(--cisco-blue);
+    margin-bottom: 12px;
+  }
+  .view-card.c1 .tag { background: rgba(255,0,127,0.14); color: #FF74B5; }
+  .view-card h3 { font-size: 1.4rem; margin-bottom: 6px; }
+  .view-card .sub { color: var(--muted); font-size:.92rem; margin-bottom: 18px; }
+  .view-card ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .view-card li {
+    display:flex; align-items:flex-start; gap:10px;
+    color: var(--text-secondary); font-size: .98rem; line-height: 1.45;
+  }
+  .view-card li::before {
+    content:""; flex:0 0 auto; width:8px; height:8px; border-radius:99px;
+    margin-top: 8px;
+    background: var(--cisco-blue);
+  }
+  .view-card.c1 li::before { background: var(--accent-magenta); }
+
+  .vs {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 0 18px; min-width: 80px;
+  }
+  .vs .label {
+    font-weight: 900; font-size: 1.1rem; color: var(--text-primary);
+    background: var(--bg-2);
+    border: 1px solid var(--card-border);
+    width: 56px; height: 56px; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 0 6px rgba(2,200,255,0.06);
+  }
+  .vs .line {
+    width: 2px; flex: 1; background: var(--card-border);
+  }
+
+  /* Key shift callout */
+  .keyshift {
+    margin-top: 22px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(2,200,255,0.30);
+    background: linear-gradient(135deg, rgba(10,96,255,0.12), rgba(2,200,255,0.08));
+    display: flex; align-items: center; gap: 14px;
+  }
+  .keyshift .icon {
+    flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px;
+    background: var(--gradient-blue);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 900; color: #001028;
+  }
+  .keyshift p { color: var(--text-primary); font-size: 1.18rem; line-height: 1.5; font-weight: 600; }
+  .keyshift strong { color: var(--cisco-blue); font-weight: 900; }
+
+  /* Why C1 matters */
+  .why-c1 {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: stretch;
+  }
+  .why-c1 .quote-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 32px;
+    position: relative;
+  }
+  .why-c1 .quote-card .mark {
+    font-size: 5rem; line-height: .8; color: var(--cisco-blue);
+    font-weight: 900; opacity: .35; margin-bottom: -10px;
+  }
+  .why-c1 .quote-card p { font-size: 1.12rem; color: var(--text-primary); }
+  .why-c1 .quote-card .attrib {
+    margin-top: 18px; color: var(--muted); font-size:.88rem;
+    letter-spacing:.16em; text-transform: uppercase;
+  }
+  .why-c1 .levels {
+    display: flex; flex-direction: column; gap: 12px; justify-content: center;
+  }
+  .level {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .level .who { font-size:.78rem; color: var(--muted); letter-spacing:.16em; text-transform: uppercase; }
+  .level .what { font-size: 1.02rem; font-weight: 700; color: var(--text-primary); }
+  .level.lvl-1 { border-left-color: var(--cisco-blue); }
+  .level.lvl-2 { border-left-color: var(--medium-blue); }
+  .level.lvl-3 { border-left-color: var(--accent-magenta); }
+
+  /* Day to day */
+  .daygrid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .day-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 22px;
+    display:flex; flex-direction:column; gap: 10px;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .day-card:hover { background: var(--card-hover); border-color: rgba(2,200,255,0.30); transform: translateY(-2px); }
+  .day-card .icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 900; color: #001028;
+    background: var(--gradient-blue);
+    margin-bottom: 4px;
+  }
+  .day-card.c1 .icon { background: linear-gradient(135deg, var(--accent-magenta), var(--accent-orange)); color: #1a0010; }
+  .day-card h3 { font-size: 1.05rem; }
+  .day-card p { font-size: .95rem; }
+
+  /* Data looks wrong - two paths */
+  .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .path {
+    border-radius: 18px; padding: 26px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    position: relative;
+  }
+  .path.by-design { border-color: rgba(2,200,255,0.30); background: linear-gradient(135deg, rgba(2,200,255,0.08), rgba(10,96,255,0.05)); }
+  .path.bug       { border-color: rgba(255,144,0,0.35);  background: linear-gradient(135deg, rgba(255,144,0,0.10), rgba(255,0,127,0.06)); }
+  .path .badge {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 99px;
+    margin-bottom: 14px;
+  }
+  .path.by-design .badge { background: rgba(2,200,255,0.16); color: var(--cisco-blue); }
+  .path.bug       .badge { background: rgba(255,144,0,0.18); color: var(--accent-orange); }
+  .path h3 { font-size: 1.2rem; margin-bottom: 8px; }
+  .path .action {
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px dashed var(--card-border);
+    font-size: .95rem; color: var(--text-primary);
+  }
+  .path .action strong { color: var(--cisco-blue); }
+  .path.bug .action strong { color: var(--accent-orange); }
+
+  /* Help strip */
+  .help {
+    background: linear-gradient(135deg, rgba(10,96,255,0.10), rgba(2,200,255,0.06));
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 26px 28px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+  }
+  .help-item { display:flex; flex-direction:column; gap:4px; }
+  .help-item .lbl { font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color: var(--muted); font-weight:700; }
+  .help-item .val { font-size:.98rem; font-weight: 700; color: var(--text-primary); }
+
+  /* Footer tagline */
+  .tagline {
+    margin-top: 56px; text-align:center;
+    font-size: 1.25rem; font-weight: 900; letter-spacing:.02em;
+  }
+  .tagline .grad {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .footer-bar {
+    margin-top: 18px; height: 4px; border-radius: 99px;
+    background: var(--gradient-primary); opacity:.9;
+  }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .compare { grid-template-columns: 1fr; }
+    .vs { flex-direction: row; padding: 8px 0; }
+    .vs .line { width: 100%; height: 2px; flex: 1; }
+    .why-c1 { grid-template-columns: 1fr; }
+    .daygrid { grid-template-columns: 1fr; }
+    .paths { grid-template-columns: 1fr; }
+    .help { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .page { padding: 32px 18px 60px; }
+    .help { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: var(--bg) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .day-card:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <span><strong style="color:var(--text-primary);font-weight:900;letter-spacing:.18em;">One team. One plan.</strong> &middot; Your competitive advantage.</span>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="eyebrow">Quick Reference &middot; For Account Teams</div>
+      <h1>Understanding Your<br><span style="white-space:nowrap;"><span class="grad">Premier Customer UAP</span> Data</span></h1>
+      <p class="lead">
+        If the numbers don't match what you're used to seeing &ndash; you're not wrong to notice.
+        Your Premier Customer UAP gives you a Global view of your customer. This may be a different
+        lens than you currently use to manage your Account. Here's what you're looking at and why.
+      </p>
+    </header>
+
+    <!-- Section: Two Views -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">01</span>
+        <h2>Two views of the same customer &mdash; both valid</h2>
+      </div>
+
+      <div class="compare">
+        <article class="view-card coverage">
+          <span class="tag">Coverage View</span>
+          <h3>Your existing tools</h3>
+          <p class="sub">How you run your business today</p>
+          <ul>
+            <li>Manage your deals and submit your Forecast</li>
+            <li>Track your bookings and compensation</li>
+            <li>How you are inspected and measured</li>
+            <li>Nothing changes here &ndash; keep using these tools for your day-to-day execution</li>
+          </ul>
+        </article>
+
+        <div class="vs">
+          <div class="line"></div>
+          <div class="label">vs</div>
+          <div class="line"></div>
+        </div>
+
+        <article class="view-card c1">
+          <span class="tag">Global View</span>
+          <h3>Premier Customer UAP</h3>
+          <p class="sub">How the customer's CXO sees Cisco</p>
+          <ul>
+            <li>Global, total Cisco view of the customer relationship</li>
+            <li>Used for strategic, executive-level planning</li>
+            <li>Aligned to how the customer thinks about Cisco</li>
+            <li>Net new strategic capability</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="keyshift">
+        <div class="icon" style="width:48px;height:48px;font-size:1.4rem;border-radius:12px;">!</div>
+        <p>
+          <strong>The key advantage:</strong> <span style="white-space:nowrap;">Premier Customer UAP isn't replacing your coverage view &mdash; it's a strategic lens you've never had before.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Section: Why Global matters -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">02</span>
+        <h2>Why the Global view matters</h2>
+      </div>
+
+      <div class="why-c1">
+        <div class="quote-card">
+          <div class="mark">&ldquo;</div>
+          <p>
+            Your customer's CXO doesn't think about which Cisco AE owns which workload &mdash;
+            they think about what Cisco delivers across their entire organization.
+          </p>
+          <div class="attrib">To engage at that level,<br>you need a view that reflects it.</div>
+        </div>
+
+        <div class="levels">
+          <div class="level lvl-1">
+            <div>
+              <div class="who">Customer CXO</div>
+              <div class="what">Sees one Cisco relationship</div>
+            </div>
+          </div>
+          <div class="level lvl-2">
+            <div>
+              <div class="who">Executive Sponsor</div>
+              <div class="what">Reviews the global account</div>
+            </div>
+          </div>
+          <div class="level lvl-3">
+            <div>
+              <div class="who">Your Sales Leader</div>
+              <div class="what">Inspects the full Global plan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Day to day -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">03</span>
+        <h2>What this means day-to-day</h2>
+      </div>
+
+      <div class="daygrid">
+        <div class="day-card">
+          <div class="icon">&#9881;</div>
+          <h3>Coverage stays the same</h3>
+          <p>Keep using your existing tools for forecasting and deal management.</p>
+        </div>
+        <div class="day-card c1">
+          <div class="icon">&#9733;</div>
+          <h3>UAP is for strategy</h3>
+          <p>Use it to align your extended team, prep for executive engagements, and shape annual strategy.</p>
+        </div>
+        <div class="day-card">
+          <div class="icon">&#10003;</div>
+          <h3>Comp hasn't changed</h3>
+          <p>This view doesn't alter how you're measured. It expands how you can operate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Looks wrong -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">04</span>
+        <h2>&ldquo;I still think the data looks wrong&rdquo;</h2>
+      </div>
+
+      <div class="paths">
+        <div class="path by-design">
+          <span class="badge">&#9679; By design</span>
+          <h3>Different level than expected?</h3>
+          <p>If the scope feels off &mdash; includes accounts you don't cover, Splunk visibility, and aggregates differently &mdash; that's the Global view working as intended.</p>
+          <div class="action"><strong>Action:</strong> Refer back to this guide.</div>
+        </div>
+        <div class="path bug">
+          <span class="badge">&#9888; Possible bug</span>
+          <h3>Data looks technically broken?</h3>
+          <p>Wrong account names, missing data, or clearly incorrect numbers? That's a bug we want to fix.</p>
+          <div class="action"><strong>Action:</strong> [placeholder &mdash; insert reporting steps / feedback channel link]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Side-by-side summary -->
+    <section class="section">
+      <div class="section-head">
+        <span class="num">05</span>
+        <h2>TL;DR</h2>
+      </div>
+
+      <div class="compare">
+        <article class="view-card coverage">
+          <span class="tag">Coverage View &middot; Daily Tools</span>
+          <h3>Remains your source of truth</h3>
+          <p class="sub">Continue using for day-to-day execution &mdash; no changes</p>
+          <ul>
+            <li>Use Coverage View for forecasting</li>
+            <li>Use Coverage View for deal management</li>
+            <li>Use Coverage View for compensation</li>
+            <li>Status: No changes; continue using for day-to-day execution</li>
+          </ul>
+        </article>
+
+        <div class="vs">
+          <div class="line"></div>
+          <div class="label">+</div>
+          <div class="line"></div>
+        </div>
+
+        <article class="view-card c1">
+          <span class="tag">Global View &middot; Premier Customer UAP</span>
+          <h3>Your new strategic edge</h3>
+          <p class="sub">Where to go for executive-level customer planning</p>
+          <ul>
+            <li>Use Premier Customer UAP to prepare for executive meetings</li>
+            <li>Use Premier Customer UAP to align your extended team</li>
+            <li>Access the new Premier Customer UAP in Salesforce</li>
+            <li>Review the guide to see the Premier Customer UAP in action</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer bar -->
+    <div class="footer-bar"></div>
+
+  </main>
+</body>
+</html>
