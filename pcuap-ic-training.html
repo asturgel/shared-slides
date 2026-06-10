@@ -1663,13 +1663,7 @@ body::before {
 /* ============================================================ */
 /* COACHING EXAMPLE POPUP — overlay on Phase 1 "good" slide       */
 /* ============================================================ */
-.slide.coach-pop .coach-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 20px; border-radius: 999px; background: linear-gradient(135deg, rgba(2,200,255,0.18), rgba(10,96,255,0.10)); border: 1px solid rgba(2,200,255,0.55); color: var(--cisco-blue); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer; opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 10px 28px -16px rgba(2,200,255,0.6); align-self: flex-start; }
-.slide.coach-pop .coach-cta.revealed { opacity: 1; transform: translateY(0); }
-.slide.coach-pop .coach-cta:hover { background: linear-gradient(135deg, rgba(2,200,255,0.30), rgba(10,96,255,0.16)); box-shadow: 0 12px 32px -12px rgba(2,200,255,0.8); }
-.slide.coach-pop .coach-cta svg { width: 16px; height: 16px; }
-.slide.coach-pop.show-coach .coach-cta { opacity: 0.6; }
-
-.slide.coach-pop .obj-overlay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, calc(-50% + 24px)); width: min(960px, 92%); padding: 32px 36px 30px; border-radius: 18px; background: linear-gradient(135deg, rgba(2,200,255,0.20), rgba(10,96,255,0.10)), rgba(7,24,45,0.96); border: 1px solid rgba(2,200,255,0.6); backdrop-filter: blur(14px); box-shadow: 0 32px 80px -28px rgba(2,200,255,0.7); opacity: 0; pointer-events: none; transition: opacity 0.45s ease, transform 0.45s ease; z-index: 20; cursor: pointer; }
+.slide.coach-pop .obj-overlay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, calc(-50% + 24px)); width: min(960px, 92%); padding: 32px 36px 30px; border-radius: 18px; background: linear-gradient(135deg, rgba(2,200,255,0.20), rgba(10,96,255,0.10)), rgba(7,24,45,0.96); border: 1px solid rgba(2,200,255,0.6); backdrop-filter: blur(14px); box-shadow: 0 32px 80px -28px rgba(2,200,255,0.7); opacity: 0; pointer-events: none; transition: opacity 0.45s ease, transform 0.45s ease; z-index: 20; }
 .slide.coach-pop.show-coach .obj-overlay { opacity: 1; transform: translate(-50%, -50%); pointer-events: auto; }
 .slide.coach-pop .obj-overlay-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 .slide.coach-pop .obj-overlay-eyebrow { font-size: 0.72rem; font-weight: 900; letter-spacing: 0.26em; text-transform: uppercase; color: var(--cisco-blue); padding: 5px 12px; border: 1px solid rgba(2,200,255,0.5); border-radius: 999px; background: rgba(2,200,255,0.10); }
@@ -1681,7 +1675,7 @@ body::before {
 .slide.coach-pop .obj-arrow { display: grid; place-items: center; color: var(--cisco-blue); }
 .slide.coach-pop .obj-arrow svg { width: 24px; height: 24px; filter: drop-shadow(0 0 8px rgba(2,200,255,0.7)); }
 .slide.coach-pop .obj-good { font-size: 1.08rem; font-weight: 700; background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.slide.coach-pop .obj-overlay-hint { margin-top: 18px; text-align: center; font-size: 0.66rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); opacity: 0.85; }
+.slide.coach-pop .obj-overlay-hint { margin-top: 18px; text-align: center; font-size: 0.66rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); opacity: 0.75; }
 
 /* legacy good-looks placeholders kept inert (no .good-looks slide remains) */
 .slide.good-looks .gll-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto auto; gap: 22px; flex: 1; margin-top: 18px; min-height: 0; align-items: stretch; }
@@ -2306,7 +2300,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 9 — PHASE 1: WHAT GOOD LOOKS LIKE                        -->
 <!-- ============================================================ -->
-<div class="slide coach-pop" data-notes="discovery-good" data-steps="3">
+<div class="slide coach-pop" data-notes="discovery-good" data-steps="4">
     <div class="slide-inner" style="--phase-c: var(--role-ae);">
 
         <div class="phase-strip animate-in">
@@ -2355,11 +2349,6 @@ body::before {
             </div>
         </div>
 
-        <button type="button" class="coach-cta" aria-label="Open coaching example">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="0.6" fill="currentColor"/></svg>
-            <span>See Coaching Example</span>
-        </button>
-
         <div class="obj-overlay" role="dialog" aria-label="Coaching example: From Vendor-Speak to Customer Outcome">
             <div class="obj-overlay-head">
                 <span class="obj-overlay-eyebrow">Coaching Example</span>
@@ -2382,7 +2371,6 @@ body::before {
                     <div class="obj-good">Reduce latency for critical edge apps to under 100&nbsp;ms to improve customer satisfaction and conversion</div>
                 </div>
             </div>
-            <div class="obj-overlay-hint">Click anywhere to dismiss</div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -2902,7 +2890,8 @@ body::before {
             ['.role-contrib.rc-cs']
         ],
         "discovery-good": [
-            ['.good-item:nth-child(1)', '.coach-cta'],
+            ['.good-item:nth-child(1)'],
+            [],
             ['.good-item:nth-child(2)'],
             ['.good-item:nth-child(3)']
         ],
@@ -2952,13 +2941,18 @@ body::before {
         const s = slides[idx];
         const key = s.dataset.notes;
         const targets = STEP_TARGETS[key];
-        if (!targets) return;
-        targets.forEach((entry, i) => {
-            const sels = Array.isArray(entry) ? entry : [entry];
-            sels.forEach(sel => {
-                s.querySelectorAll(sel).forEach(el => el.classList.toggle('revealed', i < step));
+        if (targets) {
+            targets.forEach((entry, i) => {
+                const sels = Array.isArray(entry) ? entry : [entry];
+                sels.forEach(sel => {
+                    s.querySelectorAll(sel).forEach(el => el.classList.toggle('revealed', i < step));
+                });
             });
-        });
+        }
+        // Discovery-good: coaching example overlay shows only at step 2
+        if (s.classList.contains('coach-pop')) {
+            s.classList.toggle('show-coach', step === 2);
+        }
     }
 
     function currentSteps() {
@@ -3091,19 +3085,6 @@ body::before {
         cur.textContent = idx + 1;
         updateNotes();
     }
-
-    // Coaching example popup on Phase 1 "good" slide
-    document.querySelectorAll('.slide.coach-pop .coach-cta').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            btn.closest('.slide').classList.toggle('show-coach');
-        });
-    });
-    document.querySelectorAll('.slide.coach-pop .obj-overlay').forEach(ov => {
-        ov.addEventListener('click', () => {
-            ov.closest('.slide').classList.remove('show-coach');
-        });
-    });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { next(); e.preventDefault(); }
