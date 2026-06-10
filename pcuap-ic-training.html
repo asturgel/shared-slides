@@ -1661,10 +1661,29 @@ body::before {
 }
 
 /* ============================================================ */
-/* SLIDE — OBJECTIVES vs INITIATIVES (ported from FLL Slide 10)   */
+/* COACHING EXAMPLE POPUP — overlay on Phase 1 "good" slide       */
 /* ============================================================ */
-.slide.good-looks .slide-inner.compact { padding: 36px 64px 48px; }
+.slide.coach-pop .coach-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 20px; border-radius: 999px; background: linear-gradient(135deg, rgba(2,200,255,0.18), rgba(10,96,255,0.10)); border: 1px solid rgba(2,200,255,0.55); color: var(--cisco-blue); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer; opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 10px 28px -16px rgba(2,200,255,0.6); align-self: flex-start; }
+.slide.coach-pop .coach-cta.revealed { opacity: 1; transform: translateY(0); }
+.slide.coach-pop .coach-cta:hover { background: linear-gradient(135deg, rgba(2,200,255,0.30), rgba(10,96,255,0.16)); box-shadow: 0 12px 32px -12px rgba(2,200,255,0.8); }
+.slide.coach-pop .coach-cta svg { width: 16px; height: 16px; }
+.slide.coach-pop.show-coach .coach-cta { opacity: 0.6; }
 
+.slide.coach-pop .obj-overlay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, calc(-50% + 24px)); width: min(960px, 92%); padding: 32px 36px 30px; border-radius: 18px; background: linear-gradient(135deg, rgba(2,200,255,0.20), rgba(10,96,255,0.10)), rgba(7,24,45,0.96); border: 1px solid rgba(2,200,255,0.6); backdrop-filter: blur(14px); box-shadow: 0 32px 80px -28px rgba(2,200,255,0.7); opacity: 0; pointer-events: none; transition: opacity 0.45s ease, transform 0.45s ease; z-index: 20; cursor: pointer; }
+.slide.coach-pop.show-coach .obj-overlay { opacity: 1; transform: translate(-50%, -50%); pointer-events: auto; }
+.slide.coach-pop .obj-overlay-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.slide.coach-pop .obj-overlay-eyebrow { font-size: 0.72rem; font-weight: 900; letter-spacing: 0.26em; text-transform: uppercase; color: var(--cisco-blue); padding: 5px 12px; border: 1px solid rgba(2,200,255,0.5); border-radius: 999px; background: rgba(2,200,255,0.10); }
+.slide.coach-pop .obj-overlay-title { font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; color: var(--text-primary); }
+.slide.coach-pop .obj-rows { display: flex; flex-direction: column; gap: 14px; }
+.slide.coach-pop .obj-row { display: grid; grid-template-columns: 1fr 36px 1fr; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 12px; background: rgba(7,24,45,0.55); border: 1px solid rgba(255,255,255,0.08); }
+.slide.coach-pop .obj-bad { position: relative; display: inline-block; font-size: 1.08rem; font-weight: 700; color: rgba(255,255,255,0.45); }
+.slide.coach-pop .obj-bad::after { content: ""; position: absolute; left: 0; top: 50%; height: 3px; width: 100%; transform: translateY(-50%); background: linear-gradient(90deg, #FF3B5C, #FF6B6B); border-radius: 2px; box-shadow: 0 0 12px rgba(255,59,92,0.55); }
+.slide.coach-pop .obj-arrow { display: grid; place-items: center; color: var(--cisco-blue); }
+.slide.coach-pop .obj-arrow svg { width: 24px; height: 24px; filter: drop-shadow(0 0 8px rgba(2,200,255,0.7)); }
+.slide.coach-pop .obj-good { font-size: 1.08rem; font-weight: 700; background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.slide.coach-pop .obj-overlay-hint { margin-top: 18px; text-align: center; font-size: 0.66rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); opacity: 0.85; }
+
+/* legacy good-looks placeholders kept inert (no .good-looks slide remains) */
 .slide.good-looks .gll-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto auto; gap: 22px; flex: 1; margin-top: 18px; min-height: 0; align-items: stretch; }
 .slide.good-looks .gll-col { position: relative; display: grid; grid-template-rows: subgrid; grid-row: 1 / span 4; row-gap: 18px; padding: 26px 28px 24px; border-radius: 18px; background: linear-gradient(160deg, rgba(2,200,255,0.12), rgba(7,24,45,0.75) 70%); border: 1px solid var(--card-border); overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
 .slide.good-looks.step-1 .gll-col.col-objectives,
@@ -2287,7 +2306,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 9 — PHASE 1: WHAT GOOD LOOKS LIKE                        -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="discovery-good" data-steps="3">
+<div class="slide coach-pop" data-notes="discovery-good" data-steps="3">
     <div class="slide-inner" style="--phase-c: var(--role-ae);">
 
         <div class="phase-strip animate-in">
@@ -2336,122 +2355,34 @@ body::before {
             </div>
         </div>
 
-        <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
-    </div>
-</div>
+        <button type="button" class="coach-cta" aria-label="Open coaching example">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="0.6" fill="currentColor"/></svg>
+            <span>See Coaching Example</span>
+        </button>
 
-<!-- ============================================================ -->
-<!-- SLIDE 9b — OBJECTIVES vs INITIATIVES (ported from FLL Slide 10)-->
-<!-- ============================================================ -->
-<div class="slide good-looks" data-notes="good-looks" data-steps="8">
-    <div class="slide-inner compact">
-        <span class="eyebrow">02</span>
-        <h1 class="slide-title">What Good <span class="accent">Looks Like</span></h1>
-
-        <div class="gll-grid">
-            <div class="gll-col col-objectives">
-                <div class="gll-head">
-                    <div class="gll-num">01</div>
-                    <div class="gll-title">Objectives</div>
-                </div>
-
-                <div class="gll-wgll">
-                    <div class="gll-wgll-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L20 6.5"/></svg></div>
-                    <div class="gll-wgll-body">
-                        <div class="gll-wgll-label">What Good Looks Like</div>
-                        <div class="gll-wgll-text">Written from the <strong>customer&rsquo;s perspective</strong>, measurable, and validated by a customer sponsor.</div>
-                    </div>
-                </div>
-
-                <div class="gll-split">
-                    <div class="gll-mini">
-                        <div class="gll-mini-head">
-                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
-                            <div class="gll-mini-label">Who</div>
-                        </div>
-                        <div class="gll-mini-text"><strong>Account Owners</strong></div>
-                    </div>
-                    <div class="gll-mini">
-                        <div class="gll-mini-head">
-                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .66.39 1.27 1 1.51"/></svg></div>
-                            <div class="gll-mini-label">How</div>
-                        </div>
-                        <div class="gll-mini-text">Define <strong>2&ndash;3 core customer priorities</strong></div>
-                    </div>
-                </div>
-
-                <div class="gll-coach">
-                    <div class="gll-coach-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                    <div class="gll-coach-body">
-                        <div class="gll-coach-label">Coaching Question</div>
-                        <div class="gll-coach-text">&ldquo;What are the top 3 business objectives, and what evidence supports this?&rdquo;</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="gll-col col-initiatives">
-                <div class="gll-head">
-                    <div class="gll-num">02</div>
-                    <div class="gll-title">Customer Initiatives</div>
-                </div>
-
-                <div class="gll-wgll">
-                    <div class="gll-wgll-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L20 6.5"/></svg></div>
-                    <div class="gll-wgll-body">
-                        <div class="gll-wgll-label">What Good Looks Like</div>
-                        <div class="gll-wgll-text">Every initiative has a <strong>clear owner</strong>, a defined path, is documented in the &ldquo;Value Definition&rdquo; tab in SalesMain, and is directly linked to driving new or expanded pipeline opportunities.</div>
-                    </div>
-                </div>
-
-                <div class="gll-split">
-                    <div class="gll-mini">
-                        <div class="gll-mini-head">
-                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.5"/><path d="M2 21v-1a4.5 4.5 0 0 1 4.5-4.5h5A4.5 4.5 0 0 1 16 20v1"/><circle cx="17.5" cy="8.5" r="2.5"/><path d="M22 19v-.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></div>
-                            <div class="gll-mini-label">Who</div>
-                        </div>
-                        <div class="gll-mini-text"><strong>Architecture AEs &amp; SEs</strong></div>
-                    </div>
-                    <div class="gll-mini">
-                        <div class="gll-mini-head">
-                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h6M4 12h6M4 17h4"/><path d="M14 7l3 3-3 3"/><path d="M20 7v10"/></svg></div>
-                            <div class="gll-mini-label">How</div>
-                        </div>
-                        <div class="gll-mini-text">Translate objectives into <strong>technical initiatives</strong></div>
-                    </div>
-                </div>
-
-                <div class="gll-coach">
-                    <div class="gll-coach-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                    <div class="gll-coach-body">
-                        <div class="gll-coach-label">Coaching Question</div>
-                        <div class="gll-coach-text">&ldquo;How does this technical solution directly support the business objective identified?&rdquo;</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="obj-overlay" aria-hidden="true">
+        <div class="obj-overlay" role="dialog" aria-label="Coaching example: From Vendor-Speak to Customer Outcome">
             <div class="obj-overlay-head">
                 <span class="obj-overlay-eyebrow">Coaching Example</span>
                 <span class="obj-overlay-title">From Vendor-Speak to Customer Outcome</span>
             </div>
             <div class="obj-rows">
-                <div class="obj-row obj-row-1">
+                <div class="obj-row">
                     <div class="obj-bad">Obtain SD-WAN business</div>
                     <div class="obj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
                     <div class="obj-good">Lower TCO and improve budget predictability</div>
                 </div>
-                <div class="obj-row obj-row-2">
+                <div class="obj-row">
                     <div class="obj-bad">Win calling RFP</div>
                     <div class="obj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
                     <div class="obj-good">Improve employee productivity through omnichannel capabilities</div>
                 </div>
-                <div class="obj-row obj-row-3">
+                <div class="obj-row">
                     <div class="obj-bad">Modernize edge compute</div>
                     <div class="obj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
                     <div class="obj-good">Reduce latency for critical edge apps to under 100&nbsp;ms to improve customer satisfaction and conversion</div>
                 </div>
             </div>
+            <div class="obj-overlay-hint">Click anywhere to dismiss</div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -2971,7 +2902,7 @@ body::before {
             ['.role-contrib.rc-cs']
         ],
         "discovery-good": [
-            ['.good-item:nth-child(1)'],
+            ['.good-item:nth-child(1)', '.coach-cta'],
             ['.good-item:nth-child(2)'],
             ['.good-item:nth-child(3)']
         ],
@@ -3019,12 +2950,6 @@ body::before {
 
     function applySteps() {
         const s = slides[idx];
-        // Step-class-driven slides (good-looks): map step counter to step-N class on the slide itself
-        if (s.classList.contains('good-looks')) {
-            for (let i = 1; i <= 8; i++) s.classList.remove('step-' + i);
-            if (step > 0) s.classList.add('step-' + step);
-            return;
-        }
         const key = s.dataset.notes;
         const targets = STEP_TARGETS[key];
         if (!targets) return;
@@ -3104,11 +3029,7 @@ body::before {
             "If that answer comes from one person, we haven't done discovery right.",
             "If it comes from the team — and it's been validated by the customer — we're ready to move into Phase 2."
         ],
-        "good-looks": [
-            "There are two layers to every plan, and they create two distinct coaching conversations. Business Objectives are owned by the Account Owner; Customer Initiatives are owned by Architecture AEs and SEs.",
-            "Objectives must be written from the customer's perspective, measurable, and validated by a customer sponsor — not framed as vendor product wins. Initiatives must trace cleanly back to a stated objective, have a clear owner, and live in the Value Definition tab in SalesMain.",
-            "The overlay shows the coaching example I want you to take with you. Each row is a real reframe — 'Obtain SD-WAN business' becomes 'Lower TCO and improve budget predictability.' 'Win calling RFP' becomes 'Improve employee productivity through omnichannel capabilities.' That's the shift from vendor-speak to customer outcome. The coaching question on each side is the test — if the seller can answer it crisply, the plan is in good shape."
-        ],
+
         "definition-good": [
             "At the end of Phase 2, you should be able to pressure-test your plan with one question: 'If a customer CXO read this, would they see one strategy or a list of disconnected projects?'",
             "If it's the second one, we haven't decided together.",
@@ -3165,15 +3086,24 @@ body::before {
             // Reset reveal state on all stepped slides
             s.querySelectorAll('.revealed').forEach(el => el.classList.remove('revealed'));
             for (let j = 1; j <= 8; j++) s.classList.remove('step-' + j);
+            s.classList.remove('show-coach');
         });
-        // Step-class-driven slides start at step 1 so their first column is visible on entry
-        if (slides[idx].classList.contains('good-looks')) {
-            step = 1;
-            applySteps();
-        }
         cur.textContent = idx + 1;
         updateNotes();
     }
+
+    // Coaching example popup on Phase 1 "good" slide
+    document.querySelectorAll('.slide.coach-pop .coach-cta').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            btn.closest('.slide').classList.toggle('show-coach');
+        });
+    });
+    document.querySelectorAll('.slide.coach-pop .obj-overlay').forEach(ov => {
+        ov.addEventListener('click', () => {
+            ov.closest('.slide').classList.remove('show-coach');
+        });
+    });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { next(); e.preventDefault(); }
