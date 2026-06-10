@@ -1661,68 +1661,153 @@ body::before {
 }
 
 /* ============================================================ */
-/* SLIDE — DRIVE STRATEGIC AGILITY (ported from FLL Slide 11)     */
+/* SLIDE — OBJECTIVES vs INITIATIVES (ported from FLL Slide 10)   */
 /* ============================================================ */
-.slide.coach .slide-inner.compact { padding: 36px 64px 48px; }
-.slide.coach .eyebrow { animation: fadeUpImp 0.6s 0.1s ease both; }
-.slide.coach .slide-title { animation: fadeUpImp 0.7s 0.2s ease both; }
+.slide.good-looks .slide-inner.compact { padding: 36px 64px 48px; }
 
-.slide.coach .pivot { position: relative; display: grid; grid-template-columns: 1fr 64px 1fr; align-items: stretch; gap: 0; margin-top: 18px; border-radius: 18px; overflow: hidden; border: 1px solid var(--card-border); background: linear-gradient(135deg, rgba(2,200,255,0.08), rgba(10,96,255,0.04)); }
-.slide.coach .pivot-col { padding: 28px 30px; display: flex; flex-direction: column; gap: 12px; position: relative; }
-.slide.coach .pivot-col.from { background: rgba(7,24,45,0.55); }
-.slide.coach .pivot-col.to { background: linear-gradient(135deg, rgba(2,200,255,0.12), rgba(10,96,255,0.06)); }
-.slide.coach .pivot-col.to::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-blue); }
-.slide.coach .pivot-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-secondary); animation: fadeUpImp 0.7s 0.4s ease both; }
-.slide.coach .pivot-tag .badge { padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); font-size: 0.64rem; }
-.slide.coach .pivot-col.to .pivot-tag { color: var(--cisco-blue); }
-.slide.coach .pivot-col.to .pivot-tag .badge { border-color: rgba(2,200,255,0.45); background: rgba(2,200,255,0.10); }
-.slide.coach .pivot-q { font-size: 1.4rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.005em; animation: fadeUpImp 0.9s 0.6s ease both; position: relative; display: inline-block; }
-.slide.coach .pivot-col.from .pivot-q { color: rgba(255,255,255,0.85); transition: color 0.5s ease; }
-.slide.coach .pivot-col.from .pivot-q::after { content: ""; position: absolute; left: 0; top: 50%; height: 3px; width: 0; background: linear-gradient(90deg, #FF3B5C, #FF6B6B); border-radius: 2px; transform: translateY(-50%); box-shadow: 0 0 12px rgba(255,59,92,0.5); transition: width 0.7s cubic-bezier(.65,.05,.36,1); }
-.slide.coach.step-1 .pivot-col.from .pivot-q { color: rgba(255,255,255,0.45); }
-.slide.coach.step-1 .pivot-col.from .pivot-q::after,
-.slide.coach.step-2 .pivot-col.from .pivot-q::after,
-.slide.coach.step-3 .pivot-col.from .pivot-q::after,
-.slide.coach.step-4 .pivot-col.from .pivot-q::after { width: 100%; }
-.slide.coach .pivot-col.to { opacity: 0; transform: translateX(20px); transition: opacity 0.7s 0.2s ease, transform 0.7s 0.2s ease; }
-.slide.coach.step-2 .pivot-col.to,
-.slide.coach.step-3 .pivot-col.to,
-.slide.coach.step-4 .pivot-col.to { opacity: 1; transform: translateX(0); }
-.slide.coach .pivot-col.to .pivot-q { color: var(--text-primary); animation-delay: 1.0s; }
-.slide.coach .pivot-q .accent { background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 900; }
-.slide.coach .pivot-meta { font-size: 0.88rem; font-weight: 300; color: var(--text-secondary); line-height: 1.4; animation: fadeUpImp 0.9s 0.8s ease both; }
-.slide.coach .pivot-col.to .pivot-meta { animation-delay: 1.2s; }
-.slide.coach .pivot-arrow { position: relative; display: grid; place-items: center; background: rgba(7,24,45,0.85); cursor: pointer; }
-.slide.coach .pivot-arrow svg { width: 34px; height: 34px; color: var(--cisco-blue); filter: drop-shadow(0 0 12px rgba(2,200,255,0.7)); transition: transform 0.6s cubic-bezier(.2,.8,.2,1); }
-.slide.coach.step-1 .pivot-arrow svg { animation: arrowNudgeImp 1.4s ease-in-out infinite; }
-.slide.coach.step-2 .pivot-arrow svg,
-.slide.coach.step-3 .pivot-arrow svg,
-.slide.coach.step-4 .pivot-arrow svg { animation: none; transform: translateX(8px) scale(1.1); }
-.slide.coach .pivot-arrow::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, transparent, rgba(2,200,255,0.6), transparent); background-size: 200% 100%; animation: pivotFlowImp 2.4s linear infinite; opacity: 0; transition: opacity 0.4s ease; }
-.slide.coach.step-2 .pivot-arrow::before,
-.slide.coach.step-3 .pivot-arrow::before,
-.slide.coach.step-4 .pivot-arrow::before { opacity: 1; }
-.slide.coach .pivot-hint { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cisco-blue); white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; }
-.slide.coach.step-1 .pivot-hint { opacity: 0.85; animation: pulseDotImp 1.6s ease-in-out infinite; }
+.slide.good-looks .gll-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto auto; gap: 22px; flex: 1; margin-top: 18px; min-height: 0; align-items: stretch; }
+.slide.good-looks .gll-col { position: relative; display: grid; grid-template-rows: subgrid; grid-row: 1 / span 4; row-gap: 18px; padding: 26px 28px 24px; border-radius: 18px; background: linear-gradient(160deg, rgba(2,200,255,0.12), rgba(7,24,45,0.75) 70%); border: 1px solid var(--card-border); overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
+.slide.good-looks.step-1 .gll-col.col-objectives,
+.slide.good-looks.step-2 .gll-col.col-objectives,
+.slide.good-looks.step-3 .gll-col.col-objectives,
+.slide.good-looks.step-4 .gll-col.col-objectives,
+.slide.good-looks.step-5 .gll-col.col-objectives,
+.slide.good-looks.step-6 .gll-col.col-objectives,
+.slide.good-looks.step-7 .gll-col.col-objectives,
+.slide.good-looks.step-8 .gll-col.col-objectives { opacity: 1; transform: translateY(0); border-color: rgba(2,200,255,0.55); box-shadow: 0 28px 70px -28px rgba(2,200,255,0.55); }
+.slide.good-looks.step-8 .gll-col.col-initiatives { opacity: 1; transform: translateY(0); border-color: rgba(2,200,255,0.55); box-shadow: 0 28px 70px -28px rgba(2,200,255,0.55); }
+.slide.good-looks .gll-col::before { content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; background: var(--gradient-blue); }
+.slide.good-looks .gll-col::after { content: ""; position: absolute; pointer-events: none; top: -45%; right: -30%; width: 380px; height: 380px; background: radial-gradient(circle, rgba(2,200,255,0.18), rgba(2,200,255,0) 60%); }
 
-.slide.coach .tenets { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
-.slide.coach .tenet { position: relative; display: flex; align-items: center; gap: 20px; padding: 18px 26px; border-radius: 14px; background: linear-gradient(135deg, rgba(2,200,255,0.10), rgba(10,96,255,0.04)), var(--card-bg); border: 1px solid var(--card-border); overflow: hidden; opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
-.slide.coach.step-3 .tenet.t-mindset,
-.slide.coach.step-4 .tenet.t-mindset { opacity: 1; transform: translateY(0); border-color: rgba(2,200,255,0.45); box-shadow: 0 18px 44px -28px rgba(2,200,255,0.5); }
-.slide.coach.step-4 .tenet.t-action { opacity: 1; transform: translateY(0); border-color: rgba(2,200,255,0.45); box-shadow: 0 18px 44px -28px rgba(2,200,255,0.5); }
-.slide.coach .tenet::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--gradient-blue); }
-.slide.coach .tenet-mark { flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--cisco-blue); background: rgba(2,200,255,0.14); border: 1px solid rgba(2,200,255,0.40); box-shadow: inset 0 0 24px rgba(2,200,255,0.18), 0 0 24px rgba(2,200,255,0.25); }
-.slide.coach .tenet-mark svg { width: 26px; height: 26px; }
-.slide.coach .tenet-content { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; flex: 1; }
-.slide.coach .tenet-label { font-size: 0.74rem; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cisco-blue); padding: 4px 12px; border: 1px solid rgba(2,200,255,0.45); border-radius: 999px; background: rgba(2,200,255,0.08); }
-.slide.coach .tenet-title { font-size: 1.35rem; font-weight: 900; line-height: 1.15; color: var(--text-primary); letter-spacing: -0.01em; }
-.slide.coach .tenet-body { font-size: 0.95rem; font-weight: 300; line-height: 1.45; color: var(--text-secondary); flex-basis: 100%; }
-.slide.coach .tenet-body strong { color: var(--text-primary); font-weight: 700; }
+.slide.good-looks .gll-head { display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; }
+.slide.good-looks .gll-num { font-size: 3.6rem; font-weight: 900; line-height: 0.9; letter-spacing: -0.04em; background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
+.slide.good-looks .gll-title { font-size: 2.0rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.01em; color: var(--text-primary); position: relative; z-index: 1; }
 
-@keyframes fadeUpImp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulseDotImp { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
-@keyframes arrowNudgeImp { 0%,100% { transform: translateX(-6px); opacity: 0.7; } 50% { transform: translateX(6px); opacity: 1; } }
-@keyframes pivotFlowImp { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.slide.good-looks .gll-wgll { position: relative; z-index: 1; padding: 20px 22px; border-radius: 14px; background: linear-gradient(135deg, rgba(2,200,255,0.18), rgba(10,96,255,0.10)); border: 1px solid rgba(2,200,255,0.45); box-shadow: 0 0 0 1px rgba(2,200,255,0.12) inset, 0 14px 36px -22px rgba(2,200,255,0.45); display: flex; gap: 16px; align-items: flex-start; }
+.slide.good-looks .gll-wgll-icon { flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; color: #07182D; background: var(--gradient-blue); box-shadow: 0 6px 18px -4px rgba(2,200,255,0.6); }
+.slide.good-looks .gll-wgll-icon svg { width: 26px; height: 26px; }
+.slide.good-looks .gll-wgll-body { flex: 1; min-width: 0; }
+.slide.good-looks .gll-wgll-label { font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); margin-bottom: 6px; }
+.slide.good-looks .gll-wgll-text { font-size: 1.18rem; font-weight: 400; line-height: 1.45; color: var(--text-primary); }
+.slide.good-looks .gll-wgll-text strong { font-weight: 800; color: #fff; }
+
+.slide.good-looks .gll-split { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.slide.good-looks .gll-mini { position: relative; padding: 16px 18px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); display: flex; flex-direction: column; gap: 8px; }
+.slide.good-looks .gll-mini-head { display: flex; align-items: center; gap: 10px; }
+.slide.good-looks .gll-mini-icon { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; color: var(--cisco-blue); background: rgba(2,200,255,0.14); border: 1px solid rgba(2,200,255,0.35); }
+.slide.good-looks .gll-mini-icon svg { width: 18px; height: 18px; }
+.slide.good-looks .gll-mini-label { font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); }
+.slide.good-looks .gll-mini-text { font-size: 1.08rem; font-weight: 300; line-height: 1.4; color: var(--text-secondary); }
+.slide.good-looks .gll-mini-text strong { color: var(--text-primary); font-weight: 700; }
+
+.slide.good-looks .gll-coach { position: relative; z-index: 1; padding: 18px 20px; border-radius: 12px; background: rgba(255,255,255,0.03); border-left: 3px solid var(--cisco-blue); display: flex; gap: 14px; align-items: flex-start; }
+.slide.good-looks .gll-coach-icon { flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--cisco-blue); background: rgba(2,200,255,0.14); border: 1px solid rgba(2,200,255,0.35); }
+.slide.good-looks .gll-coach-icon svg { width: 18px; height: 18px; }
+.slide.good-looks .gll-coach-body { flex: 1; min-width: 0; }
+.slide.good-looks .gll-coach-label { font-size: 0.78rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); margin-bottom: 6px; }
+.slide.good-looks .gll-coach-text { font-size: 1.15rem; font-weight: 700; font-style: italic; line-height: 1.45; color: var(--text-primary); }
+
+.slide.good-looks .gll-col .gll-wgll,
+.slide.good-looks .gll-col .gll-split,
+.slide.good-looks .gll-col .gll-coach { opacity: 0; transform: translateY(8px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.slide.good-looks.step-1 .col-objectives .gll-wgll,
+.slide.good-looks.step-2 .col-objectives .gll-wgll,
+.slide.good-looks.step-3 .col-objectives .gll-wgll,
+.slide.good-looks.step-4 .col-objectives .gll-wgll,
+.slide.good-looks.step-5 .col-objectives .gll-wgll,
+.slide.good-looks.step-6 .col-objectives .gll-wgll,
+.slide.good-looks.step-7 .col-objectives .gll-wgll,
+.slide.good-looks.step-8 .col-objectives .gll-wgll,
+.slide.good-looks.step-8 .col-initiatives .gll-wgll { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+.slide.good-looks.step-1 .col-objectives .gll-split,
+.slide.good-looks.step-2 .col-objectives .gll-split,
+.slide.good-looks.step-3 .col-objectives .gll-split,
+.slide.good-looks.step-4 .col-objectives .gll-split,
+.slide.good-looks.step-5 .col-objectives .gll-split,
+.slide.good-looks.step-6 .col-objectives .gll-split,
+.slide.good-looks.step-7 .col-objectives .gll-split,
+.slide.good-looks.step-8 .col-objectives .gll-split,
+.slide.good-looks.step-8 .col-initiatives .gll-split { opacity: 1; transform: translateY(0); transition-delay: 0.32s; }
+.slide.good-looks.step-1 .col-objectives .gll-coach,
+.slide.good-looks.step-2 .col-objectives .gll-coach,
+.slide.good-looks.step-3 .col-objectives .gll-coach,
+.slide.good-looks.step-4 .col-objectives .gll-coach,
+.slide.good-looks.step-5 .col-objectives .gll-coach,
+.slide.good-looks.step-6 .col-objectives .gll-coach,
+.slide.good-looks.step-7 .col-objectives .gll-coach,
+.slide.good-looks.step-8 .col-objectives .gll-coach,
+.slide.good-looks.step-8 .col-initiatives .gll-coach { opacity: 1; transform: translateY(0); transition-delay: 0.46s; }
+
+.slide.good-looks .obj-overlay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, calc(-50% + 24px)); width: min(960px, 94%); padding: 32px 36px 30px; border-radius: 18px; background: linear-gradient(135deg, rgba(2,200,255,0.20), rgba(10,96,255,0.10)), rgba(7,24,45,0.94); border: 1px solid rgba(2,200,255,0.6); backdrop-filter: blur(14px); box-shadow: 0 32px 80px -28px rgba(2,200,255,0.7); opacity: 0; pointer-events: none; transition: opacity 0.55s ease, transform 0.55s ease; z-index: 8; }
+.slide.good-looks.step-2 .obj-overlay,
+.slide.good-looks.step-3 .obj-overlay,
+.slide.good-looks.step-4 .obj-overlay,
+.slide.good-looks.step-5 .obj-overlay,
+.slide.good-looks.step-6 .obj-overlay,
+.slide.good-looks.step-7 .obj-overlay { opacity: 1; transform: translate(-50%, -50%); pointer-events: auto; }
+.slide.good-looks .obj-overlay-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.slide.good-looks .obj-overlay-eyebrow { font-size: 0.72rem; font-weight: 900; letter-spacing: 0.26em; text-transform: uppercase; color: var(--cisco-blue); padding: 5px 12px; border: 1px solid rgba(2,200,255,0.5); border-radius: 999px; background: rgba(2,200,255,0.10); }
+.slide.good-looks .obj-overlay-title { font-size: 1.4rem; font-weight: 900; letter-spacing: -0.01em; color: var(--text-primary); }
+
+.slide.good-looks .obj-rows { display: flex; flex-direction: column; gap: 14px; }
+.slide.good-looks .obj-row { display: grid; grid-template-columns: 1fr 36px 1fr; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 12px; background: rgba(7,24,45,0.55); border: 1px solid rgba(255,255,255,0.08); opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.slide.good-looks .obj-row .obj-bad { position: relative; display: inline-block; font-size: 1.08rem; font-weight: 700; color: rgba(255,255,255,0.92); transition: color 0.5s ease; }
+.slide.good-looks .obj-row .obj-bad::after { content: ""; position: absolute; left: 0; top: 50%; height: 3px; width: 0; transform: translateY(-50%); background: linear-gradient(90deg, #FF3B5C, #FF6B6B); border-radius: 2px; box-shadow: 0 0 12px rgba(255,59,92,0.55); transition: width 0.6s cubic-bezier(.65,.05,.36,1); }
+.slide.good-looks .obj-row .obj-arrow { display: grid; place-items: center; color: var(--cisco-blue); opacity: 0; transition: opacity 0.45s ease; }
+.slide.good-looks .obj-row .obj-arrow svg { width: 24px; height: 24px; filter: drop-shadow(0 0 8px rgba(2,200,255,0.7)); }
+.slide.good-looks .obj-row .obj-good { font-size: 1.08rem; font-weight: 700; color: var(--text-primary); background: var(--gradient-blue); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; opacity: 0; transform: translateX(-8px); transition: opacity 0.55s ease, transform 0.55s ease; }
+
+.slide.good-looks.step-2 .obj-row-1,
+.slide.good-looks.step-3 .obj-row-1,
+.slide.good-looks.step-4 .obj-row-1,
+.slide.good-looks.step-5 .obj-row-1,
+.slide.good-looks.step-6 .obj-row-1,
+.slide.good-looks.step-7 .obj-row-1 { opacity: 1; transform: translateY(0); }
+.slide.good-looks.step-4 .obj-row-2,
+.slide.good-looks.step-5 .obj-row-2,
+.slide.good-looks.step-6 .obj-row-2,
+.slide.good-looks.step-7 .obj-row-2 { opacity: 1; transform: translateY(0); }
+.slide.good-looks.step-6 .obj-row-3,
+.slide.good-looks.step-7 .obj-row-3 { opacity: 1; transform: translateY(0); }
+
+.slide.good-looks.step-3 .obj-row-1 .obj-bad::after,
+.slide.good-looks.step-4 .obj-row-1 .obj-bad::after,
+.slide.good-looks.step-5 .obj-row-1 .obj-bad::after,
+.slide.good-looks.step-6 .obj-row-1 .obj-bad::after,
+.slide.good-looks.step-7 .obj-row-1 .obj-bad::after { width: 100%; }
+.slide.good-looks.step-3 .obj-row-1 .obj-bad,
+.slide.good-looks.step-4 .obj-row-1 .obj-bad,
+.slide.good-looks.step-5 .obj-row-1 .obj-bad,
+.slide.good-looks.step-6 .obj-row-1 .obj-bad,
+.slide.good-looks.step-7 .obj-row-1 .obj-bad { color: rgba(255,255,255,0.45); }
+.slide.good-looks.step-3 .obj-row-1 .obj-arrow,
+.slide.good-looks.step-4 .obj-row-1 .obj-arrow,
+.slide.good-looks.step-5 .obj-row-1 .obj-arrow,
+.slide.good-looks.step-6 .obj-row-1 .obj-arrow,
+.slide.good-looks.step-7 .obj-row-1 .obj-arrow,
+.slide.good-looks.step-3 .obj-row-1 .obj-good,
+.slide.good-looks.step-4 .obj-row-1 .obj-good,
+.slide.good-looks.step-5 .obj-row-1 .obj-good,
+.slide.good-looks.step-6 .obj-row-1 .obj-good,
+.slide.good-looks.step-7 .obj-row-1 .obj-good { opacity: 1; transform: translateX(0); }
+
+.slide.good-looks.step-5 .obj-row-2 .obj-bad::after,
+.slide.good-looks.step-6 .obj-row-2 .obj-bad::after,
+.slide.good-looks.step-7 .obj-row-2 .obj-bad::after { width: 100%; }
+.slide.good-looks.step-5 .obj-row-2 .obj-bad,
+.slide.good-looks.step-6 .obj-row-2 .obj-bad,
+.slide.good-looks.step-7 .obj-row-2 .obj-bad { color: rgba(255,255,255,0.45); }
+.slide.good-looks.step-5 .obj-row-2 .obj-arrow,
+.slide.good-looks.step-6 .obj-row-2 .obj-arrow,
+.slide.good-looks.step-7 .obj-row-2 .obj-arrow,
+.slide.good-looks.step-5 .obj-row-2 .obj-good,
+.slide.good-looks.step-6 .obj-row-2 .obj-good,
+.slide.good-looks.step-7 .obj-row-2 .obj-good { opacity: 1; transform: translateX(0); }
+
+.slide.good-looks.step-7 .obj-row-3 .obj-bad::after { width: 100%; }
+.slide.good-looks.step-7 .obj-row-3 .obj-bad { color: rgba(255,255,255,0.45); }
+.slide.good-looks.step-7 .obj-row-3 .obj-arrow,
+.slide.good-looks.step-7 .obj-row-3 .obj-good { opacity: 1; transform: translateX(0); }
 </style>
 </head>
 <body>
@@ -2256,49 +2341,115 @@ body::before {
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 9b — DRIVE STRATEGIC AGILITY (ported from FLL Slide 11)  -->
+<!-- SLIDE 9b — OBJECTIVES vs INITIATIVES (ported from FLL Slide 10)-->
 <!-- ============================================================ -->
-<div class="slide coach agility" data-notes="agility" data-steps="4">
+<div class="slide good-looks" data-notes="good-looks" data-steps="8">
     <div class="slide-inner compact">
-        <span class="eyebrow">03</span>
-        <h1 class="slide-title">Drive Strategic <span class="accent">Agility</span></h1>
+        <span class="eyebrow">02</span>
+        <h1 class="slide-title">What Good <span class="accent">Looks Like</span></h1>
 
-        <div class="pivot">
-            <div class="pivot-col from">
-                <div class="pivot-tag"><span class="badge">From</span> Periodic check-the-box activity</div>
-                <div class="pivot-q">&ldquo;Have you completed your plan?&rdquo;</div>
-                <div class="pivot-meta">A one-time deliverable that goes stale the moment the market moves.</div>
+        <div class="gll-grid">
+            <div class="gll-col col-objectives">
+                <div class="gll-head">
+                    <div class="gll-num">01</div>
+                    <div class="gll-title">Objectives</div>
+                </div>
+
+                <div class="gll-wgll">
+                    <div class="gll-wgll-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L20 6.5"/></svg></div>
+                    <div class="gll-wgll-body">
+                        <div class="gll-wgll-label">What Good Looks Like</div>
+                        <div class="gll-wgll-text">Written from the <strong>customer&rsquo;s perspective</strong>, measurable, and validated by a customer sponsor.</div>
+                    </div>
+                </div>
+
+                <div class="gll-split">
+                    <div class="gll-mini">
+                        <div class="gll-mini-head">
+                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+                            <div class="gll-mini-label">Who</div>
+                        </div>
+                        <div class="gll-mini-text"><strong>Account Owners</strong></div>
+                    </div>
+                    <div class="gll-mini">
+                        <div class="gll-mini-head">
+                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .66.39 1.27 1 1.51"/></svg></div>
+                            <div class="gll-mini-label">How</div>
+                        </div>
+                        <div class="gll-mini-text">Define <strong>2&ndash;3 core customer priorities</strong></div>
+                    </div>
+                </div>
+
+                <div class="gll-coach">
+                    <div class="gll-coach-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <div class="gll-coach-body">
+                        <div class="gll-coach-label">Coaching Question</div>
+                        <div class="gll-coach-text">&ldquo;What are the top 3 business objectives, and what evidence supports this?&rdquo;</div>
+                    </div>
+                </div>
             </div>
-            <div class="pivot-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-                <div class="pivot-hint">Click &rarr;</div>
-            </div>
-            <div class="pivot-col to">
-                <div class="pivot-tag"><span class="badge">To</span> Dynamic asset that drives growth</div>
-                <div class="pivot-q">&ldquo;<span class="accent">What has changed</span> in the customer&rsquo;s business since our last review &mdash; and how are we updating the strategy to reflect that?&rdquo;</div>
-                <div class="pivot-meta">A living plan that adapts to change and proactively captures expansion opportunities.</div>
+
+            <div class="gll-col col-initiatives">
+                <div class="gll-head">
+                    <div class="gll-num">02</div>
+                    <div class="gll-title">Customer Initiatives</div>
+                </div>
+
+                <div class="gll-wgll">
+                    <div class="gll-wgll-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L20 6.5"/></svg></div>
+                    <div class="gll-wgll-body">
+                        <div class="gll-wgll-label">What Good Looks Like</div>
+                        <div class="gll-wgll-text">Every initiative has a <strong>clear owner</strong>, a defined path, is documented in the &ldquo;Value Definition&rdquo; tab in SalesMain, and is directly linked to driving new or expanded pipeline opportunities.</div>
+                    </div>
+                </div>
+
+                <div class="gll-split">
+                    <div class="gll-mini">
+                        <div class="gll-mini-head">
+                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3.5"/><path d="M2 21v-1a4.5 4.5 0 0 1 4.5-4.5h5A4.5 4.5 0 0 1 16 20v1"/><circle cx="17.5" cy="8.5" r="2.5"/><path d="M22 19v-.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></div>
+                            <div class="gll-mini-label">Who</div>
+                        </div>
+                        <div class="gll-mini-text"><strong>Architecture AEs &amp; SEs</strong></div>
+                    </div>
+                    <div class="gll-mini">
+                        <div class="gll-mini-head">
+                            <div class="gll-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h6M4 12h6M4 17h4"/><path d="M14 7l3 3-3 3"/><path d="M20 7v10"/></svg></div>
+                            <div class="gll-mini-label">How</div>
+                        </div>
+                        <div class="gll-mini-text">Translate objectives into <strong>technical initiatives</strong></div>
+                    </div>
+                </div>
+
+                <div class="gll-coach">
+                    <div class="gll-coach-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <div class="gll-coach-body">
+                        <div class="gll-coach-label">Coaching Question</div>
+                        <div class="gll-coach-text">&ldquo;How does this technical solution directly support the business objective identified?&rdquo;</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="tenets">
-            <div class="tenet t-mindset">
-                <div class="tenet-mark" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3"/><path d="M12 19v3"/><path d="M4.93 4.93l2.12 2.12"/><path d="M16.95 16.95l2.12 2.12"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.93 19.07l2.12-2.12"/><path d="M16.95 7.05l2.12-2.12"/><circle cx="12" cy="12" r="4"/></svg>
-                </div>
-                <div class="tenet-content">
-                    <div class="tenet-label">Mindset</div>
-                    <div class="tenet-title">Planning is a growth engine</div>
-                    <div class="tenet-body">Evolve our planning process into a <strong>dynamic growth engine</strong> &mdash; one that adapts to market shifts, proactively captures expansion opportunities, and uses feedback to strengthen customer relationships.</div>
-                </div>
+        <div class="obj-overlay" aria-hidden="true">
+            <div class="obj-overlay-head">
+                <span class="obj-overlay-eyebrow">Coaching Example</span>
+                <span class="obj-overlay-title">From Vendor-Speak to Customer Outcome</span>
             </div>
-            <div class="tenet t-action">
-                <div class="tenet-mark" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4M16 2v4"/><path d="M8 14l2.5 2.5L16 11"/></svg>
+            <div class="obj-rows">
+                <div class="obj-row obj-row-1">
+                    <div class="obj-bad">Obtain SD-WAN business</div>
+                    <div class="obj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                    <div class="obj-good">Lower TCO and improve budget predictability</div>
                 </div>
-                <div class="tenet-content">
-                    <div class="tenet-label">Action</div>
-                    <div class="tenet-title">Schedule regular account reviews</div>
-                    <div class="tenet-body">Use the <strong>Internal Account Review</strong> deck to refine and adjust account strategy on a recurring cadence.</div>
+                <div class="obj-row obj-row-2">
+                    <div class="obj-bad">Win calling RFP</div>
+                    <div class="obj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                    <div class="obj-good">Improve employee productivity through omnichannel capabilities</div>
+                </div>
+                <div class="obj-row obj-row-3">
+                    <div class="obj-bad">Modernize edge compute</div>
+                    <div class="obj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+                    <div class="obj-good">Reduce latency for critical edge apps to under 100&nbsp;ms to improve customer satisfaction and conversion</div>
                 </div>
             </div>
         </div>
@@ -2868,8 +3019,8 @@ body::before {
 
     function applySteps() {
         const s = slides[idx];
-        // Coach-style slides: map step counter to step-N class on the slide itself
-        if (s.classList.contains('coach')) {
+        // Step-class-driven slides (good-looks): map step counter to step-N class on the slide itself
+        if (s.classList.contains('good-looks')) {
             for (let i = 1; i <= 8; i++) s.classList.remove('step-' + i);
             if (step > 0) s.classList.add('step-' + step);
             return;
@@ -2884,15 +3035,6 @@ body::before {
             });
         });
     }
-
-    // Coach slides: clicking the pivot arrow advances to (at least) step 2
-    document.querySelectorAll('.slide.coach .pivot-arrow').forEach(arrow => {
-        arrow.addEventListener('click', () => {
-            const s = arrow.closest('.slide');
-            if (!s.classList.contains('active')) return;
-            if (step < 2) { step = 2; applySteps(); }
-        });
-    });
 
     function currentSteps() {
         const s = slides[idx];
@@ -2962,10 +3104,10 @@ body::before {
             "If that answer comes from one person, we haven't done discovery right.",
             "If it comes from the team — and it's been validated by the customer — we're ready to move into Phase 2."
         ],
-        "agility": [
-            "Imperative 3: Drive Strategic Agility. Shift the team away from treating account planning as a one-time exercise.",
-            "The plan is a living asset — we revisit it, pressure-test it against what has actually changed in the customer's business, and update the strategy accordingly.",
-            "The action is concrete: schedule regular account reviews using the Internal Account Review slide deck so refinement becomes a habit, not an event."
+        "good-looks": [
+            "There are two layers to every plan, and they create two distinct coaching conversations. Business Objectives are owned by the Account Owner; Customer Initiatives are owned by Architecture AEs and SEs.",
+            "Objectives must be written from the customer's perspective, measurable, and validated by a customer sponsor — not framed as vendor product wins. Initiatives must trace cleanly back to a stated objective, have a clear owner, and live in the Value Definition tab in SalesMain.",
+            "The overlay shows the coaching example I want you to take with you. Each row is a real reframe — 'Obtain SD-WAN business' becomes 'Lower TCO and improve budget predictability.' 'Win calling RFP' becomes 'Improve employee productivity through omnichannel capabilities.' That's the shift from vendor-speak to customer outcome. The coaching question on each side is the test — if the seller can answer it crisply, the plan is in good shape."
         ],
         "definition-good": [
             "At the end of Phase 2, you should be able to pressure-test your plan with one question: 'If a customer CXO read this, would they see one strategy or a list of disconnected projects?'",
@@ -3022,7 +3164,13 @@ body::before {
             s.classList.toggle('active', i === idx);
             // Reset reveal state on all stepped slides
             s.querySelectorAll('.revealed').forEach(el => el.classList.remove('revealed'));
+            for (let j = 1; j <= 8; j++) s.classList.remove('step-' + j);
         });
+        // Step-class-driven slides start at step 1 so their first column is visible on entry
+        if (slides[idx].classList.contains('good-looks')) {
+            step = 1;
+            applySteps();
+        }
         cur.textContent = idx + 1;
         updateNotes();
     }
