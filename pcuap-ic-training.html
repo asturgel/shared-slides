@@ -1269,6 +1269,27 @@ body::before {
 }
 .dv-footnote b { color: var(--text-primary); font-weight: 700; }
 
+/* Reassurance footer inside each dv-card — the emotional anchor pulled out of the bullet list */
+.dv-reassure {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--dv-c);
+    border-left-width: 3px;
+    border-radius: 8px;
+    font-size: 0.96rem; font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    display: flex; align-items: center; gap: 10px;
+}
+.dv-reassure::before {
+    content: "✓";
+    color: var(--dv-c);
+    font-weight: 900;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
 /* ============================================================ */
 /* SLIDE 4 — STAKES (3-column "What changes")                     */
 /* ============================================================ */
@@ -2334,19 +2355,18 @@ body::before {
 <div class="slide" data-notes="data-views">
     <div class="slide-inner" style="justify-content:flex-start; padding-top:140px;">
         <h1 class="slide-title animate-in d2" style="margin-bottom:6px;">Two views, <span class="accent">one source of truth</span></h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:20px;">If your numbers look different, it's because you're seeing the <strong>full picture</strong>. We're shifting to a <strong>global view</strong> to power our <strong>"One Cisco"</strong> strategy — aligning every team on the same customer priorities.</p>
+        <p class="slide-subtitle animate-in d3" style="margin-bottom:20px;">Different numbers? You're seeing the <strong>full picture</strong> — the global <strong>“One Cisco”</strong> view.</p>
 
         <div class="dataviews-wrap">
             <div class="dv-card dv-coverage animate-in d3">
                 <div class="dv-eyebrow">Coverage View</div>
                 <div class="dv-title">Existing Sales Tools</div>
-                <div class="dv-sub">(SFDC, MBR, Visibility, etc.)<br>Aligned to how you cover the account and supports running your business day-to-day</div>
+                <div class="dv-sub">(SFDC, MBR, Visibility, etc.)<br>Aligned to how you cover the account and run your day-to-day business</div>
                 <ul class="dv-list">
-                    <li>Manage your deals and submit your Forecast</li>
-                    <li>Track your bookings and compensation</li>
-                    <li>How you are inspected and measured</li>
-                    <li>Nothing changes here — keep using these tools for your day-to-day execution</li>
+                    <li>Manage deals and submit your forecast</li>
+                    <li>Track bookings and compensation</li>
                 </ul>
+                <div class="dv-reassure">Nothing changes — keep using it daily</div>
             </div>
 
             <div class="dv-plus animate-in d4">
@@ -2356,13 +2376,12 @@ body::before {
             <div class="dv-card dv-pcuap animate-in d4">
                 <div class="dv-eyebrow">Global View</div>
                 <div class="dv-title">Premier Customer UAP</div>
-                <div class="dv-sub">Aligned to customer's holistic footprint with Cisco</div>
+                <div class="dv-sub">Aligned to the customer's holistic footprint with Cisco — how the customer thinks about us</div>
                 <ul class="dv-list">
-                    <li>Global, total Cisco view of the customer relationship</li>
-                    <li>Used for strategic, executive-level planning</li>
-                    <li>Aligned to how the customer thinks about Cisco</li>
-                    <li>Net new strategic capability</li>
+                    <li>The total Cisco view of the customer</li>
+                    <li>For strategic, executive-level planning</li>
                 </ul>
+                <div class="dv-reassure">A net-new capability — not a replacement</div>
             </div>
         </div>
 
