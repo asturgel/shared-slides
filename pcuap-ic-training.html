@@ -778,36 +778,37 @@ body::before {
     100% { opacity: 0; transform: translate(-50%, -50%) translate( -10px, 0); }
 }
 
-/* Tool/data-source chips — feed the plan from the diagonals */
+/* Tool/data-source chips — feed the plan from the diagonals (intelligence layer, 2nd wave) */
 .conv-tool {
     position: absolute;
     top: 50%; left: 50%;
     background: rgba(7,24,45,0.92);
-    border: 1px solid rgba(2,200,255,0.32);
+    border: 1px dashed rgba(255,0,127,0.45);
     border-radius: 10px;
     padding: 8px 12px 8px 8px;
     display: flex; align-items: center; gap: 9px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,0,127,0.10);
     z-index: 4;
     opacity: 0;
     animation-fill-mode: forwards;
-    animation-duration: 900ms;
+    animation-duration: 1000ms;
     animation-timing-function: cubic-bezier(0.5, 0, 0.2, 1);
 }
 .conv-tool::before {
     content: ""; position: absolute; top: 0; left: 10px; right: 10px;
-    height: 2px; background: linear-gradient(90deg, transparent, rgba(2,200,255,0.7), transparent);
+    height: 2px; background: linear-gradient(90deg, transparent, var(--accent-magenta), transparent);
     border-radius: 2px;
+    opacity: 0.85;
 }
 .conv-tool .tool-ico {
     width: 24px; height: 24px;
     border-radius: 6px;
-    background: linear-gradient(135deg, #0A60FF, #02C8FF);
+    background: linear-gradient(135deg, var(--accent-magenta), #FF4D9F);
     color: #fff;
     font-size: 0.78rem; font-weight: 900;
     display: grid; place-items: center;
     flex-shrink: 0;
-    box-shadow: 0 0 10px rgba(2,200,255,0.45);
+    box-shadow: 0 0 10px rgba(255,0,127,0.45);
 }
 .conv-tool .tool-text {
     line-height: 1.1;
@@ -817,7 +818,7 @@ body::before {
     display: block;
     font-size: 0.52rem; font-weight: 900;
     text-transform: uppercase; letter-spacing: 0.16em;
-    color: var(--cisco-blue);
+    color: var(--accent-magenta);
     margin-bottom: 2px;
 }
 .conv-tool .tool-name {
@@ -826,34 +827,70 @@ body::before {
     color: var(--text-primary);
 }
 
-.slide.active .conv-tool.tool-gong { animation-name: toolGong; animation-delay: 600ms; }
-.slide.active .conv-tool.tool-zoom { animation-name: toolZoom; animation-delay: 720ms; }
-.slide.active .conv-tool.tool-ai   { animation-name: toolAI;   animation-delay: 840ms; }
-@keyframes toolGong { from { opacity: 0; transform: translate(-50%, -50%) translate(-220px, -220px); } to { opacity: 1; transform: translate(-50%, -50%) translate(-150px, -160px); } }
-@keyframes toolZoom { from { opacity: 0; transform: translate(-50%, -50%) translate( 220px, -220px); } to { opacity: 1; transform: translate(-50%, -50%) translate( 150px, -160px); } }
-@keyframes toolAI   { from { opacity: 0; transform: translate(-50%, -50%) translate( 220px,  220px); } to { opacity: 1; transform: translate(-50%, -50%) translate( 150px,  160px); } }
+/* AI INSIGHTS grouping label — appears just before tools as a 2nd-wave header */
+.insights-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, calc(-50% - 215px)) translateY(8px);
+    background: rgba(7,24,45,0.92);
+    border: 1px dashed rgba(255,0,127,0.55);
+    color: var(--accent-magenta);
+    font-size: 0.6rem; font-weight: 900;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    padding: 5px 14px 5px 12px;
+    border-radius: 999px;
+    z-index: 6;
+    opacity: 0;
+    display: inline-flex; align-items: center; gap: 7px;
+    box-shadow: 0 0 18px rgba(255,0,127,0.20);
+}
+.insights-label::before {
+    content: "✦"; font-size: 0.75rem; color: var(--accent-magenta);
+    animation: aiSpark 2.2s ease-in-out infinite;
+}
+.slide.active .insights-label {
+    animation: insightsLabelIn 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1500ms;
+}
+@keyframes insightsLabelIn {
+    to { opacity: 1; transform: translate(-50%, calc(-50% - 215px)) translateY(0); }
+}
 
-/* Diagonal data pulses from tools to hub */
-.slide.active .conv-pulse.p-nw { animation: pulseFromNW 1.8s ease-in infinite; animation-delay: 2800ms; }
-.slide.active .conv-pulse.p-ne { animation: pulseFromNE 1.8s ease-in infinite; animation-delay: 2950ms; }
-.slide.active .conv-pulse.p-se { animation: pulseFromSE 1.8s ease-in infinite; animation-delay: 3100ms; }
+/* Tools stream in from off-stage as a clear 2nd wave (after roles have settled) */
+.slide.active .conv-tool.tool-gong { animation-name: toolGong; animation-delay: 1700ms; }
+.slide.active .conv-tool.tool-zoom { animation-name: toolZoom; animation-delay: 1820ms; }
+.slide.active .conv-tool.tool-ai   { animation-name: toolAI;   animation-delay: 1940ms; }
+@keyframes toolGong { from { opacity: 0; transform: translate(-50%, -50%) translate(-360px, -260px); } to { opacity: 1; transform: translate(-50%, -50%) translate(-165px, -170px); } }
+@keyframes toolZoom { from { opacity: 0; transform: translate(-50%, -50%) translate( 360px, -260px); } to { opacity: 1; transform: translate(-50%, -50%) translate( 165px, -170px); } }
+@keyframes toolAI   { from { opacity: 0; transform: translate(-50%, -50%) translate( 360px,  260px); } to { opacity: 1; transform: translate(-50%, -50%) translate( 165px,  170px); } }
+
+/* Diagonal data pulses — magenta to match tools, larger/elongated to read as data streams */
+.conv-pulse.p-nw, .conv-pulse.p-ne, .conv-pulse.p-se {
+    width: 14px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent-magenta);
+    box-shadow: 0 0 14px var(--accent-magenta), 0 0 26px rgba(255,0,127,0.55), 0 0 40px rgba(255,0,127,0.25);
+}
+.slide.active .conv-pulse.p-nw { animation: pulseFromNW 2.0s ease-in infinite; animation-delay: 3200ms; }
+.slide.active .conv-pulse.p-ne { animation: pulseFromNE 2.0s ease-in infinite; animation-delay: 3350ms; }
+.slide.active .conv-pulse.p-se { animation: pulseFromSE 2.0s ease-in infinite; animation-delay: 3500ms; }
 @keyframes pulseFromNW {
-    0%   { opacity: 0; transform: translate(-50%, -50%) translate(-130px, -140px); }
+    0%   { opacity: 0; transform: translate(-50%, -50%) translate(-150px, -155px) rotate(45deg); }
     15%  { opacity: 1; }
     85%  { opacity: 1; }
-    100% { opacity: 0; transform: translate(-50%, -50%) translate( -10px,  -10px); }
+    100% { opacity: 0; transform: translate(-50%, -50%) translate( -10px,  -10px) rotate(45deg); }
 }
 @keyframes pulseFromNE {
-    0%   { opacity: 0; transform: translate(-50%, -50%) translate( 130px, -140px); }
+    0%   { opacity: 0; transform: translate(-50%, -50%) translate( 150px, -155px) rotate(-45deg); }
     15%  { opacity: 1; }
     85%  { opacity: 1; }
-    100% { opacity: 0; transform: translate(-50%, -50%) translate(  10px,  -10px); }
+    100% { opacity: 0; transform: translate(-50%, -50%) translate(  10px,  -10px) rotate(-45deg); }
 }
 @keyframes pulseFromSE {
-    0%   { opacity: 0; transform: translate(-50%, -50%) translate( 130px,  140px); }
+    0%   { opacity: 0; transform: translate(-50%, -50%) translate( 150px,  155px) rotate(45deg); }
     15%  { opacity: 1; }
     85%  { opacity: 1; }
-    100% { opacity: 0; transform: translate(-50%, -50%) translate(  10px,   10px); }
+    100% { opacity: 0; transform: translate(-50%, -50%) translate(  10px,   10px) rotate(45deg); }
 }
 
 /* ============================================================ */
@@ -2005,6 +2042,8 @@ body::before {
                         <div class="tool-text"><span class="tool-label">Next-Best-Action</span><span class="tool-name">AI Assistant</span></div>
                     </div>
 
+                    <div class="insights-label">AI Insights Feed</div>
+
                     <div class="conv-pulse p-top"></div>
                     <div class="conv-pulse p-right"></div>
                     <div class="conv-pulse p-bottom"></div>
@@ -3038,7 +3077,8 @@ body::before {
         ],
         "shift": [
             "Premier Customer UAP is the evolution of how we manage customer relationships. It replaces fragmented work with one shared plan that brings Sales, Specialists, and CX together — supported by AI and centralized in Salesforce.",
-            "Notice the diagonals — Gong, ZoomInfo, and AI Assistant for Sales feed the plan too. Conversation signals, contact and intent data, and next-best-action recommendations are continuously fused into the same living plan your teammates see.",
+            "Watch the diagram. First the people converge — AE, Specialists, SE, and CX all contributing strategy into one living plan. They're the owners.",
+            "Then a second layer streams in from the outside — Gong, ZoomInfo, and AI Assistant for Sales. Those aren't more cooks in the kitchen — they're intelligence feeds. Conversation signals, contact and intent data, and next-best-action recommendations continuously enriching the same plan.",
             "This isn't an added task. It's a better way of working.",
             "One team, one plan, one customer outcome — that's the FY27 competitive advantage."
         ],
