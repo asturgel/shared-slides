@@ -2498,13 +2498,47 @@ body::before {
 /* ============================================================ */
 /* AGENDA SLIDE                                                   */
 /* ============================================================ */
-.slide.agenda .slide-inner { justify-content: flex-start; padding-top: 120px; }
-.agenda-list { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 900px; }
-.agenda-item { display: flex; align-items: center; gap: 22px; padding: 18px 24px; border-radius: 14px; background: linear-gradient(135deg, rgba(2,200,255,0.08), rgba(10,96,255,0.04)), var(--card-bg); border: 1px solid var(--card-border); position: relative; overflow: hidden; }
-.agenda-item::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gradient-blue); }
-.agenda-num { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 1.15rem; font-weight: 900; color: var(--cisco-blue); background: rgba(2,200,255,0.12); border: 1px solid rgba(2,200,255,0.40); font-variant-numeric: tabular-nums; }
-.agenda-text { font-size: 1.18rem; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
-.agenda-text .a-sub { display: block; font-size: 0.92rem; font-weight: 300; color: var(--text-secondary); margin-top: 2px; }
+.slide.agenda .slide-inner { justify-content: flex-start; padding-top: 90px; }
+
+.agenda-header { display: flex; flex-direction: column; gap: 4px; max-width: 1100px; }
+.agenda-title { font-size: 4.6rem; font-weight: 900; color: var(--text-primary); line-height: 1; letter-spacing: -0.025em; margin: 0; }
+.agenda-sub   { font-size: 1.25rem; font-weight: 300; color: var(--text-secondary); line-height: 1.3; margin-top: 6px; }
+.agenda-rule  { width: 110px; height: 3px; background: var(--gradient-blue); border-radius: 2px; margin-top: 16px; }
+
+.agenda-list { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; max-width: 1100px; }
+.agenda-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 110px 76px 1fr;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 28px 18px 22px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--cisco-blue);
+    overflow: hidden;
+}
+.agenda-num {
+    font-size: 2.85rem;
+    font-weight: 900;
+    color: var(--cisco-blue);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+.agenda-ico {
+    width: 64px; height: 64px;
+    border-radius: 10px;
+    background: rgba(2,200,255,0.10);
+    border: 1px solid rgba(2,200,255,0.28);
+    display: grid; place-items: center;
+    color: var(--cisco-blue);
+}
+.agenda-ico svg { width: 32px; height: 32px; }
+.agenda-text { display: flex; flex-direction: column; gap: 4px; }
+.agenda-text .a-title { font-size: 1.35rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; }
+.agenda-text .a-sub   { font-size: 0.98rem; font-weight: 300; color: var(--text-secondary); line-height: 1.3; }
 </style>
 </head>
 <body>
@@ -2529,25 +2563,78 @@ body::before {
 <!-- ============================================================ -->
 <div class="slide agenda" data-notes="agenda">
     <div class="slide-inner">
-        <span class="eyebrow animate-in d1">Agenda</span>
-        <h1 class="slide-title animate-in d2">What we'll <span class="accent">cover today</span></h1>
+        <div class="agenda-header">
+            <h1 class="agenda-title animate-in d2">Agenda</h1>
+            <div class="agenda-sub animate-in d3">Premier Customer UAP — Individual Contributor Training</div>
+            <div class="agenda-rule animate-in d3"></div>
+        </div>
 
         <div class="agenda-list">
-            <div class="agenda-item animate-in d2">
+            <div class="agenda-item animate-in d3">
                 <div class="agenda-num">01</div>
-                <div class="agenda-text">Why this matters<span class="a-sub">The pain today and the FY27 shift</span></div>
+                <div class="agenda-ico">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 14l6-2 4 10 3-1-4-10 6-2-1-3-15 5z"/>
+                        <path d="M14 4l3-1"/>
+                        <path d="M9 16v5M7 21h4"/>
+                    </svg>
+                </div>
+                <div class="agenda-text">
+                    <div class="a-title">The Future of Account Planning</div>
+                    <div class="a-sub">Evolving our approach for FY27</div>
+                </div>
             </div>
+
             <div class="agenda-item animate-in d3">
                 <div class="agenda-num">02</div>
-                <div class="agenda-text">The three phases of Premier Customer UAP<span class="a-sub">Discovery, Definition, Realization</span></div>
+                <div class="agenda-ico">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="7" r="3"/>
+                        <circle cx="5" cy="9" r="2.2"/>
+                        <circle cx="19" cy="9" r="2.2"/>
+                        <path d="M7 19c0-2.8 2.2-5 5-5s5 2.2 5 5"/>
+                        <path d="M1.5 19c0-2.2 1.5-3.5 3.5-3.5"/>
+                        <path d="M22.5 19c0-2.2-1.5-3.5-3.5-3.5"/>
+                    </svg>
+                </div>
+                <div class="agenda-text">
+                    <div class="a-title">Why this matters</div>
+                    <div class="a-sub">For you, your team, and your customers</div>
+                </div>
             </div>
+
             <div class="agenda-item animate-in d4">
                 <div class="agenda-num">03</div>
-                <div class="agenda-text">Your role in each phase<span class="a-sub">What you contribute and what teammates need from you</span></div>
+                <div class="agenda-ico">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"/>
+                        <circle cx="12" cy="12" r="5.5"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <path d="M19.5 4.5l-7 7"/>
+                        <path d="M22 4h-3V1"/>
+                    </svg>
+                </div>
+                <div class="agenda-text">
+                    <div class="a-title">The Plan for Value and your Role</div>
+                    <div class="a-sub">What your teammates need from you</div>
+                </div>
             </div>
+
             <div class="agenda-item animate-in d5">
                 <div class="agenda-num">04</div>
-                <div class="agenda-text">Where the plan lives and your first actions<span class="a-sub">Salesforce, AI support, and what to do this week</span></div>
+                <div class="agenda-ico">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="13" rx="1.5"/>
+                        <circle cx="12" cy="9" r="2"/>
+                        <path d="M8.5 14c0-1.4 1.5-2.5 3.5-2.5s3.5 1.1 3.5 2.5"/>
+                        <path d="M8 19l4-3 4 3"/>
+                        <path d="M12 16v5"/>
+                    </svg>
+                </div>
+                <div class="agenda-text">
+                    <div class="a-title">Enablement &amp; Support</div>
+                    <div class="a-sub">Where the plan lives and your first actions</div>
+                </div>
             </div>
         </div>
 
