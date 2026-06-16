@@ -1214,6 +1214,31 @@ body::before {
 .olp-spoke.s-nw { transform: rotate(204.6deg); animation-delay: 500ms; }
 .olp-spoke.s-sw { transform: rotate(155.4deg); animation-delay: 560ms; }
 
+/* Continuous contribution pulse: a small dot travels from each role inward to the plan, staggered */
+.olp-spoke::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 100%;
+    width: 6px; height: 6px;
+    margin-left: -3px; margin-top: -3px;
+    border-radius: 50%;
+    background: var(--cisco-blue);
+    box-shadow: 0 0 8px var(--cisco-blue), 0 0 16px rgba(2,200,255,0.55);
+    opacity: 0;
+    animation: olpSpokeContribute 3.6s ease-in-out infinite;
+    animation-delay: 1200ms;
+}
+@keyframes olpSpokeContribute {
+    0%   { transform: translateX(0);     opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateX(-254px); opacity: 0; }
+}
+.olp-spoke.s-ne::after { animation-delay: 1200ms; }
+.olp-spoke.s-se::after { animation-delay: 2100ms; }
+.olp-spoke.s-sw::after { animation-delay: 3000ms; }
+.olp-spoke.s-nw::after { animation-delay: 3900ms; }
+
 .olp-plan {
     position: absolute;
     top: 50%; left: 50%;
@@ -1300,39 +1325,93 @@ body::before {
 .olp-role.olp-se   { --r-c: var(--role-se);   top: 230px; left: 150px; animation-delay: 480ms; }
 .olp-role.olp-cs   { --r-c: var(--role-cs);   top: 230px; left: 630px; animation-delay: 550ms; }
 
-/* Insight layer panel — sits below the stage, magenta-themed */
+/* Title eyebrow above the main slide title */
+.olp-title-eyebrow {
+    font-size: 0.7rem; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.28em;
+    color: var(--cisco-blue);
+    display: inline-flex; align-items: center; gap: 8px;
+}
+.olp-title-eyebrow::before,
+.olp-title-eyebrow::after {
+    content: "";
+    width: 22px; height: 1px;
+    background: rgba(2,200,255,0.55);
+}
+
+/* Insight layer panel — sits below the stage, magenta-themed, revealed on click */
 .olp-insight-layer {
-    max-width: 980px;
-    margin: 14px auto 0;
+    position: relative;
+    max-width: 720px;
+    margin: 22px auto 0;
     padding: 12px 18px;
     background: var(--card-bg);
     border: 1px dashed rgba(255,0,127,0.40);
     border-radius: 12px;
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 22px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 480ms ease, transform 480ms ease;
+    pointer-events: none;
 }
-.olp-insight-titleblock { display: flex; flex-direction: column; gap: 1px; }
-.olp-insight-eyebrow {
-    font-size: 0.58rem; font-weight: 900;
-    text-transform: uppercase; letter-spacing: 0.22em;
-    color: var(--accent-magenta);
-    display: inline-flex; align-items: center; gap: 6px;
+.olp-insight-layer.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
-.olp-insight-eyebrow::before {
-    content: "✦"; font-size: 0.7rem;
-    animation: aiSpark 2.2s ease-in-out infinite;
+
+/* Magenta feed stem — rises from the insight panel up toward the plan, with a traveling pulse */
+.olp-feed-stem {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px; height: 78px;
+    background: linear-gradient(to top,
+        rgba(255,0,127,0.10) 0%,
+        rgba(255,0,127,0.70) 50%,
+        rgba(255,0,127,0.95) 100%);
+    pointer-events: none;
+    overflow: visible;
 }
-.olp-insight-title {
-    font-size: 0.92rem; font-weight: 800;
-    color: var(--text-primary);
-    line-height: 1.15;
+.olp-feed-stem::before {
+    /* arrowhead pointing up toward the plan */
+    content: "";
+    position: absolute;
+    top: -7px; left: 50%;
+    transform: translateX(-50%);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 9px solid rgba(255,0,127,0.95);
+    filter: drop-shadow(0 0 4px rgba(255,0,127,0.6));
 }
+.olp-feed-stem::after {
+    /* traveling pulse rising up the stem */
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 9px; height: 9px;
+    margin-left: -4.5px;
+    border-radius: 50%;
+    background: var(--accent-magenta);
+    box-shadow: 0 0 10px var(--accent-magenta), 0 0 20px rgba(255,0,127,0.55);
+    opacity: 0;
+    animation: olpFeedPulse 1.8s ease-in infinite;
+}
+@keyframes olpFeedPulse {
+    0%   { transform: translateY(0);    opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(-78px); opacity: 0; }
+}
+
 .olp-insight-chips {
     display: flex;
-    gap: 12px;
-    justify-content: flex-end;
+    gap: 14px;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .olp-chip {
@@ -1358,31 +1437,47 @@ body::before {
     color: var(--text-primary);
 }
 
-/* Bottom reassurance tag row */
+/* Bottom benefit row — prominent cards, revealed on click */
 .olp-tags {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px;
-    margin-top: 14px;
+    gap: 18px;
+    margin-top: 20px;
 }
 .olp-tag {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-left: 3px solid var(--cisco-blue);
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 0.85rem; color: var(--text-secondary);
-    display: flex; align-items: center; gap: 10px;
-    line-height: 1.3;
+    position: relative;
+    background:
+        linear-gradient(135deg, rgba(2,200,255,0.12), rgba(10,96,255,0.04)),
+        var(--card-bg);
+    border: 1px solid rgba(2,200,255,0.32);
+    border-top: 3px solid var(--cisco-blue);
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    font-size: 1rem; color: var(--text-secondary);
+    display: flex; align-items: flex-start; gap: 12px;
+    line-height: 1.35;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.04);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 520ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 520ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.olp-tag.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+.olp-tag:nth-child(2).revealed { transition-delay: 90ms; }
+.olp-tag:nth-child(3).revealed { transition-delay: 180ms; }
 .olp-tag .chk {
-    flex-shrink: 0; width: 22px; height: 22px;
+    flex-shrink: 0; width: 28px; height: 28px;
     border-radius: 50%;
-    background: rgba(2,200,255,0.14);
-    border: 1px solid rgba(2,200,255,0.40);
+    background: rgba(2,200,255,0.18);
+    border: 1px solid rgba(2,200,255,0.55);
     color: var(--cisco-blue);
     display: grid; place-items: center;
-    font-weight: 900; font-size: 0.72rem;
+    font-weight: 900; font-size: 0.85rem;
+    margin-top: 1px;
+    box-shadow: 0 0 12px rgba(2,200,255,0.20);
 }
 .olp-tag strong { color: var(--text-primary); font-weight: 800; }
 
@@ -2541,10 +2636,11 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 4 — ONE LIVING ACCOUNT PLAN                              -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="shift">
-    <div class="slide-inner" style="justify-content:flex-start; padding-top:70px;">
-        <h1 class="slide-title animate-in d2" style="margin-bottom:6px;">One Living <span class="accent">Account Plan</span></h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:0;">Four roles collaborate around one source of truth — weaving in AI insights as they go.</p>
+<div class="slide" data-notes="shift" data-steps="2">
+    <div class="slide-inner" style="justify-content:flex-start; padding-top:60px;">
+        <div class="olp-title-eyebrow animate-in d2">How we plan for FY27</div>
+        <h1 class="slide-title animate-in d2" style="margin:4px 0 6px;">One Living <span class="accent">Account Plan</span></h1>
+        <p class="slide-subtitle animate-in d3" style="margin-bottom:0;">Four roles collaborate around one source of truth — each contributing what only they can see.</p>
 
         <div class="olp-stage">
             <div class="olp-halo"></div>
@@ -2579,10 +2675,7 @@ body::before {
         </div>
 
         <div class="olp-insight-layer">
-            <div class="olp-insight-titleblock">
-                <div class="olp-insight-eyebrow">Shared Insight Layer</div>
-                <div class="olp-insight-title">Insights the team brings in</div>
-            </div>
+            <div class="olp-feed-stem"></div>
             <div class="olp-insight-chips">
                 <div class="olp-chip"><span class="olp-chip-ico">G</span><span class="olp-chip-name">Gong</span></div>
                 <div class="olp-chip"><span class="olp-chip-ico">Z</span><span class="olp-chip-name">ZoomInfo</span></div>
@@ -2591,9 +2684,9 @@ body::before {
         </div>
 
         <div class="olp-tags">
-            <div class="olp-tag animate-in d4"><span class="chk">✓</span><span><strong>AI-assisted</strong> insights — not AI-replaced expertise</span></div>
-            <div class="olp-tag animate-in d4"><span class="chk">✓</span><span><strong>Manual today</strong>, more automated over time</span></div>
-            <div class="olp-tag animate-in d5"><span class="chk">✓</span><span><strong>One continuous</strong> strategy — not an annual exercise</span></div>
+            <div class="olp-tag"><span class="chk">✓</span><span><strong>Single strategy</strong> across Sales, Specialists, and CX</span></div>
+            <div class="olp-tag"><span class="chk">✓</span><span><strong>Standardized approach</strong> to drive growth</span></div>
+            <div class="olp-tag"><span class="chk">✓</span><span><strong>AI insights</strong> to inform a stronger strategy</span></div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -3498,6 +3591,10 @@ body::before {
     // Reveal order for stepped slides (by selector within the slide).
     // Each step entry may be a string or array of selectors revealed together.
     const STEP_TARGETS = {
+        "shift": [
+            ['.olp-insight-layer'],
+            ['.olp-tag']
+        ],
         "wiifm":  ['.role-card.r-ae', '.role-card.r-spec', '.role-card.r-cs', '.role-card.r-se'],
         "phases": [
             ['.phase-card.p1'],
