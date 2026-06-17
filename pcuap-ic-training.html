@@ -2401,6 +2401,24 @@ body::before {
     color: var(--text-secondary);
     line-height: 1.4;
 }
+.rc-section-body ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+    gap: 6px;
+}
+.rc-section-body li {
+    position: relative;
+    padding-left: 14px;
+}
+.rc-section-body li::before {
+    content: "";
+    position: absolute; left: 0; top: 0.55em;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--rc-c);
+    box-shadow: 0 0 6px var(--rc-c-soft);
+}
 
 /* Step reveal — phase bullets and role-contrib columns */
 .phase-bullets li, .role-contrib { opacity: 0; }
@@ -2412,6 +2430,139 @@ body::before {
 .role-contrib.rc-spec { --from-x:  -50px; --from-y: 0; }
 .role-contrib.rc-se   { --from-x:   50px; --from-y: 0; }
 .role-contrib.rc-cs   { --from-x:  100px; --from-y: 0; }
+
+/* ===== Spotlight stage (slide 10 — Discovery role reveal) =====
+   Step 1: AE big centered (grid hidden).
+   Step 2: SE big centered; AE in its grid slot.
+   Step 3: SPEC big centered; AE + SE in grid slots.
+   Step 4: CX big centered; AE + SE + SPEC in grid slots.
+   Step 5: Spotlight hidden; all 4 cards visible in grid. */
+.slide.spotlight-stage .rc-stage {
+    position: relative;
+    flex: 0 0 auto;
+    margin-top: 6px;
+}
+.slide.spotlight-stage .rc-spotlight {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(520px, 60%);
+    z-index: 20;
+    pointer-events: none;
+}
+.slide.spotlight-stage .sp-card {
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    transform: translateY(-50%) scale(0.92);
+    opacity: 0;
+    transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.34, 1.3, 0.5, 1);
+    padding: 28px 28px 26px;
+    border-radius: 18px;
+    /* Solid layered background so it covers the grid cards behind it */
+    background:
+        linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        var(--bg-primary, #07182D);
+    box-shadow: 0 30px 90px -20px rgba(0,0,0,0.85), 0 0 0 1px var(--rc-c-soft);
+}
+.slide.spotlight-stage .sp-card .rc-head { margin-bottom: 18px; }
+.slide.spotlight-stage .sp-card .rc-badge { min-width: 52px; height: 32px; font-size: 0.85rem; padding: 0 12px; }
+.slide.spotlight-stage .sp-card .rc-title { font-size: 1.35rem; }
+.slide.spotlight-stage .sp-card .rc-section-label { font-size: 0.7rem; }
+.slide.spotlight-stage .sp-card .rc-section-body { font-size: 1rem; line-height: 1.45; }
+.slide.spotlight-stage .sp-card .rc-section + .rc-section { margin-top: 18px; }
+
+.slide.spotlight-stage.step-1 .sp-ae,
+.slide.spotlight-stage.step-2 .sp-se,
+.slide.spotlight-stage.step-3 .sp-spec,
+.slide.spotlight-stage.step-4 .sp-cs {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+/* Slide 13 (Definition) override: SE leads, then AE, then SPEC, then CX */
+.slide.spotlight-stage[data-notes="definition-roles"].step-1 .sp-ae,
+.slide.spotlight-stage[data-notes="definition-roles"].step-2 .sp-se {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.92);
+}
+.slide.spotlight-stage[data-notes="definition-roles"].step-1 .sp-se,
+.slide.spotlight-stage[data-notes="definition-roles"].step-2 .sp-ae {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+/* Slide 13: at step-2, SE drops into grid (not AE); at step-3+ both are visible */
+.slide.spotlight-stage[data-notes="definition-roles"].step-2 .role-contrib-grid .role-contrib.rc-ae {
+    opacity: 0;
+    transform: translateY(8px);
+}
+.slide.spotlight-stage[data-notes="definition-roles"].step-2 .role-contrib-grid .role-contrib.rc-se {
+    opacity: 1;
+    transform: none;
+}
+
+/* Slide 16 (Realization) override: CX leads, then AE, then SE, then SPEC */
+.slide.spotlight-stage[data-notes="realization-roles"].step-1 .sp-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-2 .sp-se,
+.slide.spotlight-stage[data-notes="realization-roles"].step-3 .sp-spec,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .sp-cs {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.92);
+}
+.slide.spotlight-stage[data-notes="realization-roles"].step-1 .sp-cs,
+.slide.spotlight-stage[data-notes="realization-roles"].step-2 .sp-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-3 .sp-se,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .sp-spec {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+/* Slide 16: grid drop-in sequence CX -> AE -> SE -> SPEC */
+.slide.spotlight-stage[data-notes="realization-roles"].step-2 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-3 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-3 .role-contrib-grid .role-contrib.rc-se,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .role-contrib-grid .role-contrib.rc-se,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .role-contrib-grid .role-contrib.rc-spec {
+    opacity: 0;
+    transform: translateY(8px);
+}
+.slide.spotlight-stage[data-notes="realization-roles"].step-2 .role-contrib-grid .role-contrib.rc-cs,
+.slide.spotlight-stage[data-notes="realization-roles"].step-3 .role-contrib-grid .role-contrib.rc-cs,
+.slide.spotlight-stage[data-notes="realization-roles"].step-3 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .role-contrib-grid .role-contrib.rc-cs,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage[data-notes="realization-roles"].step-4 .role-contrib-grid .role-contrib.rc-se {
+    opacity: 1;
+    transform: none;
+}
+
+/* Grid cards: hidden by default, dimmed while the spotlight is active */
+.slide.spotlight-stage .rc-stage .role-contrib-grid {
+    margin-top: 0;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+}
+.slide.spotlight-stage.step-1 .role-contrib-grid,
+.slide.spotlight-stage.step-2 .role-contrib-grid,
+.slide.spotlight-stage.step-3 .role-contrib-grid,
+.slide.spotlight-stage.step-4 .role-contrib-grid {
+    opacity: 0.28;
+    filter: blur(1.5px);
+}
+.slide.spotlight-stage .role-contrib-grid .role-contrib {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+/* Each step "drops" the previously-spotlighted card into its grid slot */
+.slide.spotlight-stage.step-2 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage.step-3 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage.step-3 .role-contrib-grid .role-contrib.rc-se,
+.slide.spotlight-stage.step-4 .role-contrib-grid .role-contrib.rc-ae,
+.slide.spotlight-stage.step-4 .role-contrib-grid .role-contrib.rc-se,
+.slide.spotlight-stage.step-4 .role-contrib-grid .role-contrib.rc-spec,
+.slide.spotlight-stage.step-5 .role-contrib-grid .role-contrib {
+    opacity: 1;
+    transform: none;
+}
 
 /* "What good looks like" panel — reusable across phases */
 .good-list {
@@ -2606,6 +2757,174 @@ body::before {
 .agenda-text { display: flex; flex-direction: column; gap: 4px; }
 .agenda-text .a-title { font-size: 1.35rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; }
 .agenda-text .a-sub   { font-size: 0.98rem; font-weight: 300; color: var(--text-secondary); line-height: 1.3; }
+
+/* ============================================================ */
+/* WHY THIS MATTERS (collective WIIFM payoff)                    */
+/* ============================================================ */
+.payoff-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-top: 8px;
+}
+.payoff-card {
+    position: relative;
+    display: flex; flex-direction: column;
+    gap: 14px;
+    padding: 28px 24px 26px;
+    border-radius: 16px;
+    background:
+        linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
+        var(--bg-primary, #07182D);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+.payoff-card.revealed {
+    opacity: 1;
+    transform: none;
+}
+.payoff-card::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 4px;
+    background: var(--pc-c, var(--cisco-blue));
+    box-shadow: 0 0 18px var(--pc-c, var(--cisco-blue));
+}
+.payoff-card::after {
+    content: "";
+    position: absolute; top: -50px; right: -50px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--pc-c, var(--cisco-blue)) 22%, transparent), transparent 70%);
+    pointer-events: none;
+}
+.payoff-card.pc-1 { --pc-c: var(--medium-blue); }
+.payoff-card.pc-2 { --pc-c: var(--cisco-blue); }
+.payoff-card.pc-3 { --pc-c: var(--accent-magenta); }
+.payoff-card.pc-4 { --pc-c: var(--accent-orange); }
+.payoff-card .pc-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--pc-c, var(--cisco-blue)) 18%, transparent);
+    border: 2px solid var(--pc-c, var(--cisco-blue));
+    color: var(--pc-c, var(--cisco-blue));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; font-weight: 900;
+    box-shadow: 0 0 22px color-mix(in srgb, var(--pc-c, var(--cisco-blue)) 35%, transparent);
+    position: relative; z-index: 1;
+}
+.payoff-card .pc-headline {
+    font-size: 1.15rem; font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+}
+.payoff-card .pc-body {
+    font-size: 0.92rem; font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.payoff-tagline {
+    margin-top: 26px;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.01em;
+}
+.payoff-tagline .accent { color: var(--accent-magenta); }
+
+/* ============================================================ */
+/* FIRST ACTIONS — shared-action + coach banner additions        */
+/* ============================================================ */
+.shared-action {
+    display: flex; align-items: center;
+    gap: 18px;
+    padding: 14px 22px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    background: linear-gradient(120deg, rgba(2,200,255,0.14), rgba(10,96,255,0.10));
+    border: 1px solid rgba(2,200,255,0.35);
+    box-shadow: 0 0 24px rgba(2,200,255,0.10);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+.shared-action.revealed { opacity: 1; transform: none; }
+.shared-action .sa-tag {
+    flex: 0 0 auto;
+    font-size: 0.72rem; font-weight: 900;
+    letter-spacing: 0.14em;
+    color: var(--cisco-blue);
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgba(2,200,255,0.16);
+    border: 1px solid rgba(2,200,255,0.42);
+    white-space: nowrap;
+}
+.shared-action .sa-text {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+.shared-action .sa-text em {
+    font-style: normal;
+    color: var(--cisco-blue);
+    font-weight: 900;
+}
+
+/* Coach in Circuit promo banner (bottom of first-actions slide) */
+.coach-banner {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 22px;
+    align-items: center;
+    margin-top: 18px;
+    padding: 18px 26px;
+    border-radius: 14px;
+    background:
+        radial-gradient(600px 140px at 0% 50%, rgba(2,200,255,0.18), transparent 70%),
+        linear-gradient(135deg, #0A1F3D 0%, #07182D 100%);
+    border: 1px solid rgba(2,200,255,0.30);
+    box-shadow: 0 0 28px rgba(2,200,255,0.12), 0 18px 40px -20px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+.coach-banner.revealed { opacity: 1; transform: none; }
+.coach-icon {
+    width: 72px; height: 72px;
+    border-radius: 14px;
+    background: rgba(2,200,255,0.10);
+    border: 1.5px solid rgba(2,200,255,0.45);
+    display: grid; place-items: center;
+    color: var(--cisco-blue);
+    box-shadow: 0 0 22px rgba(2,200,255,0.25);
+}
+.coach-icon svg { width: 38px; height: 38px; }
+.coach-text { display: flex; flex-direction: column; gap: 4px; }
+.coach-eyebrow {
+    font-size: 0.72rem; font-weight: 900;
+    letter-spacing: 0.18em;
+    color: var(--cisco-blue);
+    text-transform: uppercase;
+}
+.coach-headline {
+    font-size: 1.45rem; font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+.coach-body {
+    font-size: 0.92rem; font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    max-width: 760px;
+}
 </style>
 </head>
 <body>
@@ -3164,7 +3483,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 8 — PHASE 1: ROLE CONTRIBUTIONS IN DISCOVERY             -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="discovery-roles" data-steps="4">
+<div class="slide spotlight-stage" data-notes="discovery-roles" data-steps="5">
     <div class="slide-inner" style="--phase-c: var(--role-ae);">
 
         <div class="phase-strip animate-in">
@@ -3187,6 +3506,90 @@ body::before {
         <h1 class="slide-title animate-in d2" style="margin-bottom:6px; font-size:2.2rem;">Your role in <span class="accent">Discovery</span></h1>
         <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">Every role brings something different. Together, they create a real picture of the customer.</p>
 
+        <!-- Spotlight overlay: shows each role big, then drops back into its grid slot -->
+        <div class="rc-stage">
+        <div class="rc-spotlight" aria-hidden="true">
+            <div class="role-contrib rc-ae sp-card sp-ae">
+                <div class="rc-head">
+                    <span class="rc-badge">AE</span>
+                    <span class="rc-title">Account Executive</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Lead this phase</li>
+                            <li>Own the customer relationship</li>
+                            <li>Facilitate discovery</li>
+                            <li>Validate objectives with customer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Customer access, executive context, the "why now."</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-se sp-card sp-se">
+                <div class="rc-head">
+                    <span class="rc-badge">SE</span>
+                    <span class="rc-title">Systems Engineer</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Translate customer priorities into technical possibilities</li>
+                            <li>Identify feasibility considerations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">An honest read on what's realistic, what's risky.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-spec sp-card sp-spec">
+                <div class="rc-head">
+                    <span class="rc-badge">SPEC</span>
+                    <span class="rc-title">Specialist / Architecture</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Architecture-specific insight on the customer's tech landscape</li>
+                            <li>Identify signals across products</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Technical landscape clarity — what's deployed, what's possible.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-cs sp-card sp-cs">
+                <div class="rc-head">
+                    <span class="rc-badge">CX</span>
+                    <span class="rc-title">CX</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Customer adoption data</li>
+                            <li>Usage patterns</li>
+                            <li>Health context</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">What the customer is actually doing vs. what they say.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="role-contrib-grid">
             <div class="role-contrib rc-ae">
                 <div class="rc-head">
@@ -3195,26 +3598,18 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Owns the customer relationship; convenes and facilitates team discovery; validates objectives with the customer sponsor.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Lead this phase</li>
+                            <li>Own the customer relationship</li>
+                            <li>Facilitate discovery</li>
+                            <li>Validate objectives with customer</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
                     <div class="rc-section-body">Customer access, executive context, the "why now."</div>
-                </div>
-            </div>
-
-            <div class="role-contrib rc-spec">
-                <div class="rc-head">
-                    <span class="rc-badge">SPEC</span>
-                    <span class="rc-title">Specialist / Architecture</span>
-                </div>
-                <div class="rc-section">
-                    <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Architecture-specific insight on the customer's tech landscape; identifies signals across products.</div>
-                </div>
-                <div class="rc-section">
-                    <div class="rc-section-label">What teammates need from you</div>
-                    <div class="rc-section-body">Technical landscape clarity — what's deployed, what's possible.</div>
                 </div>
             </div>
 
@@ -3225,11 +3620,36 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Translates customer priorities into technical possibilities; identifies feasibility considerations.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Translate customer priorities into technical possibilities</li>
+                            <li>Identify feasibility considerations</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
                     <div class="rc-section-body">An honest read on what's realistic, what's risky.</div>
+                </div>
+            </div>
+
+            <div class="role-contrib rc-spec">
+                <div class="rc-head">
+                    <span class="rc-badge">SPEC</span>
+                    <span class="rc-title">Specialist / Architecture</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Architecture-specific insight on the customer's tech landscape</li>
+                            <li>Identify signals across products</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Technical landscape clarity — what's deployed, what's possible.</div>
                 </div>
             </div>
 
@@ -3240,13 +3660,20 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Customer adoption data, usage patterns, and health context.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Customer adoption data</li>
+                            <li>Usage patterns</li>
+                            <li>Health context</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
                     <div class="rc-section-body">What the customer is actually doing vs. what they say.</div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -3276,8 +3703,7 @@ body::before {
             </div>
         </div>
 
-        <h1 class="slide-title animate-in d2" style="margin-bottom:6px; font-size:2.2rem;">What <span class="accent">good</span> looks like in Discovery</h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">By the end of Phase 1, your plan should pass these three tests.</p>
+        <h1 class="slide-title animate-in d2" style="margin-bottom:18px; font-size:2.2rem;">What <span class="accent">good</span> looks like in Discovery</h1>
 
         <div class="good-list">
             <div class="good-item">
@@ -3328,7 +3754,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 10 — PHASE 2: VALUE DEFINITION (Overview)                -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="definition-overview" data-steps="4">
+<div class="slide" data-notes="definition-overview" data-steps="3">
     <div class="slide-inner" style="--phase-c: var(--role-spec);">
 
         <div class="phase-strip animate-in">
@@ -3356,16 +3782,12 @@ body::before {
                     <span class="pq-label">Core Question</span>
                     What will we do for our customer, and how will we win together?
                 </div>
-                <p class="slide-subtitle animate-in d4" style="margin-bottom:0; max-width:560px;">
-                    Phase 2 is where we move from understanding to action. We take what we learned in discovery and design the cross-architecture initiatives that will drive value — together.
-                </p>
             </div>
 
             <ul class="phase-bullets">
                 <li><span class="pb-num">1</span><span>Ideate cross-architecture solutions tied to customer objectives</span></li>
                 <li><span class="pb-num">2</span><span>Build initiatives jointly, not in isolation</span></li>
-                <li><span class="pb-num">3</span><span>Document a clear Responsibility Matrix</span></li>
-                <li><span class="pb-num">4</span><span>Frame a single shared vision for the customer</span></li>
+                <li><span class="pb-num">3</span><span>Frame a single shared vision for the customer</span></li>
             </ul>
         </div>
 
@@ -3376,7 +3798,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 10 — PHASE 2: ROLE CONTRIBUTIONS IN DEFINITION           -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="definition-roles" data-steps="4">
+<div class="slide spotlight-stage" data-notes="definition-roles" data-steps="5">
     <div class="slide-inner" style="--phase-c: var(--role-spec);">
 
         <div class="phase-strip animate-in">
@@ -3399,7 +3821,108 @@ body::before {
         <h1 class="slide-title animate-in d2" style="margin-bottom:6px; font-size:2.2rem;">Your role in <span class="accent">Definition</span></h1>
         <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">You can't build a great plan in your silo. This is where "one team" is most visible — by co-creating across architectures.</p>
 
+        <div class="rc-stage">
+        <div class="rc-spotlight" aria-hidden="true">
+            <div class="role-contrib rc-ae sp-card sp-ae">
+                <div class="rc-head">
+                    <span class="rc-badge">AE</span>
+                    <span class="rc-title">Account Executive</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Frame the cross-architecture shared vision</li>
+                            <li>Own the integration story</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">A clear narrative that ties initiatives together.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-se sp-card sp-se">
+                <div class="rc-head">
+                    <span class="rc-badge">SE</span>
+                    <span class="rc-title">Systems Engineer</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Lead this phase</li>
+                            <li>Design scalable solutions that align with the customer objectives</li>
+                            <li>Document initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">An honest viability check before we commit to the customer.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-spec sp-card sp-spec">
+                <div class="rc-head">
+                    <span class="rc-badge">SPEC</span>
+                    <span class="rc-title">Specialist / Architecture</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Co-create initiatives across architectures</li>
+                            <li>Provide architecture expertise</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Specific architecture-level commitment, not generic positioning.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-cs sp-card sp-cs">
+                <div class="rc-head">
+                    <span class="rc-badge">CX</span>
+                    <span class="rc-title">CX</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Ensure initiatives align with the customer's capacity to absorb change</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Reality on what the customer can adopt, not just what we can sell.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="role-contrib-grid">
+            <div class="role-contrib rc-se">
+                <div class="rc-head">
+                    <span class="rc-badge">SE</span>
+                    <span class="rc-title">Systems Engineer</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Lead this phase</li>
+                            <li>Design scalable solutions that align with the customer objectives</li>
+                            <li>Document initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">An honest viability check before we commit to the customer.</div>
+                </div>
+            </div>
+
             <div class="role-contrib rc-ae">
                 <div class="rc-head">
                     <span class="rc-badge">AE</span>
@@ -3407,7 +3930,12 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Frames the cross-architecture shared vision; owns the integration story.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Frame the cross-architecture shared vision</li>
+                            <li>Own the integration story</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
@@ -3422,26 +3950,16 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Builds initiatives tied to specific customer objectives; co-creates across architectures.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Co-create initiatives across architectures</li>
+                            <li>Provide architecture expertise</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
                     <div class="rc-section-body">Specific architecture-level commitment, not generic positioning.</div>
-                </div>
-            </div>
-
-            <div class="role-contrib rc-se">
-                <div class="rc-head">
-                    <span class="rc-badge">SE</span>
-                    <span class="rc-title">Systems Engineer</span>
-                </div>
-                <div class="rc-section">
-                    <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Validates technical viability; pressure-tests assumptions; flags integration risk.</div>
-                </div>
-                <div class="rc-section">
-                    <div class="rc-section-label">What teammates need from you</div>
-                    <div class="rc-section-body">An honest viability check before we commit to the customer.</div>
                 </div>
             </div>
 
@@ -3452,13 +3970,18 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Ensures initiatives align with the customer's capacity to absorb change.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Ensure initiatives align with the customer's capacity to absorb change</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
                     <div class="rc-section-body">Reality on what the customer can adopt, not just what we can sell.</div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -3488,8 +4011,7 @@ body::before {
             </div>
         </div>
 
-        <h1 class="slide-title animate-in d2" style="margin-bottom:6px; font-size:2.2rem;">What <span class="accent">good</span> looks like in Definition</h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">By the end of Phase 2, your plan should pass these three tests.</p>
+        <h1 class="slide-title animate-in d2" style="margin-bottom:18px; font-size:2.2rem;">What <span class="accent">good</span> looks like in Definition</h1>
 
         <div class="good-list">
             <div class="good-item">
@@ -3552,9 +4074,6 @@ body::before {
                     <span class="pq-label">Core Question</span>
                     How will we drive shared value for our customer?
                 </div>
-                <p class="slide-subtitle animate-in d4" style="margin-bottom:0; max-width:560px;">
-                    Phase 3 is where the plan becomes value. The new way of working keeps the team together through delivery — because that's where value is actually proven.
-                </p>
             </div>
 
             <ul class="phase-bullets">
@@ -3572,7 +4091,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 12 — PHASE 3: ROLE CONTRIBUTIONS IN REALIZATION          -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="realization-roles" data-steps="4">
+<div class="slide spotlight-stage" data-notes="realization-roles" data-steps="5">
     <div class="slide-inner" style="--phase-c: var(--accent-magenta);">
 
         <div class="phase-strip animate-in">
@@ -3595,7 +4114,112 @@ body::before {
         <h1 class="slide-title animate-in d2" style="margin-bottom:6px; font-size:2.2rem;">Your role in <span class="accent">Realization</span></h1>
         <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">Stay connected through the lifecycle. Adoption signals are the leading indicator of both renewal risk and expansion opportunity.</p>
 
+        <div class="rc-stage">
+        <div class="rc-spotlight" aria-hidden="true">
+            <div class="role-contrib rc-ae sp-card sp-ae">
+                <div class="rc-head">
+                    <span class="rc-badge">AE</span>
+                    <span class="rc-title">Account Executive</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Stay connected to adoption signals</li>
+                            <li>Intervene early on risk</li>
+                            <li>Protect the relationship</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Continued advocacy with customer leadership.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-se sp-card sp-se">
+                <div class="rc-head">
+                    <span class="rc-badge">SE</span>
+                    <span class="rc-title">Systems Engineer</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Remove adoption blockers</li>
+                            <li>Partner with CX on technical health</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Technical issues surfaced fast; partnership on resolution.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-spec sp-card sp-spec">
+                <div class="rc-head">
+                    <span class="rc-badge">SPEC</span>
+                    <span class="rc-title">Specialist / Architecture</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Drive expansion tied to early wins</li>
+                            <li>Watch for cross-architecture signals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Early signals from CX that unlock expansion conversations.</div>
+                </div>
+            </div>
+            <div class="role-contrib rc-cs sp-card sp-cs">
+                <div class="rc-head">
+                    <span class="rc-badge">CX</span>
+                    <span class="rc-title">CX</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Lead this phase</li>
+                            <li>Drive success plans</li>
+                            <li>Track KPIs</li>
+                            <li>Surface customer health visibility</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Sales engagement when adoption signals risk or opportunity.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="role-contrib-grid">
+            <div class="role-contrib rc-cs">
+                <div class="rc-head">
+                    <span class="rc-badge">CX</span>
+                    <span class="rc-title">CX</span>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What you contribute</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Lead this phase</li>
+                            <li>Drive success plans</li>
+                            <li>Track KPIs</li>
+                            <li>Surface customer health visibility</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rc-section">
+                    <div class="rc-section-label">What teammates need from you</div>
+                    <div class="rc-section-body">Sales engagement when adoption signals risk or opportunity.</div>
+                </div>
+            </div>
+
             <div class="role-contrib rc-ae">
                 <div class="rc-head">
                     <span class="rc-badge">AE</span>
@@ -3603,26 +4227,17 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Stays connected to adoption signals; intervenes early on risk; protects the relationship.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Stay connected to adoption signals</li>
+                            <li>Intervene early on risk</li>
+                            <li>Protect the relationship</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
                     <div class="rc-section-body">Continued advocacy with customer leadership.</div>
-                </div>
-            </div>
-
-            <div class="role-contrib rc-spec">
-                <div class="rc-head">
-                    <span class="rc-badge">SPEC</span>
-                    <span class="rc-title">Specialist / Architecture</span>
-                </div>
-                <div class="rc-section">
-                    <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Drives expansion tied to early wins; watches for cross-architecture signals.</div>
-                </div>
-                <div class="rc-section">
-                    <div class="rc-section-label">What teammates need from you</div>
-                    <div class="rc-section-body">Early signals from CX that unlock expansion conversations.</div>
                 </div>
             </div>
 
@@ -3633,7 +4248,12 @@ body::before {
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Removes adoption blockers; partners with CX on technical health.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Remove adoption blockers</li>
+                            <li>Partner with CX on technical health</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
@@ -3641,20 +4261,26 @@ body::before {
                 </div>
             </div>
 
-            <div class="role-contrib rc-cs">
+            <div class="role-contrib rc-spec">
                 <div class="rc-head">
-                    <span class="rc-badge">CX</span>
-                    <span class="rc-title">CX</span>
+                    <span class="rc-badge">SPEC</span>
+                    <span class="rc-title">Specialist / Architecture</span>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What you contribute</div>
-                    <div class="rc-section-body">Drives success plans, tracks KPIs, surfaces customer health visibility.</div>
+                    <div class="rc-section-body">
+                        <ul>
+                            <li>Drive expansion tied to early wins</li>
+                            <li>Watch for cross-architecture signals</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="rc-section">
                     <div class="rc-section-label">What teammates need from you</div>
-                    <div class="rc-section-body">Sales engagement when adoption signals risk or opportunity.</div>
+                    <div class="rc-section-body">Early signals from CX that unlock expansion conversations.</div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -3684,8 +4310,7 @@ body::before {
             </div>
         </div>
 
-        <h1 class="slide-title animate-in d2" style="margin-bottom:6px; font-size:2.2rem;">What <span class="accent">good</span> looks like in Realization</h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">By the end of Phase 3, your plan should pass these three tests.</p>
+        <h1 class="slide-title animate-in d2" style="margin-bottom:18px; font-size:2.2rem;">What <span class="accent">good</span> looks like in Realization</h1>
 
         <div class="good-list">
             <div class="good-item">
@@ -3734,12 +4359,55 @@ body::before {
 </div>
 
 <!-- ============================================================ -->
-<!-- SLIDE 17 — YOUR FIRST ACTIONS BY ROLE                          -->
+<!-- SLIDE 19 — WHY THIS MATTERS (collective WIIFM payoff)         -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="first-actions" data-steps="4">
+<div class="slide" data-notes="why-this-matters" data-steps="4">
+    <div class="slide-inner">
+        <h1 class="slide-title animate-in d2" style="margin-bottom:6px;">When we plan together, <span class="accent">we win together</span></h1>
+        <p class="slide-subtitle animate-in d3" style="margin-bottom:28px;">Premier Customer UAP changes the work, the outcomes, and the relationship — all at once.</p>
+
+        <div class="payoff-grid">
+            <div class="payoff-card pc-1">
+                <div class="pc-icon" aria-hidden="true">◎</div>
+                <div class="pc-headline">One strategy, one customer</div>
+                <div class="pc-body">Show up with a unified vision the customer recognizes as theirs — not five disconnected pitches.</div>
+            </div>
+
+            <div class="payoff-card pc-2">
+                <div class="pc-icon" aria-hidden="true">✦</div>
+                <div class="pc-headline">Insight-led decisions</div>
+                <div class="pc-body">Start every planning conversation with AI-generated context — not a blank page.</div>
+            </div>
+
+            <div class="payoff-card pc-3">
+                <div class="pc-icon" aria-hidden="true">↗</div>
+                <div class="pc-headline">Pipeline you'd otherwise miss</div>
+                <div class="pc-body">Cross-architecture signals surface expansion opportunities your silo couldn't see alone.</div>
+            </div>
+
+            <div class="payoff-card pc-4">
+                <div class="pc-icon" aria-hidden="true">♥</div>
+                <div class="pc-headline">Trust that compounds</div>
+                <div class="pc-body">Value proven together turns renewals into expansion conversations — and customers into partners.</div>
+            </div>
+        </div>
+
+        <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 20 — YOUR FIRST ACTIONS BY ROLE                          -->
+<!-- ============================================================ -->
+<div class="slide" data-notes="first-actions" data-steps="6">
     <div class="slide-inner">
         <h1 class="slide-title animate-in d2" style="margin-bottom:6px;">Your first actions <span class="accent">by role</span></h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">Concrete next steps to kick off FY27 planning this week.</p>
+        <p class="slide-subtitle animate-in d3" style="margin-bottom:18px;">Concrete next steps to kick off FY27 planning.</p>
+
+        <div class="shared-action">
+            <span class="sa-tag">All Roles</span>
+            <div class="sa-text">Start here — <em>review the AI Summary for your accounts.</em></div>
+        </div>
 
         <div class="roles-grid roles-row">
             <div class="role-card r-ae">
@@ -3748,7 +4416,6 @@ body::before {
                     <span class="role-title">Account Executive</span>
                 </div>
                 <ol class="action-list">
-                    <li>Review the AI Summary for your accounts.</li>
                     <li>Convene your account team for kickoff to begin identifying customer objectives.</li>
                 </ol>
             </div>
@@ -3759,7 +4426,6 @@ body::before {
                     <span class="role-title">Specialist / Architecture</span>
                 </div>
                 <ol class="action-list">
-                    <li>Review the AI Summary for your accounts.</li>
                     <li>Provide your technical expertise during your team's workshop.</li>
                 </ol>
             </div>
@@ -3770,7 +4436,6 @@ body::before {
                     <span class="role-title">Systems Engineer</span>
                 </div>
                 <ol class="action-list">
-                    <li>Review the AI Summary for your accounts.</li>
                     <li>Provide feasibility considerations in the workshop.</li>
                 </ol>
             </div>
@@ -3781,9 +4446,24 @@ body::before {
                     <span class="role-title">CX</span>
                 </div>
                 <ol class="action-list">
-                    <li>Review the AI Summary for your accounts.</li>
                     <li>Bring customer adoption insight, usage patterns, and health context to the workshop.</li>
                 </ol>
+            </div>
+        </div>
+
+        <div class="coach-banner">
+            <div class="coach-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 7h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9l-5 4v-4H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>
+                    <path d="M11 14h6"/>
+                    <path d="M11 17h4"/>
+                    <path d="M22 5l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" fill="currentColor" stroke="none"/>
+                </svg>
+            </div>
+            <div class="coach-text">
+                <div class="coach-eyebrow">New — Available Now</div>
+                <div class="coach-headline">UAP Coach in Circuit</div>
+                <div class="coach-body">Your always-on AI coaching companion. Receive actionable feedback on plan quality to help your team unlock the full potential of every strategy.</div>
             </div>
         </div>
 
@@ -3862,10 +4542,7 @@ body::before {
             ['.phase-bullets li:nth-child(4)']
         ],
         "discovery-roles": [
-            ['.role-contrib.rc-ae'],
-            ['.role-contrib.rc-spec'],
-            ['.role-contrib.rc-se'],
-            ['.role-contrib.rc-cs']
+            [], [], [], [], []
         ],
         "discovery-good": [
             ['.good-item:nth-child(1)'],
@@ -3880,14 +4557,10 @@ body::before {
         "definition-overview": [
             ['.phase-bullets li:nth-child(1)'],
             ['.phase-bullets li:nth-child(2)'],
-            ['.phase-bullets li:nth-child(3)'],
-            ['.phase-bullets li:nth-child(4)']
+            ['.phase-bullets li:nth-child(3)']
         ],
         "definition-roles": [
-            ['.role-contrib.rc-ae'],
-            ['.role-contrib.rc-spec'],
-            ['.role-contrib.rc-se'],
-            ['.role-contrib.rc-cs']
+            [], [], [], [], []
         ],
         "definition-good": [
             ['.good-item:nth-child(1)'],
@@ -3901,10 +4574,7 @@ body::before {
             ['.phase-bullets li:nth-child(4)']
         ],
         "realization-roles": [
-            ['.role-contrib.rc-ae'],
-            ['.role-contrib.rc-spec'],
-            ['.role-contrib.rc-se'],
-            ['.role-contrib.rc-cs']
+            [], [], [], [], []
         ],
         "realization-good": [
             ['.good-item:nth-child(1)'],
@@ -3912,10 +4582,18 @@ body::before {
             ['.good-item:nth-child(3)']
         ],
         "first-actions": [
+            ['.shared-action'],
             ['.role-card.r-ae'],
             ['.role-card.r-spec'],
             ['.role-card.r-se'],
-            ['.role-card.r-cs']
+            ['.role-card.r-cs'],
+            ['.coach-banner']
+        ],
+        "why-this-matters": [
+            ['.payoff-card.pc-1'],
+            ['.payoff-card.pc-2'],
+            ['.payoff-card.pc-3'],
+            ['.payoff-card.pc-4']
         ]
     };
 
@@ -3931,11 +4609,9 @@ body::before {
                 });
             });
         }
-        // Discovery-good: drive coaching overlay sub-steps via step-N class on the slide
-        if (s.classList.contains('coach-pop')) {
-            for (let i = 1; i <= 8; i++) s.classList.remove('step-' + i);
-            if (step > 0) s.classList.add('step-' + step);
-        }
+        // Drive class-based step states on the slide root (used by .coach-pop, .spotlight-stage)
+        for (let i = 1; i <= 8; i++) s.classList.remove('step-' + i);
+        if (step > 0) s.classList.add('step-' + step);
     }
 
     function currentSteps() {
@@ -4052,6 +4728,12 @@ body::before {
             "This is what 'going home and doing the work' looks like. Each role has a different starting point, but everyone has a move to make this week.",
             "AEs: open your accounts, read the AI Summary, validate the objectives with your customer, and convene the team. Nothing happens until you call the huddle.",
             "Specialists and SEs: don't wait to be invited. Open the AI Summary on your top accounts, react to it, and start shaping initiatives. CX: connect your success plans and bring adoption signals into the conversation \u2014 that's what makes the plan real."
+        ],
+        "why-this-matters": [
+            "Before we talk about what to do this week, let's ground in why this matters.",
+            "Premier Customer UAP isn't asking us to plan differently for the sake of it. It changes three things at once: what the customer sees, how the team works, and what shows up in the pipeline.",
+            "When we plan together, we win together \u2014 that's the bet. One strategy the customer recognizes. Decisions led by insight, not guesswork. Expansion opportunities surfaced from cross-architecture signals. And trust that compounds into long-term partnership.",
+            "Hold this picture in your head as we look at your first actions."
         ]
     };
 
