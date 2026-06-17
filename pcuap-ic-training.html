@@ -201,6 +201,38 @@ body::before {
     text-transform: uppercase; letter-spacing: 0.28em;
     color: var(--cisco-blue);
     margin-bottom: 22px;
+    display: inline-flex; align-items: center; gap: 12px;
+}
+.cover .kicker::before {
+    content: "";
+    width: 28px; height: 2px;
+    background: var(--cisco-blue);
+    box-shadow: 0 0 8px rgba(2,200,255,0.7);
+}
+.cover .cover-pillars {
+    display: flex; flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+}
+.cover .cp-pill {
+    display: inline-flex; align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: linear-gradient(120deg, rgba(2,200,255,0.12), rgba(10,96,255,0.08));
+    border: 1px solid rgba(2,200,255,0.32);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    box-shadow: 0 0 16px rgba(2,200,255,0.08);
+}
+.cover .cp-pill .cp-icon {
+    color: var(--cisco-blue);
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(2,200,255,0.6);
 }
 .cover h1 {
     font-size: 4.0rem; font-weight: 900;
@@ -2937,9 +2969,17 @@ body::before {
     <div class="slide-inner cover">
 
         <div class="cover-left">
-            <h1 class="animate-in d2">One Team. One Plan.<br><span class="accent">Your FY27 Competitive Advantage.</span></h1>
-            <p class="lede animate-in d3">Premier Customer UAP brings Sales, Specialists, and CX into one shared plan — supported by AI, centralized in Salesforce.</p>
-            <p class="tagline animate-in d4"><span class="tag-pre">Not an added task.</span> <span class="tag-hi">A better way of working.</span></p>
+            <div class="kicker animate-in">Our FY27 Strategic Priority</div>
+            <h1 class="animate-in d2">Planning as One<br><span class="accent">AI-Powered Salesforce.</span></h1>
+            <p class="lede animate-in d3">Premier Customer UAP brings together Sales, Specialists, and CX into one shared plan, powered by AI.</p>
+
+            <div class="cover-pillars animate-in d4">
+                <div class="cp-pill"><span class="cp-icon">✦</span><span>AI-driven insight</span></div>
+                <div class="cp-pill"><span class="cp-icon">◎</span><span>One team, one plan</span></div>
+                <div class="cp-pill"><span class="cp-icon">⧈</span><span>Salesforce-native</span></div>
+            </div>
+
+            <p class="tagline animate-in d5"><span class="tag-pre">Not an added task.</span> <span class="tag-hi">A better way of working.</span></p>
         </div>
     </div>
 </div>
