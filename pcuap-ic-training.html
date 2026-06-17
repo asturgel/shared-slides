@@ -335,7 +335,8 @@ body::before {
     grid-template-columns: 1fr 1.05fr;
     gap: 56px;
     flex: 1;
-    align-items: center;
+    align-items: start;
+    padding-top: 12px;
     padding-bottom: 32px;
 }
 
@@ -369,6 +370,15 @@ body::before {
     color: var(--accent-orange);
     display: flex; align-items: center; justify-content: center;
     font-weight: 900; font-size: 0.95rem;
+}
+.slide[data-notes="pain"] .pain-bullets li {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 450ms ease, transform 500ms cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+.slide[data-notes="pain"] .pain-bullets li.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ============================================================ */
@@ -1197,14 +1207,8 @@ body::before {
     width: 254px;
     height: 1.5px;
     transform-origin: 0 50%;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        transparent 38%,
-        rgba(2,200,255,0.50) 70%,
-        rgba(2,200,255,0.85) 100%);
-    border-radius: 1px;
+    background: transparent;
     z-index: 1;
-    box-shadow: 0 0 6px rgba(2,200,255,0.30);
     pointer-events: none;
     opacity: 0;
     animation: olpFade 700ms ease forwards;
@@ -1452,10 +1456,10 @@ body::before {
     border: 1px solid rgba(2,200,255,0.32);
     border-top: 3px solid var(--cisco-blue);
     border-radius: 12px;
-    padding: 18px 18px 16px;
+    padding: 22px 18px;
     font-size: 1rem; color: var(--text-secondary);
-    display: flex; align-items: flex-start; gap: 12px;
-    line-height: 1.35;
+    display: flex; align-items: center; gap: 14px;
+    line-height: 1.2;
     box-shadow: 0 10px 24px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.04);
     opacity: 0;
     transform: translateY(14px);
@@ -1466,8 +1470,6 @@ body::before {
     opacity: 1;
     transform: translateY(0);
 }
-.olp-tag:nth-child(2).revealed { transition-delay: 90ms; }
-.olp-tag:nth-child(3).revealed { transition-delay: 180ms; }
 .olp-tag .chk {
     flex-shrink: 0; width: 28px; height: 28px;
     border-radius: 50%;
@@ -1479,7 +1481,7 @@ body::before {
     margin-top: 1px;
     box-shadow: 0 0 12px rgba(2,200,255,0.20);
 }
-.olp-tag strong { color: var(--text-primary); font-weight: 800; }
+.olp-tag strong { color: var(--text-primary); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.01em; }
 
 /* ============================================================ */
 /* SLIDE 3b — DATA VIEWS (Coverage vs. Premier Customer UAP)      */
@@ -1594,6 +1596,14 @@ body::before {
     max-width: 1000px;
 }
 .dv-footnote b { color: var(--text-primary); font-weight: 900; }
+.dv-foot-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 400ms ease, transform 500ms cubic-bezier(0.34,1.3,0.5,1);
+}
+.dv-foot-line + .dv-foot-line { margin-top: 6px; }
+.dv-foot-line.revealed { opacity: 1; transform: translateY(0); }
 .dv-foot-emph {
     background: var(--gradient-blue);
     -webkit-background-clip: text; background-clip: text;
@@ -2055,6 +2065,18 @@ body::before {
 /* ============================================================ */
 /* SLIDE 6 — THREE PHASES (horizontal flow)                       */
 /* ============================================================ */
+.phases-wheel-stage {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%;
+    margin: 4px auto 8px;
+}
+.phases-wheel {
+    width: auto;
+    height: 100%;
+    max-height: 440px;
+    max-width: 440px;
+    display: block;
+}
 .phases-flow {
     display: grid;
     grid-template-columns: 1fr 44px 1fr 44px 1fr;
@@ -2690,17 +2712,17 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 2 — THE PAIN ("Where We Are Today")                     -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="pain">
+<div class="slide" data-notes="pain" data-steps="4">
     <div class="slide-inner">
         <h1 class="slide-title animate-in d2">Where we <span class="accent">are today</span></h1>
-        <p class="slide-subtitle animate-in d3">Each team is doing thoughtful work — but it's not connected. The customer experiences the result: handoffs, gaps, and inconsistency.</p>
+        <p class="slide-subtitle animate-in d3">Workflows are not connected. The customer experiences the result: handoffs, gaps, and inconsistency.</p>
 
         <div class="pain-layout">
             <ul class="pain-bullets">
-                <li class="animate-in d2"><span class="x">✕</span><span><strong>Fragmented planning</strong> across teams</span></li>
-                <li class="animate-in d3"><span class="x">✕</span><span><strong>Manual, time-consuming</strong> coordination</span></li>
-                <li class="animate-in d4"><span class="x">✕</span><span><strong>Inconsistent</strong> customer experience</span></li>
-                <li class="animate-in d5"><span class="x">✕</span><span><strong>Missed signals</strong> and expansion opportunities</span></li>
+                <li><span class="x">✕</span><span><strong>Fragmented planning</strong> across teams</span></li>
+                <li><span class="x">✕</span><span><strong>Manual, time-consuming</strong> coordination</span></li>
+                <li><span class="x">✕</span><span><strong>Inconsistent</strong> customer experience</span></li>
+                <li><span class="x">✕</span><span><strong>Missed signals</strong> and expansion opportunities</span></li>
             </ul>
 
             <div class="silos animate-in d3">
@@ -2768,14 +2790,19 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 4 — ONE LIVING ACCOUNT PLAN                              -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="shift" data-steps="2">
+<div class="slide" data-notes="shift" data-steps="4">
     <div class="slide-inner" style="justify-content:flex-start; padding-top:60px;">
         <div class="olp-title-eyebrow animate-in d2">How we plan for FY27</div>
         <h1 class="slide-title animate-in d2" style="margin:4px 0 6px;">One Living <span class="accent">Account Plan</span></h1>
-        <p class="slide-subtitle animate-in d3" style="margin-bottom:0;">Four roles collaborate around one source of truth — each contributing what only they can see.</p>
+        <p class="slide-subtitle animate-in d3" style="margin-bottom:0;">Four roles collaborate around one source of truth — each contributing their expertise.</p>
 
         <div class="olp-stage">
             <div class="olp-halo"></div>
+
+            <div class="olp-spoke s-ne"></div>
+            <div class="olp-spoke s-se"></div>
+            <div class="olp-spoke s-nw"></div>
+            <div class="olp-spoke s-sw"></div>
 
             <div class="olp-plan">
                 <div class="olp-plan-eyebrow">AI-Powered</div>
@@ -2811,9 +2838,9 @@ body::before {
         </div>
 
         <div class="olp-tags">
-            <div class="olp-tag"><span class="chk">✓</span><span><strong>Faster decisions</strong> — less time chasing alignment, more time selling value</span></div>
-            <div class="olp-tag"><span class="chk">✓</span><span><strong>Stronger strategy</strong> — informed by every role and every signal</span></div>
-            <div class="olp-tag"><span class="chk">✓</span><span><strong>Drive growth</strong> — a standardized approach that scales across customers</span></div>
+            <div class="olp-tag"><span class="chk">✓</span><span><strong>Faster decisions</strong></span></div>
+            <div class="olp-tag"><span class="chk">✓</span><span><strong>Stronger strategy</strong></span></div>
+            <div class="olp-tag"><span class="chk">✓</span><span><strong>Drive growth</strong></span></div>
         </div>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
@@ -2823,7 +2850,7 @@ body::before {
 <!-- ============================================================ -->
 <!-- SLIDE 3b — DATA VIEWS (Coverage vs. Premier Customer UAP)     -->
 <!-- ============================================================ -->
-<div class="slide" data-notes="data-views" data-steps="3">
+<div class="slide" data-notes="data-views" data-steps="5">
     <div class="slide-inner" style="justify-content:flex-start; padding-top:140px;">
         <h1 class="slide-title animate-in d2" style="margin-bottom:6px;">Not different data. <span class="accent">A different lens.</span></h1>
         <p class="slide-subtitle animate-in d3" style="margin-bottom:20px;">You're seeing the <strong>full picture</strong> — the global <strong>“One Cisco”</strong> view.</p>
@@ -2832,9 +2859,8 @@ body::before {
             <div class="dv-card dv-coverage">
                 <div class="dv-eyebrow">Coverage View</div>
                 <div class="dv-title">Existing Sales Tools</div>
-                <div class="dv-sub">(SFDC, MBR, Visibility, etc.)<br>Aligned to how you cover the account and run your day-to-day business</div>
                 <ul class="dv-list">
-                    <li>Manage deals and submit your forecast</li>
+                    <li>Manage deals and submit forecast</li>
                     <li>Track bookings and compensation</li>
                 </ul>
                 <div class="dv-reassure">Nothing changes — keep using it daily</div>
@@ -2847,7 +2873,6 @@ body::before {
             <div class="dv-card dv-pcuap">
                 <div class="dv-eyebrow">Global View</div>
                 <div class="dv-title">Premier Customer UAP</div>
-                <div class="dv-sub">Aligned to the customer's holistic footprint with Cisco — how the customer thinks about us</div>
                 <ul class="dv-list">
                     <li>The total Cisco view of the customer</li>
                     <li>For strategic, executive-level planning</li>
@@ -2856,7 +2881,11 @@ body::before {
             </div>
         </div>
 
-        <p class="dv-footnote"><b>Coverage View</b> runs your business. <b>Premier Customer UAP</b> wins the customer. <span class="dv-foot-emph">You need both.</span></p>
+        <p class="dv-footnote">
+            <span class="dv-foot-line"><b>Coverage View</b> runs your business.</span>
+            <span class="dv-foot-line"><b>Global View</b> wins the customer.</span>
+            <span class="dv-foot-line dv-foot-emph">You need both.</span>
+        </p>
 
         <div class="footer">© 2026 Cisco and/or its affiliates. All rights reserved.</div>
     </div>
@@ -2964,69 +2993,76 @@ body::before {
             <svg class="phases-wheel" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Customer engagement wheel: Value Discovery, Value Definition, and Value Realization surround the LAER ring with Customer Value at the center">
                 <defs>
                     <radialGradient id="pwGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#02C8FF" stop-opacity="0.30"/>
-                        <stop offset="55%" stop-color="#0A60FF" stop-opacity="0.10"/>
+                        <stop offset="0%" stop-color="#02C8FF" stop-opacity="0.18"/>
+                        <stop offset="60%" stop-color="#0A60FF" stop-opacity="0.06"/>
                         <stop offset="100%" stop-color="#0A60FF" stop-opacity="0"/>
                     </radialGradient>
-                    <linearGradient id="pwCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#0A60FF"/>
-                        <stop offset="100%" stop-color="#02C8FF"/>
+
+                    <!-- Outer ring gradients — colors match phase-cards (p1 cyan, p2 blue, p3 magenta).
+                         Adjacent arcs share boundary colors so the ring reads as one continuous gradient. -->
+                    <linearGradient id="pwDisc" gradientUnits="userSpaceOnUse" x1="122.87" y1="240" x2="677.13" y2="240">
+                        <stop offset="0%"   stop-color="#7A3AFF"/>
+                        <stop offset="50%"  stop-color="#02C8FF"/>
+                        <stop offset="100%" stop-color="#0694FF"/>
                     </linearGradient>
-                    <linearGradient id="pwMag" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#FF007F"/>
-                        <stop offset="100%" stop-color="#FF6BB8"/>
+                    <linearGradient id="pwDef" gradientUnits="userSpaceOnUse" x1="677.13" y1="240" x2="400" y2="720">
+                        <stop offset="0%"   stop-color="#0694FF"/>
+                        <stop offset="50%"  stop-color="#0A60FF"/>
+                        <stop offset="100%" stop-color="#8530BF"/>
                     </linearGradient>
+                    <linearGradient id="pwReal" gradientUnits="userSpaceOnUse" x1="400" y1="720" x2="122.87" y2="240">
+                        <stop offset="0%"   stop-color="#8530BF"/>
+                        <stop offset="50%"  stop-color="#FF007F"/>
+                        <stop offset="100%" stop-color="#7A3AFF"/>
+                    </linearGradient>
+
+                    <!-- Outer ring arc paths — endpoints lie exactly on r=320 circle so arcs meet seamlessly -->
+                    <path id="discRing" d="M 122.87 240 A 320 320 0 0 1 677.13 240" fill="none"/>
+                    <path id="defRing"  d="M 677.13 240 A 320 320 0 0 1 400 720"    fill="none"/>
+                    <path id="realRing" d="M 400 720 A 320 320 0 0 1 122.87 240"   fill="none"/>
+
+                    <!-- Label centerlines OUTSIDE the ring (r=362) -->
+                    <path id="discLabel" d="M 86.51 219 A 362 362 0 0 1 713.49 219" fill="none"/>
+                    <path id="defLabel"  d="M 713.49 219 A 362 362 0 0 1 400 762"   fill="none"/>
+                    <path id="realLabel" d="M 86.51 219 A 362 362 0 0 0 400 762"   fill="none"/>
                 </defs>
 
                 <!-- Soft halo behind wheel -->
                 <circle cx="400" cy="400" r="380" fill="url(#pwGlow)"/>
 
-                <!-- ===== Outer ring: 3 phase arcs (r=320, stroke=46) ===== -->
-                <!-- Phase 1: Discovery (top) 213°–327° -->
-                <path d="M 131.7 225.7 A 320 320 0 0 1 668.3 225.7"
-                      stroke="url(#pwCyan)" stroke-width="46" fill="none" stroke-linecap="round" opacity="0.95"/>
-                <!-- Phase 2: Definition (bottom-right) 333°–87° -->
-                <path d="M 685.1 254.7 A 320 320 0 0 1 416.7 719.6"
-                      stroke="url(#pwCyan)" stroke-width="46" fill="none" stroke-linecap="round" opacity="0.78"/>
-                <!-- Phase 3: Realization (bottom-left) 93°–207° -->
-                <path d="M 383.3 719.6 A 320 320 0 0 1 114.9 254.7"
-                      stroke="url(#pwCyan)" stroke-width="46" fill="none" stroke-linecap="round" opacity="0.62"/>
+                <!-- ===== Outer thin gradient ring (butt caps so arcs meet flush) ===== -->
+                <use href="#discRing" stroke="url(#pwDisc)" stroke-width="9" stroke-linecap="butt"/>
+                <use href="#defRing"  stroke="url(#pwDef)"  stroke-width="9" stroke-linecap="butt"/>
+                <use href="#realRing" stroke="url(#pwReal)" stroke-width="9" stroke-linecap="butt"/>
 
-                <!-- ===== Inner LAER ring (r=210, stroke=44) ===== -->
-                <!-- Land (N) 227°–313° -->
-                <path d="M 256.8 246.4 A 210 210 0 0 1 543.2 246.4"
-                      stroke="url(#pwMag)" stroke-width="44" fill="none" stroke-linecap="round" opacity="0.92"/>
-                <!-- Adopt (E) 317°–43° -->
-                <path d="M 553.6 256.8 A 210 210 0 0 1 553.6 543.2"
-                      stroke="url(#pwMag)" stroke-width="44" fill="none" stroke-linecap="round" opacity="0.78"/>
-                <!-- Expand (S) 47°–133° -->
-                <path d="M 543.2 553.6 A 210 210 0 0 1 256.8 553.6"
-                      stroke="url(#pwMag)" stroke-width="44" fill="none" stroke-linecap="round" opacity="0.66"/>
-                <!-- Renew (W) 137°–223° -->
-                <path d="M 246.4 543.2 A 210 210 0 0 1 246.4 256.8"
-                      stroke="url(#pwMag)" stroke-width="44" fill="none" stroke-linecap="round" opacity="0.55"/>
+                <!-- Subtle inner band (replaces the gray annulus from the reference, kept dark-blue translucent) -->
+                <circle cx="400" cy="400" r="280" fill="rgba(255,255,255,0.025)" stroke="rgba(2,200,255,0.15)" stroke-width="1"/>
 
-                <!-- Phase labels (outside arc) -->
-                <text x="400" y="48" text-anchor="middle" fill="#02C8FF" font-size="22" font-weight="900" letter-spacing="4">VALUE DISCOVERY</text>
-                <text x="400" y="74" text-anchor="middle" fill="#9FB4D6" font-size="14" font-weight="700" letter-spacing="3">UNDERSTAND TOGETHER</text>
+                <!-- Dotted cross dividers within the band -->
+                <line x1="400" y1="130" x2="400" y2="670" stroke="rgba(180,200,230,0.55)" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
+                <line x1="130" y1="400" x2="670" y2="400" stroke="rgba(180,200,230,0.55)" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
 
-                <text x="744" y="588" text-anchor="middle" fill="#02C8FF" font-size="22" font-weight="900" letter-spacing="4" transform="rotate(60 744 588)">VALUE DEFINITION</text>
-                <text x="724" y="612" text-anchor="middle" fill="#9FB4D6" font-size="14" font-weight="700" letter-spacing="3" transform="rotate(60 724 612)">DECIDE TOGETHER</text>
+                <!-- LAER labels INSIDE the middle band (4 quadrants, horizontal text in white) -->
+                <text x="510" y="252" text-anchor="middle" fill="#FFFFFF" font-size="34" font-weight="800" letter-spacing="0.5">Land</text>
+                <text x="510" y="556" text-anchor="middle" fill="#FFFFFF" font-size="34" font-weight="800" letter-spacing="0.5">Adopt</text>
+                <text x="290" y="556" text-anchor="middle" fill="#FFFFFF" font-size="34" font-weight="800" letter-spacing="0.5">Expand</text>
+                <text x="290" y="252" text-anchor="middle" fill="#FFFFFF" font-size="34" font-weight="800" letter-spacing="0.5">Renew</text>
 
-                <text x="56" y="588" text-anchor="middle" fill="#02C8FF" font-size="22" font-weight="900" letter-spacing="4" transform="rotate(-60 56 588)">VALUE REALIZATION</text>
-                <text x="76" y="612" text-anchor="middle" fill="#9FB4D6" font-size="14" font-weight="700" letter-spacing="3" transform="rotate(-60 76 612)">DELIVER TOGETHER</text>
+                <!-- Center: subtle dark-blue disc + "Customer Value" -->
+                <circle cx="400" cy="400" r="88" fill="rgba(7,24,45,0.85)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+                <text x="400" y="388" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="800" letter-spacing="0.3">Customer</text>
+                <text x="400" y="420" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="800" letter-spacing="0.3">Value</text>
 
-                <!-- LAER segment labels on the ring -->
-                <text x="400" y="218" text-anchor="middle" fill="#07182D" font-size="20" font-weight="900" letter-spacing="3">LAND</text>
-                <text x="610" y="406" text-anchor="middle" fill="#07182D" font-size="20" font-weight="900" letter-spacing="3">ADOPT</text>
-                <text x="400" y="594" text-anchor="middle" fill="#07182D" font-size="20" font-weight="900" letter-spacing="3">EXPAND</text>
-                <text x="190" y="406" text-anchor="middle" fill="#07182D" font-size="20" font-weight="900" letter-spacing="3">RENEW</text>
-
-                <!-- Center hub -->
-                <circle cx="400" cy="400" r="120" fill="#07182D" stroke="url(#pwCyan)" stroke-width="3"/>
-                <circle cx="400" cy="400" r="100" fill="none" stroke="rgba(2,200,255,0.30)" stroke-width="1"/>
-                <text x="400" y="390" text-anchor="middle" fill="#02C8FF" font-size="13" font-weight="900" letter-spacing="4">CUSTOMER</text>
-                <text x="400" y="422" text-anchor="middle" fill="#FFFFFF" font-size="26" font-weight="900" letter-spacing="1">VALUE</text>
+                <!-- Phase labels OUTSIDE the outer ring, arcing in their gradient colors -->
+                <text font-size="40" font-weight="900" letter-spacing="1.5" fill="url(#pwDisc)" dominant-baseline="middle">
+                    <textPath href="#discLabel" startOffset="50%" text-anchor="middle">Value Discovery</textPath>
+                </text>
+                <text font-size="40" font-weight="900" letter-spacing="1.5" fill="url(#pwDef)" dominant-baseline="middle">
+                    <textPath href="#defLabel" startOffset="50%" text-anchor="middle">Value Definition</textPath>
+                </text>
+                <text font-size="40" font-weight="900" letter-spacing="1.5" fill="url(#pwReal)" dominant-baseline="middle">
+                    <textPath href="#realLabel" startOffset="50%" text-anchor="middle">Value Realization</textPath>
+                </text>
             </svg>
         </div>
 
@@ -3789,11 +3825,31 @@ body::before {
             ['.agenda-item:nth-child(3)'],
             ['.agenda-item:nth-child(4)']
         ],
+        "pain": [
+            ['.pain-bullets li:nth-child(1)'],
+            ['.pain-bullets li:nth-child(2)'],
+            ['.pain-bullets li:nth-child(3)'],
+            ['.pain-bullets li:nth-child(4)']
+        ],
         "shift": [
             ['.olp-insight-layer'],
-            ['.olp-tag']
+            ['.olp-tag:nth-child(1)'],
+            ['.olp-tag:nth-child(2)'],
+            ['.olp-tag:nth-child(3)']
         ],
-        "wiifm":  ['.role-card.r-ae', '.role-card.r-spec', '.role-card.r-cs', '.role-card.r-se'],
+        "data-views": [
+            ['.dv-coverage', '.dv-plus'],
+            ['.dv-pcuap'],
+            ['.dv-footnote', '.dv-foot-line:nth-child(1)'],
+            ['.dv-foot-line:nth-child(2)'],
+            ['.dv-foot-line:nth-child(3)']
+        ],
+        "stakes": [
+            ['.col-cust'],
+            ['.col-team'],
+            ['.col-cisco']
+        ],
+        "wiifm":  ['.role-card.r-ae', '.role-card.r-se', '.role-card.r-spec', '.role-card.r-cs'],
         "phases": [
             ['.phase-card.p1'],
             ['.phase-arrow.a1', '.phase-card.p2'],
@@ -3917,7 +3973,8 @@ body::before {
         "shift": [
             "This slide is the picture of how Premier Customer UAP actually works. One plan in the middle. Four roles around it, each contributing what only they can see — deal context, solution and whitespace, the technical landscape, and adoption signals.",
             "Notice the AI insights sit below the roles, not above them. Gong, ZoomInfo, and AI Assistant for Sales don't write the plan. The team does — they bring those signals in and weave them into the strategy.",
-            "Today most of that weaving is still manual. Over time more of it will be automated. The principle stays the same: AI-assisted, not AI-replaced. One continuous strategy, not an annual exercise."
+            "Today most of that weaving is still manual. Over time more of it will be automated. The principle stays the same: AI-assisted, not AI-replaced. One continuous strategy, not an annual exercise.",
+            "The three benefits in detail — Faster decisions: less time chasing alignment, more time selling value. Stronger strategy: informed by every role and every signal. Drive growth: a standardized approach that scales across customers."
         ],
         "data-views": [
             "Before we go further — a quick word about your numbers. If what you see in Premier Customer UAP looks different from what you see in Coverage View, that's by design.",
