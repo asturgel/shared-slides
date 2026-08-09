@@ -219,6 +219,25 @@
         100% { opacity: 1; transform: none; }
     }
 
+    /* Phase-intro emphasis: boxes introduced in the current phase enlarge, then
+       return to normal size once the next phase is shown */
+    .p-card.phase-intro {
+        transform: scale(1.09);
+        z-index: 6;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+        background: rgba(2,200,255,0.14);
+    }
+    .leader-row.phase-intro, .director-row.phase-intro {
+        transform: scale(1.035);
+        z-index: 6;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+    }
+    .occ-box.phase-intro {
+        transform: scale(1.05);
+        z-index: 6;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+    }
+
     /* Ghosted future role (seat reserved, person not yet in it) */
     .p-card.ghost {
         opacity: 0.24;
@@ -413,7 +432,7 @@
 
     /* Section storytelling (review phase) — dim non-hovered sections */
     .panel.future .section, .leader-row, .director-row {
-        transition: opacity 220ms ease, filter 220ms ease;
+        transition: opacity 220ms ease, filter 220ms ease, transform 180ms ease;
     }
     .section-dim { opacity: 0.18 !important; filter: grayscale(0.5); }
 </style>
@@ -691,6 +710,7 @@
                 }
                 if (animateNew && wasGhost) { el.classList.remove('just-revealed'); void el.offsetWidth; el.classList.add('just-revealed'); }
             }
+            el.classList.toggle('phase-intro', name !== null && since === phase && phase >= 1 && phase <= LAST_CONTENT);
             let badge = el.querySelector(':scope > .phase-badge');
             const badges = JSON.parse(el.dataset.badges || '{}');
             const bt = (phase <= LAST_CONTENT) ? badges[phase] : null;
@@ -709,6 +729,7 @@
             el.classList.toggle('row-ghost', !(ap <= phase));
             let badge = el.querySelector(':scope > .phase-badge');
             const show = (phase <= LAST_CONTENT) && (ap === phase) && ap > 0;
+            el.classList.toggle('phase-intro', show);
             if (show) {
                 if (!badge) { badge = document.createElement('div'); badge.className = 'phase-badge'; el.appendChild(badge); }
                 badge.textContent = 'PHASE ' + ap;
@@ -731,6 +752,7 @@
         const occEnlarged = (phase >= 1 && phase <= 3);
         occBox.classList.toggle('ghost', phase === 0);
         occBox.classList.toggle('enlarged', occEnlarged);
+        occBox.classList.toggle('phase-intro', phase === 1);
         const occSmall = occBox.querySelector('.occ-small');
         const occLarge = occBox.querySelector('.occ-large');
         occLarge.style.display = occEnlarged ? 'flex' : 'none';
