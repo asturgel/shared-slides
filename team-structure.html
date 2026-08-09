@@ -148,10 +148,10 @@
 
     /* ── Card grids ── */
     .grid-today       { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
-    .grid-strategists { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; min-height: 46px; }
-    .grid-personas    { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
-    .grid-tools       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; grid-auto-flow: dense; }
-    .grid-geo         { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .grid-strategists { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; min-height: 46px; }
+    .grid-personas    { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .grid-tools       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; grid-auto-flow: dense; }
+    .grid-geo         { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .grid-pm          { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
     /* ── Person card ── */
@@ -222,20 +222,20 @@
     /* Phase-intro emphasis: boxes introduced in the current phase enlarge, then
        return to normal size once the next phase is shown */
     .p-card.phase-intro {
-        transform: scale(1.09);
+        transform: scale(1.05);
         z-index: 6;
-        box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+        box-shadow: 0 5px 16px rgba(2,200,255,0.28);
         background: rgba(2,200,255,0.14);
     }
     .leader-row.phase-intro, .director-row.phase-intro {
-        transform: scale(1.035);
+        transform: scale(1.02);
         z-index: 6;
-        box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+        box-shadow: 0 5px 16px rgba(2,200,255,0.24);
     }
     .occ-box.phase-intro {
-        transform: scale(1.05);
+        transform: scale(1.03);
         z-index: 6;
-        box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+        box-shadow: 0 5px 16px rgba(2,200,255,0.28);
     }
 
     /* Ghosted future role (seat reserved, person not yet in it) */
@@ -465,7 +465,7 @@
                 <div class="panel-title">Today <span class="badge">ORGANIZED BY TOOL</span></div>
                 <div class="today-summary">10 transitioned &#10003; &middot; 0 gaps</div>
                 <div class="grid-today">
-                    <div class="p-card" data-person="Praful" data-dim="3">
+                    <div class="p-card" data-person="Praful" data-dim="2">
                         <div class="p-role">AI RFP</div><div class="p-name">Praful</div>
                     </div>
                     <div class="p-card" data-person="Yaseen" data-dim="1">
@@ -482,19 +482,19 @@
                     <div class="p-card" data-person="Ashley" data-dim="1">
                         <div class="p-role">ExecEngage</div><div class="p-name">Ashley</div>
                     </div>
-                    <div class="p-card" data-person="Jenn" data-dim="3">
+                    <div class="p-card" data-person="Jenn" data-dim="2">
                         <div class="p-role">ExecConsole</div><div class="p-name">Jenn</div>
                     </div>
-                    <div class="p-card" data-person="Casey" data-dim="3">
+                    <div class="p-card" data-person="Casey" data-dim="2">
                         <div class="p-role">Intelligence Ctr</div><div class="p-name">Casey</div>
                     </div>
                     <div class="p-card" data-person="Shay" data-dim="1">
                         <div class="p-role">AI Assistant for Sales</div><div class="p-name">Shay</div>
                     </div>
-                    <div class="p-card" data-person="Robin" data-dim="4">
+                    <div class="p-card" data-person="Robin" data-dim="3">
                         <div class="p-role">AI Tutor</div><div class="p-name">Robin</div>
                     </div>
-                    <div class="p-card" data-person="Kate" data-dim="2">
+                    <div class="p-card" data-person="Kate" data-dim="1">
                         <div class="p-role">Recurring Revenue</div><div class="p-name">Kate</div>
                     </div>
                     <div class="p-card" data-person="Kiley" data-dim="1">
@@ -525,19 +525,19 @@
                 <div class="section">
                     <div class="section-label">Workflow Strategists &amp; aligned PMs</div>
                     <div class="grid-strategists">
-                        <div class="p-card" data-owners='{"4":"Amy"}' data-badges='{"4":"phase"}'>
+                        <div class="p-card" data-owners='{"3":"Amy"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">Strategy &amp; Opportunity Identification Strategist</div>
                             <div class="p-name">Amy</div>
                         </div>
-                        <div class="p-card" data-owners='{"4":"Kayla"}' data-badges='{"4":"phase"}'>
+                        <div class="p-card" data-owners='{"3":"Kayla"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">Solutioning &amp; Deal Execution Strategist</div>
                             <div class="p-name">Kayla</div>
                         </div>
-                        <div class="p-card" data-owners='{"4":"Program Manager"}' data-badges='{"4":"new"}'>
+                        <div class="p-card" data-owners='{"3":"Program Manager"}' data-badges='{"3":"new"}'>
                             <div class="p-role">PM &middot; supports Strategy &amp; Opportunity</div>
                             <div class="p-name">Program Manager</div>
                         </div>
-                        <div class="p-card" data-owners='{"4":"Program Manager"}' data-badges='{"4":"new"}'>
+                        <div class="p-card" data-owners='{"3":"Program Manager"}' data-badges='{"3":"new"}'>
                             <div class="p-role">PM &middot; supports Solutioning &amp; Deal</div>
                             <div class="p-name">Program Manager</div>
                         </div>
@@ -548,16 +548,16 @@
                 <div class="section">
                     <div class="section-label">Persona SMEs</div>
                     <div class="grid-personas">
-                        <div class="p-card" data-owners='{"4":"Megan"}' data-badges='{"4":"phase"}'>
+                        <div class="p-card" data-owners='{"3":"Megan"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">AE SME</div><div class="p-name">Megan</div>
                         </div>
-                        <div class="p-card" data-owners='{"4":"Yaseen"}' data-badges='{"4":"phase"}'>
+                        <div class="p-card" data-owners='{"3":"Yaseen"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">SE SME</div><div class="p-name">Yaseen</div>
                         </div>
-                        <div class="p-card" data-owners='{"3":"Jenn"}' data-badges='{"3":"phase"}'>
+                        <div class="p-card" data-owners='{"2":"Jenn"}' data-badges='{"2":"phase"}'>
                             <div class="p-role">Specialist SME</div><div class="p-name">Jenn</div>
                         </div>
-                        <div class="p-card" data-owners='{"4":"Kiley"}' data-badges='{"4":"phase"}'>
+                        <div class="p-card" data-owners='{"3":"Kiley"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">Front Line Ldr SME</div><div class="p-name">Kiley</div>
                         </div>
                     </div>
@@ -578,25 +578,25 @@
                                 <div class="occ-people"></div>
                             </div>
                         </div>
-                        <div class="p-card" data-owners='{"3":"Casey"}' data-badges='{"3":"phase"}'>
+                        <div class="p-card" data-owners='{"2":"Casey"}' data-badges='{"2":"phase"}'>
                             <div class="p-role">AI RFP</div><div class="p-name">Casey</div>
                         </div>
-                        <div class="p-card" data-owners='{"1":"Amy","4":"Robin"}' data-badges='{"1":"new","4":"phase"}'>
+                        <div class="p-card" data-owners='{"1":"Amy","3":"Robin"}' data-badges='{"1":"new","3":"phase"}'>
                             <div class="p-role">UAP</div><div class="p-name">Amy</div>
                         </div>
-                        <div class="p-card" data-owners='{"1":"Megan","4":"Robin"}' data-badges='{"1":"new","4":"phase"}'>
+                        <div class="p-card" data-owners='{"1":"Megan","3":"Robin"}' data-badges='{"1":"new","3":"phase"}'>
                             <div class="p-role">ExecEngage</div><div class="p-name">Megan</div>
                         </div>
-                        <div class="p-card" data-owners='{"3":"Praful"}' data-badges='{"3":"phase"}'>
+                        <div class="p-card" data-owners='{"2":"Praful"}' data-badges='{"2":"phase"}'>
                             <div class="p-role">ExecConsole</div><div class="p-name">Praful</div>
                         </div>
-                        <div class="p-card" data-owners='{"3":"Praful"}' data-badges='{"3":"phase"}'>
+                        <div class="p-card" data-owners='{"2":"Praful"}' data-badges='{"2":"phase"}'>
                             <div class="p-role">Intelligence Ctr</div><div class="p-name">Praful</div>
                         </div>
-                        <div class="p-card" data-owners='{"4":"Joe"}' data-badges='{"4":"phase"}'>
+                        <div class="p-card" data-owners='{"3":"Joe"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">Gong</div><div class="p-name">Joe</div>
                         </div>
-                        <div class="p-card" data-owners='{"1":"Robin + Marissa","4":"Marissa"}' data-badges='{"1":"new"}'>
+                        <div class="p-card" data-owners='{"1":"Robin + Marissa","3":"Marissa"}' data-badges='{"1":"new"}'>
                             <div class="p-role">AI Asst + AI Tutor</div><div class="p-name">Robin + Marissa</div>
                         </div>
                         <div class="p-card" data-owners='{"1":"Annalise + Kate"}' data-badges='{}'>
@@ -633,7 +633,6 @@
                 <div class="legend-item"><span class="dot" style="background:#02C8FF"></span><strong>Phase 1</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#FF9000"></span><strong>Phase 2</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#3DDC84"></span><strong>Phase 3</strong></div>
-                <div class="legend-item"><span class="dot" style="background:#0A60FF"></span><strong>Phase 4</strong></div>
                 <div class="legend-item"><span class="dot" style="background:transparent;border:1px dashed #8A939F"></span><strong>Partner</strong></div>
             </div>
 
@@ -655,16 +654,11 @@
                     <span class="tracker-arrow">&rsaquo;</span>
                     <div class="tracker-step" data-phase="2">
                         <span class="ts-main">Phase 2</span>
-                        <span class="ts-sub">September</span>
+                        <span class="ts-sub">October</span>
                     </div>
                     <span class="tracker-arrow">&rsaquo;</span>
                     <div class="tracker-step" data-phase="3">
                         <span class="ts-main">Phase 3</span>
-                        <span class="ts-sub">October</span>
-                    </div>
-                    <span class="tracker-arrow">&rsaquo;</span>
-                    <div class="tracker-step" data-phase="4">
-                        <span class="ts-main">Phase 4</span>
                         <span class="ts-sub">December</span>
                     </div>
                 </div>
@@ -675,7 +669,7 @@
 </div>
 
 <script>
-    const PHASE_COLORS = { 0: '#8A939F', 1: '#02C8FF', 2: '#FF9000', 3: '#3DDC84', 4: '#0A60FF' };
+    const PHASE_COLORS = { 0: '#8A939F', 1: '#02C8FF', 2: '#FF9000', 3: '#3DDC84' };
     const NEW_COLOR = '#FF007F';
     const NEW_HIRES = ['Amy', 'Megan', 'Marissa', 'Program Manager'];
     const isNewName = (n) => !!n && NEW_HIRES.some(h => n.indexOf(h) !== -1);
@@ -684,8 +678,8 @@
         const r = parseInt(h.substr(0,2),16), g = parseInt(h.substr(2,2),16), b = parseInt(h.substr(4,2),16);
         return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
     }
-    const MAX_PHASE = 5;        // 0=Start, 1..4 = Aug..Dec, 5 = Review
-    const LAST_CONTENT = 4;
+    const MAX_PHASE = 4;        // 0=Start, 1..3 = Aug/Oct/Dec, 4 = Review
+    const LAST_CONTENT = 3;
     let phase = 0;
 
     const bodyEl = document.getElementById('bodyEl');
@@ -748,8 +742,8 @@
             el.classList.toggle('greyed', (+el.dataset.grey) <= phase);
         });
 
-        // OCC box: all-hands enlarged Aug–Oct (P1–3), single Janelle from Dec (P4); Janelle joins Sep (P2)
-        const occEnlarged = (phase >= 1 && phase <= 3);
+        // OCC box: all-hands enlarged Aug & Oct (P1-2), single Janelle from Dec (P3)
+        const occEnlarged = (phase >= 1 && phase <= 2);
         occBox.classList.toggle('ghost', phase === 0);
         occBox.classList.toggle('enlarged', occEnlarged);
         occBox.classList.toggle('phase-intro', phase === 1);
@@ -772,10 +766,10 @@
             occBadge.style.display = '';
         } else if (occBadge) { occBadge.style.display = 'none'; }
 
-        // Review (phase 5) = holistic: future prominent + no badges
-        bodyEl.classList.toggle('phase-final', phase === 5);
+        // Review (phase 4) = holistic: future prominent + no badges
+        bodyEl.classList.toggle('phase-final', phase === 4);
         const hint = document.querySelector('.tracker-hint');
-        if (hint) hint.textContent = (phase === 5)
+        if (hint) hint.textContent = (phase === 4)
             ? 'Full future team · all phases complete'
             : 'Click anywhere or → to advance';
 
@@ -817,7 +811,7 @@
     }
 
     futurePanel.addEventListener('mouseover', (e) => {
-        if (phase !== 5) return;
+        if (phase !== 4) return;
         const g = groupOf(e.target);
         if (g) focusGroup(g); else clearFocus();
     });
