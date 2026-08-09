@@ -139,7 +139,7 @@
         background: rgba(61,220,132,0.15); color: var(--status-green);
     }
 
-    .section { margin-bottom: 26px; }
+    .section { margin-bottom: 16px; }
     .section-label {
         font-size: 0.56rem; font-weight: 900; letter-spacing: 0.18em;
         text-transform: uppercase; color: var(--muted);
@@ -148,10 +148,10 @@
 
     /* ── Card grids ── */
     .grid-today       { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
-    .grid-strategists { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; min-height: 46px; }
-    .grid-personas    { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .grid-tools       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; grid-auto-flow: dense; }
-    .grid-geo         { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .grid-strategists { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; min-height: 46px; }
+    .grid-personas    { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .grid-tools       { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; grid-auto-flow: dense; }
+    .grid-geo         { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .grid-pm          { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
     /* ── Person card ── */
@@ -222,20 +222,21 @@
     /* Phase-intro emphasis: boxes introduced in the current phase enlarge, then
        return to normal size once the next phase is shown */
     .p-card.phase-intro {
-        transform: scale(1.05);
-        z-index: 6;
-        box-shadow: 0 5px 16px rgba(2,200,255,0.28);
-        background: rgba(2,200,255,0.14);
-    }
-    .leader-row.phase-intro, .director-row.phase-intro {
-        transform: scale(1.02);
-        z-index: 6;
-        box-shadow: 0 5px 16px rgba(2,200,255,0.24);
-    }
-    .occ-box.phase-intro {
         transform: scale(1.03);
         z-index: 6;
-        box-shadow: 0 5px 16px rgba(2,200,255,0.28);
+        border-color: rgba(2,200,255,0.55);
+        box-shadow: 0 2px 10px rgba(2,200,255,0.22);
+        background: rgba(2,200,255,0.16);
+    }
+    .leader-row.phase-intro, .director-row.phase-intro {
+        transform: scale(1.015);
+        z-index: 6;
+        box-shadow: 0 2px 10px rgba(2,200,255,0.20);
+    }
+    .occ-box.phase-intro {
+        transform: scale(1.02);
+        z-index: 6;
+        box-shadow: 0 2px 10px rgba(2,200,255,0.22);
     }
 
     /* Ghosted future role (seat reserved, person not yet in it) */
@@ -491,7 +492,7 @@
                     <div class="p-card" data-person="Shay" data-dim="1">
                         <div class="p-role">AI Assistant for Sales</div><div class="p-name">Shay</div>
                     </div>
-                    <div class="p-card" data-person="Robin" data-dim="3">
+                    <div class="p-card" data-person="Robin" data-dim="1">
                         <div class="p-role">AI Tutor</div><div class="p-name">Robin</div>
                     </div>
                     <div class="p-card" data-person="Kate" data-dim="1">
@@ -754,7 +755,7 @@
         if (occEnlarged) {
             const chips = ['Kayla','Kiley','Yaseen','Janelle (R3)'];
             occLarge.querySelector('.occ-people').innerHTML = chips.map(n => '<span class="occ-chip">' + n + '</span>').join('');
-            occLarge.querySelector('.occ-hd').textContent = 'OCC EMEA launch · all hands (Aug)';
+            occLarge.querySelector('.occ-hd').textContent = 'OCC EMEA launch';
         }
         let occBadge = occBox.querySelector(':scope > .phase-badge');
         const occBt = (phase === 1) ? 1 : null;
