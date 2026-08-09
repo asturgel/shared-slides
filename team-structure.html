@@ -208,6 +208,7 @@
     .panel.today .p-card[data-dim="1"] { border-left-color: #02C8FF; }
     .panel.today .p-card[data-dim="2"] { border-left-color: #FF9000; }
     .panel.today .p-card[data-dim="3"] { border-left-color: #3DDC84; }
+    .panel.today .p-card[data-dim="4"] { border-left-color: #0A60FF; }
     .panel.today .p-card[data-grey]    { border-left-color: #8A939F; }
 
     /* Future reveal animation */
@@ -445,7 +446,7 @@
                 <div class="panel-title">Today <span class="badge">ORGANIZED BY TOOL</span></div>
                 <div class="today-summary">10 transitioned &#10003; &middot; 0 gaps</div>
                 <div class="grid-today">
-                    <div class="p-card" data-person="Praful" data-dim="2">
+                    <div class="p-card" data-person="Praful" data-dim="3">
                         <div class="p-role">AI RFP</div><div class="p-name">Praful</div>
                     </div>
                     <div class="p-card" data-person="Yaseen" data-dim="1">
@@ -462,16 +463,16 @@
                     <div class="p-card" data-person="Ashley" data-dim="1">
                         <div class="p-role">ExecEngage</div><div class="p-name">Ashley</div>
                     </div>
-                    <div class="p-card" data-person="Jenn" data-dim="2">
+                    <div class="p-card" data-person="Jenn" data-dim="3">
                         <div class="p-role">ExecConsole</div><div class="p-name">Jenn</div>
                     </div>
-                    <div class="p-card" data-person="Casey" data-dim="2">
+                    <div class="p-card" data-person="Casey" data-dim="3">
                         <div class="p-role">Intelligence Ctr</div><div class="p-name">Casey</div>
                     </div>
                     <div class="p-card" data-person="Shay" data-grey="1">
                         <div class="p-role">AI Assistant for Sales</div><div class="p-name">Shay</div>
                     </div>
-                    <div class="p-card" data-person="Robin" data-dim="1">
+                    <div class="p-card" data-person="Robin" data-dim="4">
                         <div class="p-role">AI Tutor</div><div class="p-name">Robin</div>
                     </div>
                     <div class="p-card" data-person="Kate" data-dim="2">
@@ -501,23 +502,23 @@
                     <span class="dr-note">Escalation into Leader</span>
                 </div>
 
-                <!-- Strategists (+ their aligned PMs, fill Phase 3) -->
+                <!-- Strategists (+ aligned PMs) — Amy & Kayla roll into these in December -->
                 <div class="section">
                     <div class="section-label">Workflow Strategists &amp; aligned PMs</div>
                     <div class="grid-strategists">
-                        <div class="p-card" data-person="Amy" data-move="new" data-appear="0">
+                        <div class="p-card" data-owners='{"4":"Amy"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">Strategy &amp; Opportunity Identification Strategist</div>
                             <div class="p-name">Amy</div>
                         </div>
-                        <div class="p-card" data-person="Kayla" data-move="lateral" data-appear="3">
+                        <div class="p-card" data-owners='{"4":"Kayla"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">Solutioning &amp; Deal Execution Strategist</div>
                             <div class="p-name">Kayla</div>
                         </div>
-                        <div class="p-card" data-person="PM1" data-move="new" data-appear="3">
+                        <div class="p-card" data-owners='{"4":"Program Manager"}' data-badges='{"4":"new"}'>
                             <div class="p-role">PM &middot; supports Strategy &amp; Opportunity</div>
                             <div class="p-name">Program Manager</div>
                         </div>
-                        <div class="p-card" data-person="PM2" data-move="new" data-appear="3">
+                        <div class="p-card" data-owners='{"4":"Program Manager"}' data-badges='{"4":"new"}'>
                             <div class="p-role">PM &middot; supports Solutioning &amp; Deal</div>
                             <div class="p-name">Program Manager</div>
                         </div>
@@ -528,16 +529,16 @@
                 <div class="section">
                     <div class="section-label">Persona SMEs</div>
                     <div class="grid-personas">
-                        <div class="p-card" data-person="Megan" data-move="new" data-appear="0">
+                        <div class="p-card" data-owners='{"4":"Megan"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">AE SME</div><div class="p-name">Megan</div>
                         </div>
-                        <div class="p-card" data-person="Yaseen" data-move="pivot" data-appear="3">
+                        <div class="p-card" data-owners='{"4":"Yaseen"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">SE SME</div><div class="p-name">Yaseen</div>
                         </div>
-                        <div class="p-card" data-person="Jenn" data-move="pivot" data-appear="2">
+                        <div class="p-card" data-owners='{"3":"Jenn"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">Specialist SME</div><div class="p-name">Jenn</div>
                         </div>
-                        <div class="p-card" data-person="Kiley" data-move="pivot" data-appear="3">
+                        <div class="p-card" data-owners='{"4":"Kiley"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">Front Line Ldr SME</div><div class="p-name">Kiley</div>
                         </div>
                     </div>
@@ -547,49 +548,39 @@
                 <div class="section">
                     <div class="section-label">Tool SMEs</div>
                     <div class="grid-tools">
-                        <!-- OCC special box: small(Janelle) ghosted at 0, enlarged (4 people) at 1-2, small at 3 -->
-                        <div class="p-card occ-box" id="occBox" data-person="Janelle"
-                             data-appear="1" data-occ-people="Kayla,Kiley,Yaseen,Janelle">
+                        <!-- OCC: all-hands (Aug–Oct), shrinks to Janelle in Dec; Janelle joins in Sep -->
+                        <div class="p-card occ-box" id="occBox">
                             <div class="occ-small">
                                 <div class="p-role">OCC</div><div class="p-name">Janelle</div>
                             </div>
-                            <div class="occ-mid">
-                                <div class="p-role">OCC &middot; launch coverage</div>
-                                <div class="occ-mid-names">Kayla &middot; Kiley &middot; Yaseen &middot; Janelle</div>
-                            </div>
                             <div class="occ-large">
-                                <div class="occ-hd">Phase 1 focus &middot; OCC EMEA launch</div>
+                                <div class="occ-hd">Phase 1 &middot; OCC EMEA launch</div>
                                 <div class="occ-title">OCC coverage &mdash; all hands</div>
-                                <div class="occ-people">
-                                    <span class="occ-chip">Kayla</span>
-                                    <span class="occ-chip">Kiley</span>
-                                    <span class="occ-chip">Yaseen</span>
-                                    <span class="occ-chip">Janelle</span>
-                                </div>
+                                <div class="occ-people"></div>
                             </div>
                         </div>
-                        <div class="p-card" data-person="Casey" data-move="lateral" data-appear="2">
+                        <div class="p-card" data-owners='{"3":"Casey"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">AI RFP</div><div class="p-name">Casey</div>
                         </div>
-                        <div class="p-card" data-person="Robin" data-move="lateral" data-appear="1">
-                            <div class="p-role">UAP</div><div class="p-name">Robin</div>
+                        <div class="p-card" data-owners='{"1":"Amy","4":"Robin"}' data-badges='{"1":"new","4":"phase"}'>
+                            <div class="p-role">UAP</div><div class="p-name">Amy</div>
                         </div>
-                        <div class="p-card" data-person="Robin" data-move="lateral" data-appear="1">
-                            <div class="p-role">ExecEngage</div><div class="p-name">Robin</div>
+                        <div class="p-card" data-owners='{"1":"Megan","4":"Robin"}' data-badges='{"1":"new","4":"phase"}'>
+                            <div class="p-role">ExecEngage</div><div class="p-name">Megan</div>
                         </div>
-                        <div class="p-card" data-person="Praful" data-move="lateral" data-appear="2">
+                        <div class="p-card" data-owners='{"3":"Praful"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">ExecConsole</div><div class="p-name">Praful</div>
                         </div>
-                        <div class="p-card" data-person="Praful" data-move="lateral" data-appear="2">
+                        <div class="p-card" data-owners='{"3":"Praful"}' data-badges='{"3":"phase"}'>
                             <div class="p-role">Intelligence Ctr</div><div class="p-name">Praful</div>
                         </div>
-                        <div class="p-card" data-person="Joe" data-move="lateral" data-appear="3">
+                        <div class="p-card" data-owners='{"4":"Joe"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">Gong</div><div class="p-name">Joe</div>
                         </div>
-                        <div class="p-card" data-person="Marissa" data-move="new" data-appear="0">
-                            <div class="p-role">AI Asst + AI Tutor</div><div class="p-name">Marissa</div>
+                        <div class="p-card" data-owners='{"0":"Robin + Marissa","4":"Marissa"}' data-badges='{"0":"new"}'>
+                            <div class="p-role">AI Asst + AI Tutor</div><div class="p-name">Robin + Marissa</div>
                         </div>
-                        <div class="p-card" data-person="Annalise" data-move="return" data-appear="0">
+                        <div class="p-card" data-owners='{"0":"Annalise"}' data-badges='{}'>
                             <div class="p-role">Recurring Revenue</div><div class="p-name">Annalise</div>
                         </div>
                     </div>
@@ -599,13 +590,13 @@
                 <div class="section">
                     <div class="section-label">Geo GTM &middot; partners from Thomas's team (net new)</div>
                     <div class="grid-geo">
-                        <div class="p-card" data-person="Cristina" data-move="partner" data-appear="0">
+                        <div class="p-card" data-move="partner" data-owners='{"0":"Cristina"}' data-badges='{}'>
                             <div class="p-role">EMEA</div><div class="p-name">Cristina</div>
                         </div>
-                        <div class="p-card" data-person="Jami" data-move="partner" data-appear="0">
+                        <div class="p-card" data-move="partner" data-owners='{"0":"Jami"}' data-badges='{}'>
                             <div class="p-role">AMER</div><div class="p-name">Jami</div>
                         </div>
-                        <div class="p-card" data-person="Erin" data-move="partner" data-appear="0">
+                        <div class="p-card" data-move="partner" data-owners='{"0":"Erin"}' data-badges='{}'>
                             <div class="p-role">APJC</div><div class="p-name">Erin</div>
                         </div>
                     </div>
@@ -623,6 +614,7 @@
                 <div class="legend-item"><span class="dot" style="background:#02C8FF"></span><strong>Phase 1</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#FF9000"></span><strong>Phase 2</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#3DDC84"></span><strong>Phase 3</strong></div>
+                <div class="legend-item"><span class="dot" style="background:#0A60FF"></span><strong>Phase 4</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#8A939F"></span><strong>Returning</strong></div>
                 <div class="legend-item"><span class="dot" style="background:transparent;border:1px dashed #8A939F"></span><strong>Partner</strong></div>
             </div>
@@ -640,16 +632,21 @@
                     <span class="tracker-arrow">&rsaquo;</span>
                     <div class="tracker-step" data-phase="1">
                         <span class="ts-main">Phase 1</span>
-                        <span class="ts-sub">September</span>
+                        <span class="ts-sub">August</span>
                     </div>
                     <span class="tracker-arrow">&rsaquo;</span>
                     <div class="tracker-step" data-phase="2">
                         <span class="ts-main">Phase 2</span>
-                        <span class="ts-sub">October</span>
+                        <span class="ts-sub">September</span>
                     </div>
                     <span class="tracker-arrow">&rsaquo;</span>
                     <div class="tracker-step" data-phase="3">
                         <span class="ts-main">Phase 3</span>
+                        <span class="ts-sub">October</span>
+                    </div>
+                    <span class="tracker-arrow">&rsaquo;</span>
+                    <div class="tracker-step" data-phase="4">
+                        <span class="ts-main">Phase 4</span>
                         <span class="ts-sub">December</span>
                     </div>
                 </div>
@@ -660,13 +657,17 @@
 </div>
 
 <script>
-    const PHASE_COLORS = { 0: '#8A939F', 1: '#02C8FF', 2: '#FF9000', 3: '#3DDC84' };
+    const PHASE_COLORS = { 0: '#8A939F', 1: '#02C8FF', 2: '#FF9000', 3: '#3DDC84', 4: '#0A60FF' };
+    const NEW_COLOR = '#FF007F';
+    const NEW_HIRES = ['Amy', 'Megan', 'Marissa', 'Program Manager'];
+    const isNewName = (n) => !!n && NEW_HIRES.some(h => n.indexOf(h) !== -1);
     function phaseRgba(p, a) {
         const h = (PHASE_COLORS[p] || '#02C8FF').replace('#','');
         const r = parseInt(h.substr(0,2),16), g = parseInt(h.substr(2,2),16), b = parseInt(h.substr(4,2),16);
         return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
     }
-    const MAX_PHASE = 4;
+    const MAX_PHASE = 5;        // 0=Start, 1..4 = Aug..Dec, 5 = Review
+    const LAST_CONTENT = 4;
     let phase = 0;
 
     const bodyEl = document.getElementById('bodyEl');
@@ -674,43 +675,48 @@
     const occBox = document.getElementById('occBox');
 
     function applyPhase(animateNew) {
-        // Future roles: always shown; ghost (reserved) until their person arrives
-        document.querySelectorAll('.p-card[data-appear]').forEach(el => {
-            const a = +el.dataset.appear;
-            const active = a <= phase;
+        // Future role cards: owner can change per phase; ghost (reserved) until first owner arrives
+        document.querySelectorAll('.panel.future .p-card[data-owners]').forEach(el => {
+            const owners = JSON.parse(el.dataset.owners || '{}');
+            let name = null, since = -1;
+            for (const k in owners) { const kp = +k; if (kp <= phase && kp > since) { since = kp; name = owners[k]; } }
+            const nameEl = el.querySelector('.p-name');
             const wasGhost = el.classList.contains('ghost');
-            el.classList.toggle('ghost', !active);
-            if (animateNew && active && wasGhost && el.id !== 'occBox') {
-                el.classList.remove('just-revealed');
-                void el.offsetWidth;
-                el.classList.add('just-revealed');
+            if (name === null) {
+                el.classList.add('ghost');
+            } else {
+                el.classList.remove('ghost');
+                if (nameEl) nameEl.textContent = name;
+                if (el.dataset.move !== 'partner') {
+                    el.style.borderLeftColor = isNewName(name) ? NEW_COLOR : (PHASE_COLORS[since] || '#8A939F');
+                }
+                if (animateNew && wasGhost) { el.classList.remove('just-revealed'); void el.offsetWidth; el.classList.add('just-revealed'); }
             }
-        });
-        // Leader/Director rows: ghost until their phase
-        document.querySelectorAll('.leader-row[data-appear], .director-row[data-appear]').forEach(el => {
-            el.classList.toggle('row-ghost', !((+el.dataset.appear) <= phase));
+            let badge = el.querySelector(':scope > .phase-badge');
+            const badges = JSON.parse(el.dataset.badges || '{}');
+            const bt = (phase <= LAST_CONTENT) ? badges[phase] : null;
+            if (bt) {
+                if (!badge) { badge = document.createElement('div'); badge.className = 'phase-badge'; el.appendChild(badge); }
+                badge.textContent = (bt === 'new') ? 'NEW' : ('PHASE ' + phase);
+                badge.style.background = (bt === 'new') ? 'rgba(255,0,127,0.20)' : phaseRgba(phase, 0.20);
+                badge.style.color = (bt === 'new') ? NEW_COLOR : PHASE_COLORS[phase];
+                badge.style.display = '';
+            } else if (badge) { badge.style.display = 'none'; }
         });
 
-        // Corner phase badges: show only for cards activating in the CURRENT phase (phases 1-3 only)
-        document.querySelectorAll('.panel.future .p-card[data-appear], .director-row[data-appear]').forEach(el => {
+        // Leader / Director rows: ghost until their phase, badge on arrival
+        document.querySelectorAll('.leader-row[data-appear], .director-row[data-appear]').forEach(el => {
+            const ap = +el.dataset.appear;
+            el.classList.toggle('row-ghost', !(ap <= phase));
             let badge = el.querySelector(':scope > .phase-badge');
-            const appear = +el.dataset.appear;
-            const asNew = el.dataset.move === 'new';
-            const shouldShow = (phase <= 3) && (appear === phase) && (asNew || appear > 0);
-            if (shouldShow) {
+            const show = (phase <= LAST_CONTENT) && (ap === phase) && ap > 0;
+            if (show) {
                 if (!badge) { badge = document.createElement('div'); badge.className = 'phase-badge'; el.appendChild(badge); }
-                badge.textContent = asNew ? 'NEW' : ('PHASE ' + appear);
-                if (asNew) {
-                    badge.style.background = 'rgba(255,0,127,0.20)';
-                    badge.style.color = '#FF007F';
-                } else {
-                    badge.style.background = phaseRgba(appear, 0.20);
-                    badge.style.color = PHASE_COLORS[appear];
-                }
+                badge.textContent = 'PHASE ' + ap;
+                badge.style.background = phaseRgba(ap, 0.20);
+                badge.style.color = PHASE_COLORS[ap];
                 badge.style.display = '';
-            } else if (badge) {
-                badge.style.display = 'none';
-            }
+            } else if (badge) { badge.style.display = 'none'; }
         });
 
         // Today card dimming
@@ -722,19 +728,35 @@
             el.classList.toggle('greyed', (+el.dataset.grey) <= phase);
         });
 
-        // OCC box: enlarged at phase 1; compact 4-name at phase 2; single (Janelle) at 0/3
-        occBox.classList.toggle('enlarged', phase === 1);
+        // OCC box: all-hands enlarged Aug–Oct (P1–3), single Janelle from Dec (P4); Janelle joins Sep (P2)
+        const occEnlarged = (phase >= 1 && phase <= 3);
+        occBox.classList.toggle('ghost', phase === 0);
+        occBox.classList.toggle('enlarged', occEnlarged);
         const occSmall = occBox.querySelector('.occ-small');
-        const occMid   = occBox.querySelector('.occ-mid');
         const occLarge = occBox.querySelector('.occ-large');
-        occLarge.style.display = (phase === 1) ? 'flex'  : 'none';
-        occMid.style.display   = (phase === 2) ? 'block' : 'none';
-        occSmall.style.display = (phase === 0 || phase >= 3) ? 'block' : 'none';
+        occLarge.style.display = occEnlarged ? 'flex' : 'none';
+        occSmall.style.display = occEnlarged ? 'none' : 'block';
+        if (occEnlarged) {
+            const chips = (phase === 1) ? ['Kayla','Kiley','Yaseen'] : ['Kayla','Kiley','Yaseen','Janelle'];
+            occLarge.querySelector('.occ-people').innerHTML = chips.map(n => '<span class="occ-chip">' + n + '</span>').join('');
+            occLarge.querySelector('.occ-hd').textContent = (phase === 1)
+                ? 'Phase 1 · OCC EMEA launch (Aug)'
+                : 'OCC EMEA launch · Janelle joins (Sep)';
+        }
+        let occBadge = occBox.querySelector(':scope > .phase-badge');
+        const occBt = (phase === 1 || phase === 2) ? phase : null;
+        if (occBt) {
+            if (!occBadge) { occBadge = document.createElement('div'); occBadge.className = 'phase-badge'; occBox.appendChild(occBadge); }
+            occBadge.textContent = 'PHASE ' + occBt;
+            occBadge.style.background = phaseRgba(occBt, 0.20);
+            occBadge.style.color = PHASE_COLORS[occBt];
+            occBadge.style.display = '';
+        } else if (occBadge) { occBadge.style.display = 'none'; }
 
-        // Phase 4 = holistic review: Option A (future prominent) + no badges; content same as phase 3
-        bodyEl.classList.toggle('phase-final', phase === 4);
+        // Review (phase 5) = holistic: future prominent + no badges
+        bodyEl.classList.toggle('phase-final', phase === 5);
         const hint = document.querySelector('.tracker-hint');
-        if (hint) hint.textContent = (phase === 4)
+        if (hint) hint.textContent = (phase === 5)
             ? 'Full future team · all phases complete'
             : 'Click anywhere or → to advance';
 
@@ -776,7 +798,7 @@
     }
 
     futurePanel.addEventListener('mouseover', (e) => {
-        if (phase !== 4) return;
+        if (phase !== 5) return;
         const g = groupOf(e.target);
         if (g) focusGroup(g); else clearFocus();
     });
