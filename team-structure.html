@@ -469,7 +469,7 @@
                     <div class="p-card" data-person="Casey" data-dim="3">
                         <div class="p-role">Intelligence Ctr</div><div class="p-name">Casey</div>
                     </div>
-                    <div class="p-card" data-person="Shay" data-grey="1">
+                    <div class="p-card" data-person="Shay" data-dim="1">
                         <div class="p-role">AI Assistant for Sales</div><div class="p-name">Shay</div>
                     </div>
                     <div class="p-card" data-person="Robin" data-dim="4">
@@ -615,7 +615,6 @@
                 <div class="legend-item"><span class="dot" style="background:#FF9000"></span><strong>Phase 2</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#3DDC84"></span><strong>Phase 3</strong></div>
                 <div class="legend-item"><span class="dot" style="background:#0A60FF"></span><strong>Phase 4</strong></div>
-                <div class="legend-item"><span class="dot" style="background:#8A939F"></span><strong>Returning</strong></div>
                 <div class="legend-item"><span class="dot" style="background:transparent;border:1px dashed #8A939F"></span><strong>Partner</strong></div>
             </div>
 
@@ -737,14 +736,12 @@
         occLarge.style.display = occEnlarged ? 'flex' : 'none';
         occSmall.style.display = occEnlarged ? 'none' : 'block';
         if (occEnlarged) {
-            const chips = (phase === 1) ? ['Kayla','Kiley','Yaseen'] : ['Kayla','Kiley','Yaseen','Janelle (R3)'];
+            const chips = ['Kayla','Kiley','Yaseen','Janelle (R3)'];
             occLarge.querySelector('.occ-people').innerHTML = chips.map(n => '<span class="occ-chip">' + n + '</span>').join('');
-            occLarge.querySelector('.occ-hd').textContent = (phase === 1)
-                ? 'Phase 1 · OCC EMEA launch (Aug)'
-                : 'OCC EMEA launch · Janelle joins (Sep)';
+            occLarge.querySelector('.occ-hd').textContent = 'OCC EMEA launch · all hands (Aug)';
         }
         let occBadge = occBox.querySelector(':scope > .phase-badge');
-        const occBt = (phase === 1 || phase === 2) ? phase : null;
+        const occBt = (phase === 1) ? 1 : null;
         if (occBt) {
             if (!occBadge) { occBadge = document.createElement('div'); occBadge.className = 'phase-badge'; occBox.appendChild(occBadge); }
             occBadge.textContent = 'PHASE ' + occBt;
