@@ -551,7 +551,7 @@
                         <!-- OCC: all-hands (Aug–Oct), shrinks to Janelle in Dec; Janelle joins in Sep -->
                         <div class="p-card occ-box" id="occBox">
                             <div class="occ-small">
-                                <div class="p-role">OCC</div><div class="p-name">Janelle</div>
+                                <div class="p-role">Salesforce</div><div class="p-name">Janelle (R3)</div>
                             </div>
                             <div class="occ-large">
                                 <div class="occ-hd">Phase 1 &middot; OCC EMEA launch</div>
@@ -577,11 +577,11 @@
                         <div class="p-card" data-owners='{"4":"Joe"}' data-badges='{"4":"phase"}'>
                             <div class="p-role">Gong</div><div class="p-name">Joe</div>
                         </div>
-                        <div class="p-card" data-owners='{"0":"Robin + Marissa","4":"Marissa"}' data-badges='{"0":"new"}'>
+                        <div class="p-card" data-owners='{"1":"Robin + Marissa","4":"Marissa"}' data-badges='{"1":"new"}'>
                             <div class="p-role">AI Asst + AI Tutor</div><div class="p-name">Robin + Marissa</div>
                         </div>
-                        <div class="p-card" data-owners='{"0":"Annalise"}' data-badges='{}'>
-                            <div class="p-role">Recurring Revenue</div><div class="p-name">Annalise</div>
+                        <div class="p-card" data-owners='{"1":"Annalise + Kate"}' data-badges='{}'>
+                            <div class="p-role">Recurring Revenue</div><div class="p-name">Annalise + Kate</div>
                         </div>
                     </div>
                 </div>
@@ -737,7 +737,7 @@
         occLarge.style.display = occEnlarged ? 'flex' : 'none';
         occSmall.style.display = occEnlarged ? 'none' : 'block';
         if (occEnlarged) {
-            const chips = (phase === 1) ? ['Kayla','Kiley','Yaseen'] : ['Kayla','Kiley','Yaseen','Janelle'];
+            const chips = (phase === 1) ? ['Kayla','Kiley','Yaseen'] : ['Kayla','Kiley','Yaseen','Janelle (R3)'];
             occLarge.querySelector('.occ-people').innerHTML = chips.map(n => '<span class="occ-chip">' + n + '</span>').join('');
             occLarge.querySelector('.occ-hd').textContent = (phase === 1)
                 ? 'Phase 1 · OCC EMEA launch (Aug)'
