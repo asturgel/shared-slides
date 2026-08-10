@@ -188,12 +188,12 @@
 
     /* ── RACI table ── */
     .raci { flex: 1; margin-top: 26px; display: flex; flex-direction: column; justify-content: center; }
-    table.raci-t { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-    table.raci-t th, table.raci-t td { padding: 13px 14px; text-align: center; border-bottom: 1px solid var(--faint); }
-    table.raci-t th { font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 900; }
-    table.raci-t td.act { text-align: left; font-weight: 700; color: var(--text-primary); font-size: 0.9rem; }
-    table.raci-t th.role-h { color: var(--text-secondary); font-size: 0.68rem; }
-    .tag { display: inline-block; min-width: 30px; font-weight: 900; font-size: 0.82rem; border-radius: 6px; padding: 3px 8px; }
+    table.raci-t { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.raci-t th, table.raci-t td { padding: 8px 8px; text-align: center; border-bottom: 1px solid var(--faint); }
+    table.raci-t th { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 900; }
+    table.raci-t td.act { text-align: left; font-weight: 700; color: var(--text-primary); font-size: 0.82rem; }
+    table.raci-t th.role-h { color: var(--text-secondary); font-size: 0.6rem; }
+    .tag { display: inline-block; min-width: 26px; font-weight: 900; font-size: 0.76rem; border-radius: 6px; padding: 2px 6px; }
     .tag.A { background: rgba(2,200,255,0.18); color: var(--cisco-blue); }
     .tag.R { background: rgba(61,220,132,0.18); color: var(--status-green); }
     .tag.AR { background: rgba(2,200,255,0.20); color: #7fe3ff; border: 1px solid rgba(2,200,255,0.5); }
@@ -272,7 +272,7 @@
                 <div class="axis" style="--ac: var(--axis-strategist)">
                     <div class="axis-kicker">Axis 1 · The plan</div>
                     <div class="axis-depth">The workflow &amp; outcome</div>
-                    <div class="axis-role">Workflow Strategist<span>Owns the "what &amp; why"</span></div>
+                    <div class="axis-role">Workflow Strategist<span>Owns strategy &amp; global messaging</span></div>
                     <div class="axis-body">Depth in trade-offs and sequencing &mdash; the person who can say what matters most, and in what order.</div>
                     <div class="axis-q">"What are we changing, in what order, and why?"</div>
                 </div>
@@ -286,7 +286,7 @@
                 <div class="axis" style="--ac: var(--axis-tool)">
                     <div class="axis-kicker">Axis 3 · The how</div>
                     <div class="axis-depth">The capability</div>
-                    <div class="axis-role">Tool SME<span>Reads the seller's signals</span></div>
+                    <div class="axis-role">Tool SME<span>Reads signals &middot; owns tool content</span></div>
                     <div class="axis-body">Depth in how the product is designed to enable the seller &mdash; and reads their behavior to flag adoption needs.</div>
                     <div class="axis-q">"How is the tool serving the seller — and where isn't it?"</div>
                 </div>
@@ -297,41 +297,32 @@
                 <div class="new"><b>New model</b> Real depth on each axis, orchestrated together. Specialization is the feature, not a gap.</div>
             </div>
 
-            <div class="pm-note">Across all three, the <b>Aligned PM</b> drives workback schedules &amp; delivery &mdash; the connective tissue that ships the work.</div>
+            <div class="pm-note">Around the three: the <b>Aligned PM</b> ships the work &middot; the <b>Content team</b> executes global content &middot; <b>Geo GTM leads</b> partner on local timing.</div>
         </div>
     </section>
 
     <!-- ───────────── SLIDE 2 · WORKFLOW STRATEGIST ───────────── -->
     <section class="slide">
-        <div class="eyebrow">Role 1 of 4 &middot; role detail</div>
+        <div class="eyebrow">Role 1 of 5 &middot; role detail</div>
         <h1>The <span class="grad">Workflow Strategist</span></h1>
-        <div class="subhead">The plan owner &mdash; makes the final treatment decision, consulted by the other lenses, then decides.</div>
+        <div class="subhead">The plan owner &mdash; sets strategy and owns the overarching global messaging every change ladders up to.</div>
         <div class="role-detail">
             <div class="role-detail-col">
-                <div class="role-summary">The plan owner. Runs the workflow calendar and sizes every activity via the T-shirt model. <strong>Makes the final treatment decision</strong> &mdash; consulted by the other lenses, then decides.</div>
-                <div class="role-owns">
-                    <span class="ro-tag">Core motion &middot; every change</span>
-                    <ul>
-                        <li>Receives the brief</li>
-                        <li>Aligns the team</li>
-                        <li>Consults the change calendar</li>
-                        <li>Owns the plan</li>
-                        <li>Owns the final decision</li>
-                    </ul>
-                </div>
+                <div class="role-summary">The plan owner and the voice of the overarching narrative. Sets <strong>strategy and sequencing</strong> and owns the <strong>global messaging</strong> every change ladders up to. Directs global content; the Content team executes it.</div>
                 <div class="role-owns">
                     <span class="ro-tag">Owns</span>
                     <ul>
-                        <li>The activation plan</li>
-                        <li>The T-shirt treatment decision</li>
-                        <li>The workflow change calendar</li>
+                        <li>The activation plan, strategy &amp; sequencing</li>
+                        <li>The overarching global messaging &amp; narrative</li>
+                        <li>Prioritization (within the thermometer)</li>
                         <li>The final call &mdash; close, escalate, or re-scope</li>
                     </ul>
                 </div>
                 <div class="role-doesnot">
                     <span class="rd-tag">Does not own</span>
                     <ul>
-                        <li>Execution of comms or content &mdash; that's Content Ops + Comms</li>
+                        <li>Persona &amp; tool content &mdash; the SMEs execute their pieces</li>
+                        <li>Global content production &mdash; directs it, Content team executes</li>
                         <li>Cross-workflow prioritization &mdash; that's the Director</li>
                     </ul>
                 </div>
@@ -341,15 +332,16 @@
                 <table class="raci-table">
                     <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
                     <tbody>
-                        <tr><td>Intake evaluation</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Plan design</td><td class="raci-cell ar">A/R</td></tr>
-                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell ar">A/R</td></tr>
-                        <tr><td>Calendar reconciliation</td><td class="raci-cell ar">A/R</td></tr>
-                        <tr><td>Persona / Geo consultation</td><td class="raci-cell ar">A/R</td></tr>
-                        <tr><td>Messaging + asset design</td><td class="raci-cell ar">A/R</td></tr>
-                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Adoption measurement</td><td class="raci-cell r">R</td></tr>
-                        <tr><td>Close-at-threshold</td><td class="raci-cell a">A</td></tr>
+                        <tr><td>Strategy &amp; sequencing</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Global messaging &amp; narrative</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Seller / persona voice</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Global content production</td><td class="raci-cell a">A</td></tr>
+                        <tr><td>Persona content &amp; comms</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Tool-specific content &amp; enablement</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Adoption signals &amp; measurement</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Geo feasibility &amp; timing</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Workback schedule &amp; delivery</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Outcome &mdash; did the change land</td><td class="raci-cell a">A</td></tr>
                     </tbody>
                 </table>
                 <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
@@ -359,26 +351,26 @@
 
     <!-- ───────────── SLIDE 3 · PERSONA SME ───────────── -->
     <section class="slide">
-        <div class="eyebrow">Role 2 of 4 &middot; role detail</div>
+        <div class="eyebrow">Role 2 of 5 &middot; role detail</div>
         <h1>The <span class="grad">Persona SME</span></h1>
-        <div class="subhead">AE &middot; SE &middot; Specialist &middot; closest to the people doing the job.</div>
+        <div class="subhead">Voice of the persona &mdash; owns the content and comms for their people.</div>
         <div class="role-detail">
             <div class="role-detail-col">
-                <div class="role-summary">Voice of the persona. Shapes the plan and advises on delivery with a persona lens. Owns the <strong>persona calendar view</strong> &mdash; the fatigue read across everything hitting their people.</div>
+                <div class="role-summary">Voice of the persona. <strong>Owns the content and comms for their personas</strong> and the persona calendar view &mdash; executing their piece of every plan. Comms now runs through the persona, not a separate team.</div>
                 <div class="role-owns">
-                    <span class="ro-tag">Owns &middot; delivers</span>
+                    <span class="ro-tag">Owns &middot; executes</span>
                     <ul>
-                        <li>The persona calendar view</li>
-                        <li>Persona-specific content &amp; enablement</li>
-                        <li>Persona-specific input into every plan</li>
-                        <li>Delivery advisement &mdash; what will actually land</li>
+                        <li>Persona-specific content &amp; comms</li>
+                        <li>The persona voice in every plan</li>
+                        <li>The persona calendar view (fatigue read)</li>
+                        <li>Delivery of their piece of the plan</li>
                     </ul>
                 </div>
                 <div class="role-doesnot">
                     <span class="rd-tag">Does not own</span>
                     <ul>
+                        <li>The global messaging &mdash; that's the Workflow Strategist</li>
                         <li>Plan authority &mdash; that's the Workflow Strategist</li>
-                        <li>A separate activation for their persona &mdash; one change = one plan = one activation</li>
                     </ul>
                 </div>
             </div>
@@ -387,15 +379,16 @@
                 <table class="raci-table">
                     <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
                     <tbody>
-                        <tr><td>Intake evaluation</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Plan design</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Calendar reconciliation</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Persona / Geo consultation</td><td class="raci-cell r">R</td></tr>
-                        <tr><td>Messaging + asset design</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Adoption measurement</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Close-at-threshold</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Strategy &amp; sequencing</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Global messaging &amp; narrative</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Seller / persona voice</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Global content production</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Persona content &amp; comms</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Tool-specific content &amp; enablement</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Adoption signals &amp; measurement</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Geo feasibility &amp; timing</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Workback schedule &amp; delivery</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Outcome &mdash; did the change land</td><td class="raci-cell c">C</td></tr>
                     </tbody>
                 </table>
                 <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
@@ -405,27 +398,27 @@
 
     <!-- ───────────── SLIDE 4 · TOOL SME ───────────── -->
     <section class="slide">
-        <div class="eyebrow">Role 3 of 4 &middot; role detail</div>
+        <div class="eyebrow">Role 3 of 5 &middot; role detail</div>
         <h1>The <span class="grad">Tool SME</span></h1>
-        <div class="subhead">Understands the product. Reads the seller's signals.</div>
+        <div class="subhead">Understands the product, reads the seller's signals &mdash; owns the tool-specific content.</div>
         <div class="role-detail">
             <div class="role-detail-col">
-                <div class="role-summary">Understands how the product is <strong>designed to enable the seller</strong> to do their job &mdash; and reads <strong>signals from seller behavior in the tool</strong> to flag adoption needs and concerns. A signal source, <strong>not</strong> a capability owner.</div>
+                <div class="role-summary">Understands how the product is <strong>designed to enable the seller</strong> and reads <strong>signals from seller behavior</strong> to flag adoption needs. <strong>Owns the tool-specific content</strong> &mdash; executing their piece of the plan. A signal source, <strong>not</strong> a capability owner.</div>
                 <div class="role-owns">
-                    <span class="ro-tag">Owns</span>
+                    <span class="ro-tag">Owns &middot; executes</span>
                     <ul>
-                        <li>Deep understanding of how the product enables the seller</li>
-                        <li>Reading behavioral &amp; adoption signals in the tool</li>
+                        <li>Tool-specific content &amp; enablement</li>
+                        <li>Reading behavioral &amp; adoption signals</li>
                         <li>Flagging adoption needs &amp; concerns</li>
-                        <li>Domain enablement build</li>
+                        <li>Delivery of their piece of the plan</li>
                     </ul>
                 </div>
                 <div class="role-doesnot">
                     <span class="rd-tag">Does not own</span>
                     <ul>
                         <li>Driving tool capabilities or roadmap &mdash; that's the product team</li>
-                        <li>Plan or treatment decisions &mdash; that's the Workflow Strategist</li>
-                        <li>Prioritization across workflows</li>
+                        <li>Global messaging &mdash; that's the Workflow Strategist</li>
+                        <li>Plan or treatment decisions &mdash; that's the Strategist</li>
                     </ul>
                 </div>
             </div>
@@ -434,15 +427,16 @@
                 <table class="raci-table">
                     <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
                     <tbody>
-                        <tr><td>Intake evaluation</td><td class="raci-cell r">R</td></tr>
-                        <tr><td>Plan design</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Calendar reconciliation</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Persona / Geo consultation</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Messaging + asset design</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Adoption measurement (telemetry)</td><td class="raci-cell r">R</td></tr>
-                        <tr><td>Close-at-threshold</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Strategy &amp; sequencing</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Global messaging &amp; narrative</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Seller / persona voice</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Global content production</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Persona content &amp; comms</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Tool-specific content &amp; enablement</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Adoption signals &amp; measurement</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Geo feasibility &amp; timing</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Workback schedule &amp; delivery</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Outcome &mdash; did the change land</td><td class="raci-cell c">C</td></tr>
                     </tbody>
                 </table>
                 <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
@@ -452,12 +446,12 @@
 
     <!-- ───────────── SLIDE 5 · ALIGNED PM ───────────── -->
     <section class="slide">
-        <div class="eyebrow">Role 4 of 4 &middot; role detail &middot; the delivery engine</div>
+        <div class="eyebrow">Role 4 of 5 &middot; role detail &middot; the delivery engine</div>
         <h1>The <span class="grad">Aligned PM</span></h1>
         <div class="subhead">Nothing falls through the cracks.</div>
         <div class="role-detail">
             <div class="role-detail-col">
-                <div class="role-summary">Keeps everyone on task and the work shipping. Drives <strong>workback schedules</strong>, coordinates across all lenses, and owns <strong>delivery on time</strong>. The guarantee that nothing falls through the cracks.</div>
+                <div class="role-summary">Keeps everyone on task and the work shipping. Drives <strong>workback schedules</strong>, coordinates across all roles, and owns <strong>delivery on time</strong>. The guarantee that nothing falls through the cracks.</div>
                 <div class="role-owns">
                     <span class="ro-tag">Owns &middot; drives</span>
                     <ul>
@@ -470,8 +464,8 @@
                 <div class="role-doesnot">
                     <span class="rd-tag">Does not own</span>
                     <ul>
-                        <li>The narrative &mdash; that's the Workflow Strategist</li>
-                        <li>Domain content &mdash; that's the SMEs</li>
+                        <li>The narrative or global messaging &mdash; that's the Strategist</li>
+                        <li>Domain content &mdash; that's the SMEs &amp; Content team</li>
                         <li>Prioritization calls &mdash; that's the Strategist</li>
                     </ul>
                 </div>
@@ -481,15 +475,16 @@
                 <table class="raci-table">
                     <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
                     <tbody>
-                        <tr><td>Intake evaluation</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Plan design</td><td class="raci-cell c">C</td></tr>
-                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Calendar reconciliation</td><td class="raci-cell r">R</td></tr>
-                        <tr><td>Persona / Geo consultation</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Messaging + asset design</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell r">R</td></tr>
-                        <tr><td>Adoption measurement</td><td class="raci-cell i">I</td></tr>
-                        <tr><td>Close-at-threshold</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Strategy &amp; sequencing</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Global messaging &amp; narrative</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Seller / persona voice</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Global content production</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Persona content &amp; comms</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Tool-specific content &amp; enablement</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Adoption signals &amp; measurement</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Geo feasibility &amp; timing</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Workback schedule &amp; delivery</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Outcome &mdash; did the change land</td><td class="raci-cell c">C</td></tr>
                     </tbody>
                 </table>
                 <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
@@ -497,10 +492,56 @@
         </div>
     </section>
 
-    <!-- ───────────── SLIDE 6 · COMBINED RACI ───────────── -->
+    <!-- ───────────── SLIDE 6 · GEO GTM LEADS ───────────── -->
+    <section class="slide">
+        <div class="eyebrow">Role 5 of 5 &middot; role detail &middot; partner (dotted-line)</div>
+        <h1>The <span class="grad">Geo GTM Leads</span></h1>
+        <div class="subhead">EMEA &middot; APJC &middot; AMER &middot; the geo reality check. Partners, not plan authority.</div>
+        <div class="role-detail">
+            <div class="role-detail-col">
+                <div class="role-summary">Dotted-line partners from Thomas's team. Provide <strong>feasibility, timing, and local calendar constraints</strong>. <strong>Not plan authority</strong> &mdash; but their read on geo timing keeps changes from landing in the wrong local moment.</div>
+                <div class="role-owns">
+                    <span class="ro-tag">Owns</span>
+                    <ul>
+                        <li>The geo calendar view</li>
+                        <li>Geo feasibility judgment</li>
+                        <li>Local timing constraints &mdash; holidays, kickoffs, FY boundaries</li>
+                    </ul>
+                </div>
+                <div class="role-doesnot">
+                    <span class="rd-tag">Does not own</span>
+                    <ul>
+                        <li>Plan authority &mdash; that's the Workflow Strategist</li>
+                        <li>Persona, tool, or content execution</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="role-detail-col">
+                <div class="raci-header">RACI &middot; Geo GTM Leads involvement</div>
+                <table class="raci-table">
+                    <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Strategy &amp; sequencing</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Global messaging &amp; narrative</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Seller / persona voice</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Global content production</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Persona content &amp; comms</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Tool-specific content &amp; enablement</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Adoption signals &amp; measurement</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Geo feasibility &amp; timing</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Workback schedule &amp; delivery</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Outcome &mdash; did the change land</td><td class="raci-cell c">C</td></tr>
+                    </tbody>
+                </table>
+                <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── SLIDE 7 · COMBINED RACI ───────────── -->
     <section class="slide">
         <div class="eyebrow">The model in one view</div>
-        <h1>All four roles &mdash; <span class="grad">one RACI</span></h1>
+        <h1>All five roles &mdash; <span class="grad">one RACI</span></h1>
         <div class="raci">
             <table class="raci-t">
                 <thead>
@@ -509,22 +550,25 @@
                         <th class="role-h">Workflow<br>Strategist</th>
                         <th class="role-h">Persona<br>SME</th>
                         <th class="role-h">Tool<br>SME</th>
+                        <th class="role-h">Content<br>Team</th>
                         <th class="role-h">Aligned<br>PM</th>
+                        <th class="role-h">Geo GTM<br>Leads</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td class="act">Intake evaluation</td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Plan design</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
-                    <tr><td class="act">Treatment sizing (T-shirt)</td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Calendar reconciliation</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td></tr>
-                    <tr><td class="act">Persona / Geo consultation</td><td><span class="tag AR">A/R</span></td><td><span class="tag R">R</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Messaging + asset design</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Asset production (Content Ops)</td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td></tr>
-                    <tr><td class="act">Adoption measurement</td><td><span class="tag R">R</span></td><td><span class="tag C">C</span></td><td><span class="tag R">R</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Close-at-threshold</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Strategy &amp; sequencing</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Global messaging &amp; narrative</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Seller / persona voice</td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Global content production</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag R">R</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Persona content &amp; comms</td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Tool-specific content &amp; enablement</td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Adoption signals &amp; measurement</td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Geo feasibility &amp; timing</td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td></tr>
+                    <tr><td class="act">Workback schedule &amp; delivery</td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td><td><span class="tag R">R</span></td><td><span class="tag R">R</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Outcome &mdash; did the change land</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
                 </tbody>
             </table>
-            <div class="raci-cap">Only the <strong>Workflow Strategist</strong> holds A on the decisions. The SMEs bring signal and deliver their domain; the <strong>PM</strong> drives the calendar and production. No one owns the same thing twice.</div>
+            <div class="raci-cap">The <strong>Workflow Strategist</strong> owns strategy &amp; global messaging; the <strong>SMEs</strong> own and execute their persona and tool pieces; the <strong>Content team</strong> executes global content from the strategist's narrative; the <strong>PM</strong> ships it; <strong>Geo</strong> partners on timing.</div>
             <div class="raci-legend">
                 <span><b>A</b> Accountable</span>
                 <span><b>R</b> Responsible / does the work</span>
@@ -543,7 +587,7 @@
 
     <!-- Footer nav -->
     <div class="foot">
-        <div class="counter" id="counter">1 / 6</div>
+        <div class="counter" id="counter">1 / 7</div>
         <div class="dots" id="dots"></div>
         <div class="nav-hint">← → to navigate &middot; S for notes</div>
     </div>
@@ -558,12 +602,13 @@
     let cur = 0;
 
     const NOTES = [
-        '<ul><li>Lead here. Three axes = <b>three specialists</b>, orchestrated by the PM. Cathy is stuck because the old model forced one tool owner to be everything.</li><li>Land it: "no single person is capability-expert AND audience-expert AND plan-owner — that\'s the trap we\'re leaving."</li></ul>',
-        '<ul><li>The <b>only</b> role that holds A on the decisions. Runs the calendar, sizes via T-shirt, makes the final treatment call.</li><li>For Cathy: separate <b>OWN from DO</b> — the strategist decides, the SMEs deliver, the PM ships. That\'s why it isn\'t "too much."</li></ul>',
-        '<ul><li>Voice of the persona <b>and delivers</b> the persona content. Owns the persona calendar (the fatigue read).</li><li>This is the "know your seller" story for John Wunder — seller-first, not tool-first.</li></ul>',
-        '<ul><li><b>Reframe for Cathy:</b> the Tool SME does NOT drive tool capabilities. They understand how the product is designed to enable the seller, and read behavioral signals in the tool to flag adoption needs and concerns.</li><li>Signal source, not capability owner — that\'s why they carry R on intake and adoption telemetry.</li></ul>',
-        '<ul><li>The PM answers Cathy\'s core fear — <b>"nothing falls through the cracks."</b> Drives workback schedules, calendar reconciliation, and production delivery.</li><li>Not a strategist, not an SME — the connective tissue that ships the work.</li></ul>',
-        '<ul><li>One view. Only the <b>Workflow Strategist</b> holds A on the decisions.</li><li>Point at how R moves across roles — SMEs bring signal and deliver their domain; the PM drives the calendar and production. No one owns the same thing twice.</li></ul>'
+        '<ul><li>Three axes = <b>three specialists</b>. Around them: the PM ships, the Content team executes global content, and Geo GTM leads partner on timing.</li><li>Land the ownership split: Strategist owns strategy + <b>global messaging</b>; Persona SME owns persona content + comms; Tool SME owns tool content.</li></ul>',
+        '<ul><li>The <b>only</b> role that owns strategy and the <b>overarching global messaging</b>. Directs global content — the Content team executes it.</li><li>For Cathy: the strategist sets the narrative; everyone else executes their piece. That\'s why it isn\'t "too much."</li></ul>',
+        '<ul><li>Voice of the persona and <b>owns the content AND comms</b> for their people — executing their piece of the plan.</li><li>Comms now runs through the persona SME, not a separate comms team. This is the "know your seller" pitch for Wunder.</li></ul>',
+        '<ul><li><b>Reframe for Cathy:</b> the Tool SME does NOT drive capabilities. They understand how the product enables the seller, read behavioral signals, and <b>own the tool-specific content</b> — executing their piece.</li><li>Signal source + content owner, not capability owner.</li></ul>',
+        '<ul><li>The PM answers Cathy\'s core fear — <b>"nothing falls through the cracks."</b> Drives workback schedules and delivery across every role.</li><li>Doesn\'t own narrative or content — it ships them.</li></ul>',
+        '<ul><li><b>Geo GTM leads are partners</b>, not plan authority. Dotted-line from Thomas\'s team.</li><li>Their veto on geo timing keeps changes from landing in the wrong local moment — feasibility + local calendar.</li></ul>',
+        '<ul><li>One view. Strategist owns strategy + global messaging; SMEs own and execute their pieces; <b>Content team</b> executes global content from the strategist\'s narrative; PM ships; Geo partners on timing.</li><li>Point at the <b>R\'s</b> — SMEs and Content team are the doers; the strategist directs.</li></ul>'
     ];
 
     slides.forEach((_, i) => {
