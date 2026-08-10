@@ -80,9 +80,9 @@
 
     /* ── Slide 1: three axes ── */
     .axes {
-        flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
-        gap: 22px; margin-top: 30px; align-content: stretch;
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
     }
+    .reframe-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
     .axis {
         background: var(--panel); border: 1px solid var(--faint);
         border-top: 4px solid var(--ac); border-radius: 12px;
@@ -103,7 +103,7 @@
     .axis .axis-role span { color: var(--muted); font-weight: 400; font-size: 0.78rem; display:block; margin-top:2px; letter-spacing:0.02em; }
     .axis .axis-body { margin-top: 16px; font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); }
     .axis .axis-q {
-        margin-top: auto; font-size: 1.02rem; font-weight: 700; line-height: 1.35;
+        margin-top: 16px; font-size: 1.02rem; font-weight: 700; line-height: 1.35;
         color: var(--text-secondary); font-style: italic;
         border-left: 3px solid var(--ac); padding-left: 12px;
     }
@@ -197,13 +197,37 @@
     .tag.A { background: rgba(2,200,255,0.18); color: var(--cisco-blue); }
     .tag.R { background: rgba(61,220,132,0.18); color: var(--status-green); }
     .tag.AR { background: rgba(2,200,255,0.20); color: #7fe3ff; border: 1px solid rgba(2,200,255,0.5); }
-    .tag.C { color: var(--muted); }
+    .tag.C { color: var(--accent-orange); }
     .tag.I { color: rgba(255,255,255,0.30); }
     .tag.NA { color: rgba(255,255,255,0.16); }
     .raci-cap { margin-top: 18px; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.4; }
     .raci-cap strong { color: var(--text-primary); }
     .raci-legend { margin-top: 14px; display: flex; gap: 20px; font-size: 0.72rem; color: var(--muted); }
     .raci-legend b { color: var(--text-secondary); }
+
+    /* Role-detail layout (matches cm operating model) */
+    .role-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; min-height: 0; overflow: hidden; align-self: center; max-width: 1320px; width: 100%; margin-top: 18px; }
+    .role-detail-col { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+    .role-summary { font-size: 0.98rem; color: var(--text-primary); line-height: 1.55; padding: 14px 18px; background: rgba(2,200,255,0.10); border: 1px solid var(--cisco-blue); border-radius: 8px; }
+    .role-summary strong { color: var(--text-primary); font-weight: 700; }
+    .role-owns, .role-doesnot { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 18px; }
+    .role-owns .ro-tag, .role-doesnot .rd-tag { font-size: 0.66rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cisco-blue); margin-bottom: 8px; display: block; }
+    .role-doesnot .rd-tag { color: var(--accent-magenta); }
+    .role-owns ul, .role-doesnot ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+    .role-owns ul li, .role-doesnot ul li { font-size: 0.90rem; color: var(--text-secondary); line-height: 1.45; padding-left: 16px; position: relative; }
+    .role-owns ul li::before { content: "\2022"; position: absolute; left: 0; color: var(--cisco-blue); font-weight: 900; }
+    .role-doesnot ul li::before { content: "\00d7"; position: absolute; left: 0; color: var(--accent-magenta); font-weight: 900; }
+    .raci-header { font-size: 0.72rem; font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .raci-table { width: 100%; border-collapse: separate; border-spacing: 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; overflow: hidden; }
+    .raci-table th { font-size: 0.66rem; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); background: rgba(2,200,255,0.10); padding: 8px 14px; text-align: left; }
+    .raci-table th.raci-cell { text-align: center; }
+    .raci-table td { font-size: 0.89rem; color: var(--text-secondary); padding: 8px 14px; border-top: 1px solid rgba(255,255,255,0.08); line-height: 1.35; }
+    .raci-table td.raci-cell { font-weight: 900; font-size: 0.94rem; text-align: center; width: 92px; letter-spacing: 0.06em; }
+    .raci-table td.raci-cell.ar { color: var(--cisco-blue); background: rgba(2,200,255,0.14); }
+    .raci-table td.raci-cell.a  { color: var(--cisco-blue); background: rgba(2,200,255,0.10); }
+    .raci-table td.raci-cell.r  { color: var(--status-green); background: rgba(61,220,132,0.10); }
+    .raci-table td.raci-cell.c  { color: var(--accent-orange); background: rgba(255,144,0,0.10); }
+    .raci-table td.raci-cell.i  { color: var(--muted); background: rgba(255,255,255,0.03); }
 
     /* ── Footer nav ── */
     .foot {
@@ -241,226 +265,242 @@
     <!-- ───────────── SLIDE 1 · THE REFRAME ───────────── -->
     <section class="slide active">
         <div class="eyebrow">Operating model &middot; role clarity</div>
-        <h1>Three <span class="grad">axes of depth</span> — not three versions of the same job</h1>
-        <div class="subhead">In the old model, <strong>one tool owner</strong> had to be the capability expert, the audience expert, <em>and</em> the plan owner — shallow on all three. The new model gives each axis a <strong>true specialist</strong>, combined per initiative.</div>
+        <h1>Three axes, <span class="grad">three specialists</span> — orchestrated together</h1>
 
-        <div class="axes">
-            <div class="axis" style="--ac: var(--axis-strategist)">
-                <div class="axis-kicker">Axis 1 · The plan</div>
-                <div class="axis-depth">The workflow &amp; outcome</div>
-                <div class="axis-role">Workflow Strategist<span>Owns the "what &amp; why"</span></div>
-                <div class="axis-body">Depth in trade-offs and sequencing &mdash; the person who can say what matters most, and in what order.</div>
-                <div class="axis-q">"What are we changing, in what order, and why?"</div>
+        <div class="reframe-body">
+            <div class="axes">
+                <div class="axis" style="--ac: var(--axis-strategist)">
+                    <div class="axis-kicker">Axis 1 · The plan</div>
+                    <div class="axis-depth">The workflow &amp; outcome</div>
+                    <div class="axis-role">Workflow Strategist<span>Owns the "what &amp; why"</span></div>
+                    <div class="axis-body">Depth in trade-offs and sequencing &mdash; the person who can say what matters most, and in what order.</div>
+                    <div class="axis-q">"What are we changing, in what order, and why?"</div>
+                </div>
+                <div class="axis" style="--ac: var(--axis-persona)">
+                    <div class="axis-kicker">Axis 2 · The audience</div>
+                    <div class="axis-depth">The seller</div>
+                    <div class="axis-role">Persona SME<span>"Know your seller"</span></div>
+                    <div class="axis-body">Depth in how one seller actually works &mdash; their motions, their friction, their language.</div>
+                    <div class="axis-q">"Who are we serving, and how do they actually work?"</div>
+                </div>
+                <div class="axis" style="--ac: var(--axis-tool)">
+                    <div class="axis-kicker">Axis 3 · The how</div>
+                    <div class="axis-depth">The capability</div>
+                    <div class="axis-role">Tool SME<span>Reads the seller's signals</span></div>
+                    <div class="axis-body">Depth in how the product is designed to enable the seller &mdash; and reads their behavior to flag adoption needs.</div>
+                    <div class="axis-q">"How is the tool serving the seller — and where isn't it?"</div>
+                </div>
             </div>
-            <div class="axis" style="--ac: var(--axis-persona)">
-                <div class="axis-kicker">Axis 2 · The audience</div>
-                <div class="axis-depth">The seller</div>
-                <div class="axis-role">Persona SME<span>"Know your seller"</span></div>
-                <div class="axis-body">Depth in how one seller actually works &mdash; their motions, their friction, their language.</div>
-                <div class="axis-q">"Who are we serving, and how do they actually work?"</div>
-            </div>
-            <div class="axis" style="--ac: var(--axis-tool)">
-                <div class="axis-kicker">Axis 3 · The how</div>
-                <div class="axis-depth">The capability</div>
-                <div class="axis-role">Tool SME<span>Owns "how it works"</span></div>
-                <div class="axis-body">Depth in the capability and its roadmap &mdash; the person who makes the tool actually deliver.</div>
-                <div class="axis-q">"How do we make this tool deliver?"</div>
-            </div>
-        </div>
 
-        <div class="pm-note">Across all three, the <b>Aligned PM</b> drives workback schedules &amp; delivery &mdash; the connective tissue that ships the work.</div>
+            <div class="oldnew">
+                <div class="old"><b>Old model</b> One person spans all three axes for their tool &mdash; audience is an afterthought, and no one owns the cross-tool workflow.</div>
+                <div class="new"><b>New model</b> Real depth on each axis, orchestrated together. Specialization is the feature, not a gap.</div>
+            </div>
 
-        <div class="oldnew">
-            <div class="old"><b>Old model</b> One person spans all three axes for their tool — audience is an afterthought, and no one owns the cross-tool workflow.</div>
-            <div class="new"><b>New model</b> Real depth on each axis, orchestrated together. Specialization is the feature, not a gap.</div>
+            <div class="pm-note">Across all three, the <b>Aligned PM</b> drives workback schedules &amp; delivery &mdash; the connective tissue that ships the work.</div>
         </div>
     </section>
 
     <!-- ───────────── SLIDE 2 · WORKFLOW STRATEGIST ───────────── -->
-    <section class="slide" style="--ac: var(--axis-strategist)">
-        <div class="eyebrow">Role card &middot; 1 of 3</div>
-        <div class="rc">
-            <div class="rc-main">
-                <span class="rc-axis-tag">Axis · the workflow &amp; outcome</span>
-                <div class="rc-name">Workflow <span class="ac">Strategist</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Own the <strong>change narrative</strong> and <strong>global message</strong> end-to-end — plus the prioritization of what changes and why. Drafts the global, cross-cutting content; leaves domain content to the SMEs.</div>
-                <div class="answers">
-                    <div class="who">Answers Cathy · "that's too much on the strategist"</div>
-                    <div class="q">Owner &ne; doer.</div>
-                    <div class="a">The strategist is the accountable <strong>architect</strong>, not the construction crew. A <strong>dedicated PM</strong> is the delivery engine and the shared <strong>SME pool</strong> executes. We leverage their scarce skill — judgment and sequencing — and distribute the labor.</div>
+    <section class="slide">
+        <div class="eyebrow">Role 1 of 4 &middot; role detail</div>
+        <h1>The <span class="grad">Workflow Strategist</span></h1>
+        <div class="subhead">The plan owner &mdash; makes the final treatment decision, consulted by the other lenses, then decides.</div>
+        <div class="role-detail">
+            <div class="role-detail-col">
+                <div class="role-summary">The plan owner. Runs the workflow calendar and sizes every activity via the T-shirt model. <strong>Makes the final treatment decision</strong> &mdash; consulted by the other lenses, then decides.</div>
+                <div class="role-owns">
+                    <span class="ro-tag">Core motion &middot; every change</span>
+                    <ul>
+                        <li>Receives the brief</li>
+                        <li>Aligns the team</li>
+                        <li>Consults the change calendar</li>
+                        <li>Owns the plan</li>
+                        <li>Owns the final decision</li>
+                    </ul>
+                </div>
+                <div class="role-owns">
+                    <span class="ro-tag">Owns</span>
+                    <ul>
+                        <li>The activation plan</li>
+                        <li>The T-shirt treatment decision</li>
+                        <li>The workflow change calendar</li>
+                        <li>The final call &mdash; close, escalate, or re-scope</li>
+                    </ul>
+                </div>
+                <div class="role-doesnot">
+                    <span class="rd-tag">Does not own</span>
+                    <ul>
+                        <li>Execution of comms or content &mdash; that's Content Ops + Comms</li>
+                        <li>Cross-workflow prioritization &mdash; that's the Director</li>
+                    </ul>
                 </div>
             </div>
-            <div class="rc-detail">
-                <div class="block owns">
-                    <div class="b-lbl">Owns · accountable for</div>
-                    <div class="chips">
-                        <span class="chip">Change narrative &amp; global message</span>
-                        <span class="chip">Drafts global / cross-cutting content</span>
-                        <span class="chip">Prioritization &amp; sequencing (thermometer)</span>
-                        <span class="chip">Outcome — did the change land</span>
-                        <span class="chip">Cross-tool coherence</span>
-                    </div>
-                </div>
-                <div class="block notowns">
-                    <div class="b-lbl">Does NOT own / do alone</div>
-                    <div class="chips">
-                        <span class="chip x">Persona- / tool-specific content → SMEs</span>
-                        <span class="chip x">Configure tools</span>
-                        <span class="chip x">Workback schedule → PM</span>
-                        <span class="chip x">Day-to-day execution</span>
-                    </div>
-                </div>
-                <div class="two-up">
-                    <div class="mini">
-                        <div class="b-lbl">Works with</div>
-                        <div class="txt">Persona SMEs · Tool SMEs · aligned PM (delivery engine) · Cathy (prioritization authority)</div>
-                    </div>
-                    <div class="mini success">
-                        <div class="b-lbl">Success measured by</div>
-                        <div class="txt">Adoption · productivity / time saved · behavior change for the workflow</div>
-                    </div>
-                </div>
+            <div class="role-detail-col">
+                <div class="raci-header">RACI &middot; Workflow Strategist involvement</div>
+                <table class="raci-table">
+                    <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Intake evaluation</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Plan design</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Calendar reconciliation</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Persona / Geo consultation</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Messaging + asset design</td><td class="raci-cell ar">A/R</td></tr>
+                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Adoption measurement</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Close-at-threshold</td><td class="raci-cell a">A</td></tr>
+                    </tbody>
+                </table>
+                <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
             </div>
         </div>
     </section>
 
     <!-- ───────────── SLIDE 3 · PERSONA SME ───────────── -->
-    <section class="slide" style="--ac: var(--axis-persona)">
-        <div class="eyebrow">Role card &middot; 2 of 3</div>
-        <div class="rc">
-            <div class="rc-main">
-                <span class="rc-axis-tag">Axis · the seller</span>
-                <div class="rc-name">Persona <span class="ac">SME</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Be the deep expert on <strong>one seller persona</strong> — and <strong>deliver the persona-specific content &amp; enablement</strong> so every change fits the seller, not the tool.</div>
-                <div class="answers pitch">
-                    <div class="who">The pitch to John Wunder</div>
-                    <div class="q">This role institutionalizes "know your seller."</div>
-                    <div class="a">We design around how each persona <strong>actually sells</strong> instead of pushing tools at them. It's the visible proof the model is <strong>seller-first</strong>, not tool-first.</div>
-                </div>
-            </div>
-            <div class="rc-detail">
-                <div class="block owns">
-                    <div class="b-lbl">Owns · delivers</div>
-                    <div class="chips">
-                        <span class="chip">Persona-specific content &amp; enablement</span>
-                        <span class="chip">Voice of the persona</span>
-                        <span class="chip">Fit / validation for that audience</span>
-                        <span class="chip">Persona-specific adoption levers</span>
-                    </div>
-                </div>
-                <div class="block notowns">
-                    <div class="b-lbl">Does NOT own</div>
-                    <div class="chips">
-                        <span class="chip x">Change narrative → Strategist</span>
-                        <span class="chip x">Tool build → Tool SME</span>
-                        <span class="chip x">Workback schedule → PM</span>
-                    </div>
-                </div>
-                <div class="two-up">
-                    <div class="mini">
-                        <div class="b-lbl">Works with</div>
-                        <div class="txt">Workflow Strategist (plan fit) · Tool SMEs (make capability fit the persona) · the field</div>
-                    </div>
-                    <div class="mini success">
-                        <div class="b-lbl">Success measured by</div>
-                        <div class="txt">Persona adoption &amp; satisfaction · less "this wasn't built for me" friction</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ───────────── SLIDE 4 · TOOL SME + PRAFUL EXAMPLE ───────────── -->
-    <section class="slide" style="--ac: var(--axis-tool)">
-        <div class="eyebrow">Role card &middot; 3 of 3</div>
-        <div class="rc">
-            <div class="rc-main">
-                <span class="rc-axis-tag">Axis · the capability</span>
-                <div class="rc-name">Tool <span class="ac">SME</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Own depth on <strong>one tool / capability</strong> — shape it <strong>upstream</strong> with product owners &amp; capability managers, and <strong>deliver tool-specific enablement content downstream</strong> to sellers.</div>
-                <div class="block owns" style="margin-top:16px;">
-                    <div class="b-lbl">Owns · delivers</div>
-                    <div class="chips">
-                        <span class="chip">Tool-specific content &amp; enablement</span>
-                        <span class="chip">Capability expertise &amp; roadmap</span>
-                        <span class="chip">Product owner &amp; capability-manager relationship</span>
-                        <span class="chip">Configuration</span>
-                    </div>
-                </div>
-                <div class="block notowns" style="margin-top:14px;">
-                    <div class="b-lbl">Does NOT own</div>
-                    <div class="chips">
-                        <span class="chip x">Audience relationship → Persona SME</span>
-                        <span class="chip x">Change narrative → Strategist</span>
-                        <span class="chip x">Workback schedule → PM</span>
-                    </div>
-                </div>
-            </div>
-            <div class="rc-detail">
-                <div class="example">
-                    <div class="b-lbl">Worked example · "Should Praful lead Exec Console?"</div>
+    <section class="slide">
+        <div class="eyebrow">Role 2 of 4 &middot; role detail</div>
+        <h1>The <span class="grad">Persona SME</span></h1>
+        <div class="subhead">AE &middot; SE &middot; Specialist &middot; closest to the people doing the job.</div>
+        <div class="role-detail">
+            <div class="role-detail-col">
+                <div class="role-summary">Voice of the persona. Shapes the plan and advises on delivery with a persona lens. Owns the <strong>persona calendar view</strong> &mdash; the fatigue read across everything hitting their people.</div>
+                <div class="role-owns">
+                    <span class="ro-tag">Owns &middot; delivers</span>
                     <ul>
-                        <li class="obj">Objection: "Praful may not be best — the audience is executives."</li>
-                        <li>Exec Console is a <strong>capability</strong>. Praful makes it excellent with product owners &amp; capability managers. He doesn't need to be executive-facing.</li>
-                        <li>The <strong>executive audience</strong> is owned by the leader <strong>Persona SME</strong> — "know your leader" — who ensures it fits how execs actually consume it.</li>
-                        <li>The <strong>plan</strong> linking the console to a business outcome is owned by the <strong>Workflow Strategist</strong>.</li>
-                        <li class="punch">"Audience is executives" doesn't disqualify the Tool SME — the Tool SME was never the audience owner. That's the point of specializing.</li>
+                        <li>The persona calendar view</li>
+                        <li>Persona-specific content &amp; enablement</li>
+                        <li>Persona-specific input into every plan</li>
+                        <li>Delivery advisement &mdash; what will actually land</li>
+                    </ul>
+                </div>
+                <div class="role-doesnot">
+                    <span class="rd-tag">Does not own</span>
+                    <ul>
+                        <li>Plan authority &mdash; that's the Workflow Strategist</li>
+                        <li>A separate activation for their persona &mdash; one change = one plan = one activation</li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ───────────── SLIDE 5 · ALIGNED PM (delivery engine) ───────────── -->
-    <section class="slide" style="--ac: #9FB2C8">
-        <div class="eyebrow">The delivery engine &middot; orchestrates all three</div>
-        <div class="rc">
-            <div class="rc-main">
-                <span class="rc-axis-tag">Not an axis of depth · the connective tissue</span>
-                <div class="rc-name">Aligned <span class="ac">PM</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Keep everyone on task and the work shipping — drive <strong>workback schedules</strong>, coordinate across all three axes, and own <strong>delivery on time</strong>.</div>
-                <div class="answers">
-                    <div class="who">Answers Cathy · her core fear</div>
-                    <div class="q">"Nothing falls through the cracks."</div>
-                    <div class="a">The PM is the <strong>guarantee mechanism</strong> — workback schedules, dependency tracking, and on-time delivery. It's the exact answer to the fear behind moving to the new model.</div>
-                </div>
-            </div>
-            <div class="rc-detail">
-                <div class="block owns">
-                    <div class="b-lbl">Owns · drives</div>
-                    <div class="chips">
-                        <span class="chip">Workback schedules</span>
-                        <span class="chip">Delivery on time</span>
-                        <span class="chip">Cross-role coordination</span>
-                        <span class="chip">Dependency &amp; risk tracking</span>
-                    </div>
-                </div>
-                <div class="block notowns">
-                    <div class="b-lbl">Does NOT own</div>
-                    <div class="chips">
-                        <span class="chip x">The narrative → Strategist</span>
-                        <span class="chip x">Domain content → SMEs</span>
-                        <span class="chip x">Prioritization calls → Strategist</span>
-                    </div>
-                </div>
-                <div class="two-up">
-                    <div class="mini">
-                        <div class="b-lbl">Works with</div>
-                        <div class="txt">Strategist (plan) · Persona &amp; Tool SMEs (delivery) · the field</div>
-                    </div>
-                    <div class="mini success">
-                        <div class="b-lbl">Success measured by</div>
-                        <div class="txt">On-time delivery · nothing falls through the cracks · predictable throughput</div>
-                    </div>
-                </div>
+            <div class="role-detail-col">
+                <div class="raci-header">RACI &middot; Persona SME involvement</div>
+                <table class="raci-table">
+                    <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Intake evaluation</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Plan design</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Calendar reconciliation</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Persona / Geo consultation</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Messaging + asset design</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Adoption measurement</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Close-at-threshold</td><td class="raci-cell c">C</td></tr>
+                    </tbody>
+                </table>
+                <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
             </div>
         </div>
     </section>
 
-    <!-- ───────────── SLIDE 6 · PLAN vs EXECUTION (RACI) ───────────── -->
+    <!-- ───────────── SLIDE 4 · TOOL SME ───────────── -->
+    <section class="slide">
+        <div class="eyebrow">Role 3 of 4 &middot; role detail</div>
+        <h1>The <span class="grad">Tool SME</span></h1>
+        <div class="subhead">Understands the product. Reads the seller's signals.</div>
+        <div class="role-detail">
+            <div class="role-detail-col">
+                <div class="role-summary">Understands how the product is <strong>designed to enable the seller</strong> to do their job &mdash; and reads <strong>signals from seller behavior in the tool</strong> to flag adoption needs and concerns. A signal source, <strong>not</strong> a capability owner.</div>
+                <div class="role-owns">
+                    <span class="ro-tag">Owns</span>
+                    <ul>
+                        <li>Deep understanding of how the product enables the seller</li>
+                        <li>Reading behavioral &amp; adoption signals in the tool</li>
+                        <li>Flagging adoption needs &amp; concerns</li>
+                        <li>Domain enablement build</li>
+                    </ul>
+                </div>
+                <div class="role-doesnot">
+                    <span class="rd-tag">Does not own</span>
+                    <ul>
+                        <li>Driving tool capabilities or roadmap &mdash; that's the product team</li>
+                        <li>Plan or treatment decisions &mdash; that's the Workflow Strategist</li>
+                        <li>Prioritization across workflows</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="role-detail-col">
+                <div class="raci-header">RACI &middot; Tool SME involvement</div>
+                <table class="raci-table">
+                    <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Intake evaluation</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Plan design</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Calendar reconciliation</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Persona / Geo consultation</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Messaging + asset design</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Adoption measurement (telemetry)</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Close-at-threshold</td><td class="raci-cell c">C</td></tr>
+                    </tbody>
+                </table>
+                <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── SLIDE 5 · ALIGNED PM ───────────── -->
+    <section class="slide">
+        <div class="eyebrow">Role 4 of 4 &middot; role detail &middot; the delivery engine</div>
+        <h1>The <span class="grad">Aligned PM</span></h1>
+        <div class="subhead">Nothing falls through the cracks.</div>
+        <div class="role-detail">
+            <div class="role-detail-col">
+                <div class="role-summary">Keeps everyone on task and the work shipping. Drives <strong>workback schedules</strong>, coordinates across all lenses, and owns <strong>delivery on time</strong>. The guarantee that nothing falls through the cracks.</div>
+                <div class="role-owns">
+                    <span class="ro-tag">Owns &middot; drives</span>
+                    <ul>
+                        <li>Workback schedules</li>
+                        <li>Delivery on time</li>
+                        <li>Cross-role coordination</li>
+                        <li>Dependency &amp; risk tracking</li>
+                    </ul>
+                </div>
+                <div class="role-doesnot">
+                    <span class="rd-tag">Does not own</span>
+                    <ul>
+                        <li>The narrative &mdash; that's the Workflow Strategist</li>
+                        <li>Domain content &mdash; that's the SMEs</li>
+                        <li>Prioritization calls &mdash; that's the Strategist</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="role-detail-col">
+                <div class="raci-header">RACI &middot; Aligned PM involvement</div>
+                <table class="raci-table">
+                    <thead><tr><th>Activity</th><th class="raci-cell">Role</th></tr></thead>
+                    <tbody>
+                        <tr><td>Intake evaluation</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Plan design</td><td class="raci-cell c">C</td></tr>
+                        <tr><td>Treatment sizing (T-shirt)</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Calendar reconciliation</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Persona / Geo consultation</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Messaging + asset design</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Asset production (Content Ops)</td><td class="raci-cell r">R</td></tr>
+                        <tr><td>Adoption measurement</td><td class="raci-cell i">I</td></tr>
+                        <tr><td>Close-at-threshold</td><td class="raci-cell i">I</td></tr>
+                    </tbody>
+                </table>
+                <div class="raci-legend"><span><b>A</b> Accountable</span><span><b>R</b> Responsible</span><span><b>C</b> Consulted</span><span><b>I</b> Informed</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── SLIDE 6 · COMBINED RACI ───────────── -->
     <section class="slide">
         <div class="eyebrow">The model in one view</div>
-        <h1>Who directs &mdash; <span class="grad">vs. who delivers</span></h1>
+        <h1>All four roles &mdash; <span class="grad">one RACI</span></h1>
         <div class="raci">
             <table class="raci-t">
                 <thead>
@@ -473,15 +513,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td class="act">Change narrative &amp; global message</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Prioritization &amp; sequencing</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
-                    <tr><td class="act">Persona-specific content &amp; enablement</td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag NA">—</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Tool-specific content &amp; enablement</td><td><span class="tag C">C</span></td><td><span class="tag NA">—</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Workback schedule &amp; delivery on time</td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td><td><span class="tag R">R</span></td><td><span class="tag AR">A/R</span></td></tr>
-                    <tr><td class="act">Did the change land (outcome)</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Intake evaluation</td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Plan design</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Treatment sizing (T-shirt)</td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Calendar reconciliation</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td></tr>
+                    <tr><td class="act">Persona / Geo consultation</td><td><span class="tag AR">A/R</span></td><td><span class="tag R">R</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Messaging + asset design</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Asset production (Content Ops)</td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td></tr>
+                    <tr><td class="act">Adoption measurement</td><td><span class="tag R">R</span></td><td><span class="tag C">C</span></td><td><span class="tag R">R</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Close-at-threshold</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
                 </tbody>
             </table>
-            <div class="raci-cap">Accountability lives in <strong>three different questions</strong> — <em>is it right for my customer?</em> (SME) · <em>does the whole change land?</em> (Strategist) · <em>did it ship on plan?</em> (PM). No one owns the same thing twice.</div>
+            <div class="raci-cap">Only the <strong>Workflow Strategist</strong> holds A on the decisions. The SMEs bring signal and deliver their domain; the <strong>PM</strong> drives the calendar and production. No one owns the same thing twice.</div>
             <div class="raci-legend">
                 <span><b>A</b> Accountable</span>
                 <span><b>R</b> Responsible / does the work</span>
@@ -515,12 +558,12 @@
     let cur = 0;
 
     const NOTES = [
-        '<ul><li>Lead here. Cathy is stuck because the <b>old model forced one tool owner to be everything</b>. This slide names the three axes and reframes specialization as a feature.</li><li>Land it: "no single person is tool-expert AND audience-expert AND plan-owner — that\'s exactly the trap we\'re leaving."</li></ul>',
-        '<ul><li>Her concern: "too much on the strategist." Separate <b>OWN</b> from <b>DO</b>.</li><li>Proof points she can verify: every strategist has a dedicated PM; execution draws on the SME pool; the strategist\'s scarce skill is judgment + sequencing.</li><li>Have one metric ready: adoption / time-saved / behavior change.</li></ul>',
-        '<ul><li>This is the role Cathy already likes — make it the <b>John Wunder pitch</b>: "know your seller," institutionalized.</li><li>Frame as seller-first vs tool-first. It\'s the visible evidence the model isn\'t just re-badging tool owners.</li></ul>',
-        '<ul><li>Resolve the Praful objection directly. Tool SME faces the <b>supply side</b> (product owners, capability managers) upstream, and produces <b>tool enablement content</b> downstream.</li><li>Audience fit = Persona SME; the plan = Strategist. "Audience is executives" is not a disqualifier.</li><li><b>Verify before the meeting:</b> confirm the exec/leader audience maps to your Front-Line-Leader Persona SME — that\'s the one hole she\'ll probe.</li></ul>',
-        '<ul><li>The PM is your answer to Cathy\'s core fear — <b>"nothing falls through the cracks."</b> Frame the PM as the guarantee mechanism: workback schedules, dependency tracking, on-time delivery.</li><li>Not a strategist, not an SME — the <b>connective tissue</b> that ships the work across all three axes.</li></ul>',
-        '<ul><li>Close with the RACI. Accountability is <b>three different questions</b>: right for my customer (SME), does the change land (Strategist), did it ship (PM).</li><li>Point at how the <b>A/R moves across the grid</b> — no one owns the same thing twice; the strategist is never the sole executor.</li></ul>'
+        '<ul><li>Lead here. Three axes = <b>three specialists</b>, orchestrated by the PM. Cathy is stuck because the old model forced one tool owner to be everything.</li><li>Land it: "no single person is capability-expert AND audience-expert AND plan-owner — that\'s the trap we\'re leaving."</li></ul>',
+        '<ul><li>The <b>only</b> role that holds A on the decisions. Runs the calendar, sizes via T-shirt, makes the final treatment call.</li><li>For Cathy: separate <b>OWN from DO</b> — the strategist decides, the SMEs deliver, the PM ships. That\'s why it isn\'t "too much."</li></ul>',
+        '<ul><li>Voice of the persona <b>and delivers</b> the persona content. Owns the persona calendar (the fatigue read).</li><li>This is the "know your seller" story for John Wunder — seller-first, not tool-first.</li></ul>',
+        '<ul><li><b>Reframe for Cathy:</b> the Tool SME does NOT drive tool capabilities. They understand how the product is designed to enable the seller, and read behavioral signals in the tool to flag adoption needs and concerns.</li><li>Signal source, not capability owner — that\'s why they carry R on intake and adoption telemetry.</li></ul>',
+        '<ul><li>The PM answers Cathy\'s core fear — <b>"nothing falls through the cracks."</b> Drives workback schedules, calendar reconciliation, and production delivery.</li><li>Not a strategist, not an SME — the connective tissue that ships the work.</li></ul>',
+        '<ul><li>One view. Only the <b>Workflow Strategist</b> holds A on the decisions.</li><li>Point at how R moves across roles — SMEs bring signal and deliver their domain; the PM drives the calendar and production. No one owns the same thing twice.</li></ul>'
     ];
 
     slides.forEach((_, i) => {
