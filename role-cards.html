@@ -118,6 +118,12 @@
     .oldnew b { display:block; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 5px; font-weight: 900; }
     .oldnew .old b { color: var(--muted); }
     .oldnew .new b { color: var(--cisco-blue); }
+    .pm-note {
+        margin-top: 16px; align-self: center; text-align: center;
+        font-size: 0.88rem; color: var(--text-secondary);
+        border: 1px dashed rgba(255,255,255,0.24); border-radius: 999px; padding: 9px 24px;
+    }
+    .pm-note b { color: var(--text-primary); font-weight: 700; }
 
     /* ── Role card slides ── */
     .rc { flex: 1; display: grid; grid-template-columns: 40% 1fr; gap: 30px; margin-top: 22px; }
@@ -193,6 +199,7 @@
     .tag.AR { background: rgba(2,200,255,0.20); color: #7fe3ff; border: 1px solid rgba(2,200,255,0.5); }
     .tag.C { color: var(--muted); }
     .tag.I { color: rgba(255,255,255,0.30); }
+    .tag.NA { color: rgba(255,255,255,0.16); }
     .raci-cap { margin-top: 18px; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.4; }
     .raci-cap strong { color: var(--text-primary); }
     .raci-legend { margin-top: 14px; display: flex; gap: 20px; font-size: 0.72rem; color: var(--muted); }
@@ -261,6 +268,8 @@
             </div>
         </div>
 
+        <div class="pm-note">Across all three, the <b>Aligned PM</b> drives workback schedules &amp; delivery &mdash; the connective tissue that ships the work.</div>
+
         <div class="oldnew">
             <div class="old"><b>Old model</b> One person spans all three axes for their tool — audience is an afterthought, and no one owns the cross-tool workflow.</div>
             <div class="new"><b>New model</b> Real depth on each axis, orchestrated together. Specialization is the feature, not a gap.</div>
@@ -274,7 +283,7 @@
             <div class="rc-main">
                 <span class="rc-axis-tag">Axis · the workflow &amp; outcome</span>
                 <div class="rc-name">Workflow <span class="ac">Strategist</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Own the end-to-end plan for a seller workflow — opportunity to outcome — and the prioritization of <strong>what</strong> changes and <strong>why</strong>.</div>
+                <div class="rc-mandate"><span class="lbl">Mandate</span>Own the <strong>change narrative</strong> and <strong>global message</strong> end-to-end — plus the prioritization of what changes and why. Drafts the global, cross-cutting content; leaves domain content to the SMEs.</div>
                 <div class="answers">
                     <div class="who">Answers Cathy · "that's too much on the strategist"</div>
                     <div class="q">Owner &ne; doer.</div>
@@ -285,20 +294,20 @@
                 <div class="block owns">
                     <div class="b-lbl">Owns · accountable for</div>
                     <div class="chips">
-                        <span class="chip">Workflow strategy</span>
-                        <span class="chip">Sequencing &amp; roadmap</span>
-                        <span class="chip">Prioritization (within the thermometer)</span>
-                        <span class="chip">Outcome metrics</span>
+                        <span class="chip">Change narrative &amp; global message</span>
+                        <span class="chip">Drafts global / cross-cutting content</span>
+                        <span class="chip">Prioritization &amp; sequencing (thermometer)</span>
+                        <span class="chip">Outcome — did the change land</span>
                         <span class="chip">Cross-tool coherence</span>
                     </div>
                 </div>
                 <div class="block notowns">
                     <div class="b-lbl">Does NOT own / do alone</div>
                     <div class="chips">
-                        <span class="chip x">Build content</span>
+                        <span class="chip x">Persona- / tool-specific content → SMEs</span>
                         <span class="chip x">Configure tools</span>
-                        <span class="chip x">Run enablement</span>
-                        <span class="chip x">Day-to-day delivery</span>
+                        <span class="chip x">Workback schedule → PM</span>
+                        <span class="chip x">Day-to-day execution</span>
                     </div>
                 </div>
                 <div class="two-up">
@@ -322,7 +331,7 @@
             <div class="rc-main">
                 <span class="rc-axis-tag">Axis · the seller</span>
                 <div class="rc-name">Persona <span class="ac">SME</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Be the deep expert on <strong>one seller persona</strong> — how they sell, what they need, where they struggle — so every change fits the <strong>seller</strong>, not the tool.</div>
+                <div class="rc-mandate"><span class="lbl">Mandate</span>Be the deep expert on <strong>one seller persona</strong> — and <strong>deliver the persona-specific content &amp; enablement</strong> so every change fits the seller, not the tool.</div>
                 <div class="answers pitch">
                     <div class="who">The pitch to John Wunder</div>
                     <div class="q">This role institutionalizes "know your seller."</div>
@@ -331,18 +340,20 @@
             </div>
             <div class="rc-detail">
                 <div class="block owns">
-                    <div class="b-lbl">Owns · accountable for</div>
+                    <div class="b-lbl">Owns · delivers</div>
                     <div class="chips">
+                        <span class="chip">Persona-specific content &amp; enablement</span>
                         <span class="chip">Voice of the persona</span>
-                        <span class="chip">Fit / validation of changes for that audience</span>
+                        <span class="chip">Fit / validation for that audience</span>
                         <span class="chip">Persona-specific adoption levers</span>
                     </div>
                 </div>
                 <div class="block notowns">
-                    <div class="b-lbl">Does NOT own — informs &amp; validates</div>
+                    <div class="b-lbl">Does NOT own</div>
                     <div class="chips">
-                        <span class="chip x">The tool build</span>
-                        <span class="chip x">The overall plan</span>
+                        <span class="chip x">Change narrative → Strategist</span>
+                        <span class="chip x">Tool build → Tool SME</span>
+                        <span class="chip x">Workback schedule → PM</span>
                     </div>
                 </div>
                 <div class="two-up">
@@ -366,20 +377,22 @@
             <div class="rc-main">
                 <span class="rc-axis-tag">Axis · the capability</span>
                 <div class="rc-name">Tool <span class="ac">SME</span></div>
-                <div class="rc-mandate"><span class="lbl">Mandate</span>Own depth on <strong>one tool / capability</strong> — how it works, its roadmap, and how to make it deliver. Faces the <strong>supply side</strong> — product owners &amp; capability managers — not the end audience.</div>
+                <div class="rc-mandate"><span class="lbl">Mandate</span>Own depth on <strong>one tool / capability</strong> — shape it <strong>upstream</strong> with product owners &amp; capability managers, and <strong>deliver tool-specific enablement content downstream</strong> to sellers.</div>
                 <div class="block owns" style="margin-top:16px;">
-                    <div class="b-lbl">Owns</div>
+                    <div class="b-lbl">Owns · delivers</div>
                     <div class="chips">
-                        <span class="chip">Capability expertise</span>
+                        <span class="chip">Tool-specific content &amp; enablement</span>
+                        <span class="chip">Capability expertise &amp; roadmap</span>
                         <span class="chip">Product owner &amp; capability-manager relationship</span>
-                        <span class="chip">Configuration &amp; enablement</span>
+                        <span class="chip">Configuration</span>
                     </div>
                 </div>
                 <div class="block notowns" style="margin-top:14px;">
                     <div class="b-lbl">Does NOT own</div>
                     <div class="chips">
                         <span class="chip x">Audience relationship → Persona SME</span>
-                        <span class="chip x">Workflow plan → Strategist</span>
+                        <span class="chip x">Change narrative → Strategist</span>
+                        <span class="chip x">Workback schedule → PM</span>
                     </div>
                 </div>
             </div>
@@ -398,10 +411,56 @@
         </div>
     </section>
 
-    <!-- ───────────── SLIDE 5 · PLAN vs EXECUTION (RACI) ───────────── -->
+    <!-- ───────────── SLIDE 5 · ALIGNED PM (delivery engine) ───────────── -->
+    <section class="slide" style="--ac: #9FB2C8">
+        <div class="eyebrow">The delivery engine &middot; orchestrates all three</div>
+        <div class="rc">
+            <div class="rc-main">
+                <span class="rc-axis-tag">Not an axis of depth · the connective tissue</span>
+                <div class="rc-name">Aligned <span class="ac">PM</span></div>
+                <div class="rc-mandate"><span class="lbl">Mandate</span>Keep everyone on task and the work shipping — drive <strong>workback schedules</strong>, coordinate across all three axes, and own <strong>delivery on time</strong>.</div>
+                <div class="answers">
+                    <div class="who">Answers Cathy · her core fear</div>
+                    <div class="q">"Nothing falls through the cracks."</div>
+                    <div class="a">The PM is the <strong>guarantee mechanism</strong> — workback schedules, dependency tracking, and on-time delivery. It's the exact answer to the fear behind moving to the new model.</div>
+                </div>
+            </div>
+            <div class="rc-detail">
+                <div class="block owns">
+                    <div class="b-lbl">Owns · drives</div>
+                    <div class="chips">
+                        <span class="chip">Workback schedules</span>
+                        <span class="chip">Delivery on time</span>
+                        <span class="chip">Cross-role coordination</span>
+                        <span class="chip">Dependency &amp; risk tracking</span>
+                    </div>
+                </div>
+                <div class="block notowns">
+                    <div class="b-lbl">Does NOT own</div>
+                    <div class="chips">
+                        <span class="chip x">The narrative → Strategist</span>
+                        <span class="chip x">Domain content → SMEs</span>
+                        <span class="chip x">Prioritization calls → Strategist</span>
+                    </div>
+                </div>
+                <div class="two-up">
+                    <div class="mini">
+                        <div class="b-lbl">Works with</div>
+                        <div class="txt">Strategist (plan) · Persona &amp; Tool SMEs (delivery) · the field</div>
+                    </div>
+                    <div class="mini success">
+                        <div class="b-lbl">Success measured by</div>
+                        <div class="txt">On-time delivery · nothing falls through the cracks · predictable throughput</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ───────────── SLIDE 6 · PLAN vs EXECUTION (RACI) ───────────── -->
     <section class="slide">
         <div class="eyebrow">The model in one view</div>
-        <h1>Who owns the plan &mdash; <span class="grad">vs. who executes</span></h1>
+        <h1>Who directs &mdash; <span class="grad">vs. who delivers</span></h1>
         <div class="raci">
             <table class="raci-t">
                 <thead>
@@ -414,14 +473,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td class="act">Set workflow strategy &amp; priorities</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Represent the seller / audience</td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Make the tool / capability deliver</td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td></tr>
-                    <tr><td class="act">Build &amp; deliver the plan</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag R">R</span></td></tr>
-                    <tr><td class="act">Measure outcomes</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Change narrative &amp; global message</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Prioritization &amp; sequencing</td><td><span class="tag AR">A/R</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
+                    <tr><td class="act">Persona-specific content &amp; enablement</td><td><span class="tag C">C</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag NA">—</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Tool-specific content &amp; enablement</td><td><span class="tag C">C</span></td><td><span class="tag NA">—</span></td><td><span class="tag AR">A/R</span></td><td><span class="tag I">I</span></td></tr>
+                    <tr><td class="act">Workback schedule &amp; delivery on time</td><td><span class="tag I">I</span></td><td><span class="tag R">R</span></td><td><span class="tag R">R</span></td><td><span class="tag AR">A/R</span></td></tr>
+                    <tr><td class="act">Did the change land (outcome)</td><td><span class="tag A">A</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td><td><span class="tag C">C</span></td></tr>
                 </tbody>
             </table>
-            <div class="raci-cap">The strategist is <strong>Accountable</strong> at the top and bottom — but the <strong>doer (R) shifts every row</strong>. The plan owner is never the sole executor.</div>
+            <div class="raci-cap">Accountability lives in <strong>three different questions</strong> — <em>is it right for my customer?</em> (SME) · <em>does the whole change land?</em> (Strategist) · <em>did it ship on plan?</em> (PM). No one owns the same thing twice.</div>
             <div class="raci-legend">
                 <span><b>A</b> Accountable</span>
                 <span><b>R</b> Responsible / does the work</span>
@@ -440,7 +500,7 @@
 
     <!-- Footer nav -->
     <div class="foot">
-        <div class="counter" id="counter">1 / 5</div>
+        <div class="counter" id="counter">1 / 6</div>
         <div class="dots" id="dots"></div>
         <div class="nav-hint">← → to navigate &middot; S for notes</div>
     </div>
@@ -458,8 +518,9 @@
         '<ul><li>Lead here. Cathy is stuck because the <b>old model forced one tool owner to be everything</b>. This slide names the three axes and reframes specialization as a feature.</li><li>Land it: "no single person is tool-expert AND audience-expert AND plan-owner — that\'s exactly the trap we\'re leaving."</li></ul>',
         '<ul><li>Her concern: "too much on the strategist." Separate <b>OWN</b> from <b>DO</b>.</li><li>Proof points she can verify: every strategist has a dedicated PM; execution draws on the SME pool; the strategist\'s scarce skill is judgment + sequencing.</li><li>Have one metric ready: adoption / time-saved / behavior change.</li></ul>',
         '<ul><li>This is the role Cathy already likes — make it the <b>John Wunder pitch</b>: "know your seller," institutionalized.</li><li>Frame as seller-first vs tool-first. It\'s the visible evidence the model isn\'t just re-badging tool owners.</li></ul>',
-        '<ul><li>Resolve the Praful objection directly. Tool SME faces the <b>supply side</b> (product owners, capability managers), not the audience.</li><li>Audience fit = Persona SME; the plan = Strategist. "Audience is executives" is not a disqualifier.</li><li><b>Verify before the meeting:</b> confirm the exec/leader audience maps to your Front-Line-Leader Persona SME — that\'s the one hole she\'ll probe.</li></ul>',
-        '<ul><li>Close with the RACI. It is the single defensible artifact that answers "plan owner vs executor."</li><li>Point at the <b>R column moving every row</b> — the strategist owns outcomes but never executes alone.</li></ul>'
+        '<ul><li>Resolve the Praful objection directly. Tool SME faces the <b>supply side</b> (product owners, capability managers) upstream, and produces <b>tool enablement content</b> downstream.</li><li>Audience fit = Persona SME; the plan = Strategist. "Audience is executives" is not a disqualifier.</li><li><b>Verify before the meeting:</b> confirm the exec/leader audience maps to your Front-Line-Leader Persona SME — that\'s the one hole she\'ll probe.</li></ul>',
+        '<ul><li>The PM is your answer to Cathy\'s core fear — <b>"nothing falls through the cracks."</b> Frame the PM as the guarantee mechanism: workback schedules, dependency tracking, on-time delivery.</li><li>Not a strategist, not an SME — the <b>connective tissue</b> that ships the work across all three axes.</li></ul>',
+        '<ul><li>Close with the RACI. Accountability is <b>three different questions</b>: right for my customer (SME), does the change land (Strategist), did it ship (PM).</li><li>Point at how the <b>A/R moves across the grid</b> — no one owns the same thing twice; the strategist is never the sole executor.</li></ul>'
     ];
 
     slides.forEach((_, i) => {
