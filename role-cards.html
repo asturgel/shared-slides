@@ -229,6 +229,24 @@
     .raci-table td.raci-cell.c  { color: var(--accent-orange); background: rgba(255,144,0,0.10); }
     .raci-table td.raci-cell.i  { color: var(--muted); background: rgba(255,255,255,0.03); }
 
+    /* Measurement slide */
+    .metric-north { background: rgba(2,200,255,0.08); border: 1px solid rgba(2,200,255,0.35); border-radius: 10px; padding: 12px 18px; font-size: 1.0rem; color: var(--text-secondary); margin: 14px 0 12px; }
+    .metric-north b { color: var(--cisco-blue); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.64rem; font-weight: 900; margin-right: 12px; }
+    .metric-t { width: 100%; border-collapse: collapse; }
+    .metric-t th, .metric-t td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--faint); vertical-align: top; }
+    .metric-t th { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 900; }
+    .metric-t td.role { font-weight: 900; color: var(--text-primary); font-size: 0.9rem; border-left: 3px solid var(--cisco-blue); }
+    .metric-t td.ind { color: var(--text-secondary); font-size: 0.84rem; line-height: 1.35; }
+    .metric-t td.roll { color: var(--status-green); font-size: 0.84rem; font-weight: 700; line-height: 1.35; }
+    .metric-foot { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
+    .metric-call { border-radius: 10px; padding: 12px 16px; font-size: 0.86rem; line-height: 1.42; color: var(--text-secondary); }
+    .metric-call .ml { display: block; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 900; margin-bottom: 5px; }
+    .metric-call strong { color: var(--text-primary); font-weight: 700; }
+    .metric-call.cohort { background: rgba(255,144,0,0.08); border: 1px solid rgba(255,144,0,0.4); }
+    .metric-call.cohort .ml { color: var(--accent-orange); }
+    .metric-call.time { background: rgba(61,220,132,0.08); border: 1px solid rgba(61,220,132,0.4); }
+    .metric-call.time .ml { color: var(--status-green); }
+
     /* ── Footer nav ── */
     .foot {
         position: absolute; left: 46px; right: 46px; bottom: 16px;
@@ -578,6 +596,29 @@
         </div>
     </section>
 
+    <!-- ───────────── SLIDE 8 · HOW WE MEASURE SUCCESS ───────────── -->
+    <section class="slide">
+        <div class="eyebrow">Measuring success</div>
+        <h1>How we measure success &mdash; <span class="grad">one metric per role</span></h1>
+        <div class="subhead">The Strategist owns the outcome; every role owns a leading indicator that predicts it &mdash; anchored to a kickoff baseline, measured adopter vs. non-adopter.</div>
+        <div class="metric-north"><b>North-star</b> Productivity &middot; tool adoption % &middot; pipeline &amp; win-rate in the adopter cohort</div>
+        <table class="metric-t">
+            <thead><tr><th style="width:19%">Role</th><th style="width:49%">Leading indicator it owns</th><th style="width:32%">Rolls up to</th></tr></thead>
+            <tbody>
+                <tr><td class="role">Workflow Strategist</td><td class="ind">% of changes hitting their success threshold &middot; change-calendar adherence (no collisions)</td><td class="roll">Sustained adoption + productivity</td></tr>
+                <tr><td class="role">Persona SME</td><td class="ind">Adoption within their persona &middot; content engagement &middot; "built-for-me" score</td><td class="roll">Adoption breadth across personas</td></tr>
+                <tr><td class="role">Tool SME</td><td class="ind">Tool usage / adoption telemetry &middot; time-to-flag &middot; signal &rarr; change conversion</td><td class="roll">Adoption depth + tool health</td></tr>
+                <tr><td class="role">Aligned PM</td><td class="ind">On-time delivery % &middot; cycle time (intake &rarr; live) &middot; zero unplanned drops</td><td class="roll">"Nothing falls through the cracks"</td></tr>
+                <tr><td class="role">Content Team</td><td class="ind">Global content on-schedule &middot; consumption / engagement &middot; rework rate</td><td class="roll">Message consistency + throughput</td></tr>
+                <tr><td class="role">Geo GTM Leads</td><td class="ind">% changes with no geo-timing conflicts &middot; geo adoption parity</td><td class="roll">Even global landing</td></tr>
+            </tbody>
+        </table>
+        <div class="metric-foot">
+            <div class="metric-call cohort"><span class="ml">Adopter vs. non-adopter</span>Compare adopters to non-adopters against a <strong>baseline captured at kickoff</strong>. Directional and defensible &mdash; a cohort comparison, not a causation claim.</div>
+            <div class="metric-call time"><span class="ml">Time-back &rarr; reinvested</span>Hours reclaimed (telemetry proxy + survey range) &rarr; redirected to <strong>selling time</strong> &rarr; pipeline created. Show the chain, not just the hours.</div>
+        </div>
+    </section>
+
     <!-- Speaker notes -->
     <div class="notes" id="notes">
         <h3>Speaker notes</h3>
@@ -587,7 +628,7 @@
 
     <!-- Footer nav -->
     <div class="foot">
-        <div class="counter" id="counter">1 / 7</div>
+        <div class="counter" id="counter">1 / 8</div>
         <div class="dots" id="dots"></div>
         <div class="nav-hint">← → to navigate &middot; S for notes</div>
     </div>
@@ -608,7 +649,8 @@
         '<ul><li><b>Reframe for Cathy:</b> the Tool SME does NOT drive capabilities. They understand how the product enables the seller, read behavioral signals, and <b>own the tool-specific content</b> — executing their piece.</li><li>Signal source + content owner, not capability owner.</li></ul>',
         '<ul><li>The PM answers Cathy\'s core fear — <b>"nothing falls through the cracks."</b> Drives workback schedules and delivery across every role.</li><li>Doesn\'t own narrative or content — it ships them.</li></ul>',
         '<ul><li><b>Geo GTM leads are partners</b>, not plan authority.</li><li>Their veto on geo timing keeps changes from landing in the wrong local moment — feasibility + local calendar.</li></ul>',
-        '<ul><li>One view. Strategist owns strategy + global messaging; SMEs own and execute their pieces; <b>Content team</b> executes global content from the strategist\'s narrative; PM ships; Geo partners on timing.</li><li>Point at the <b>R\'s</b> — SMEs and Content team are the doers; the strategist directs.</li></ul>'
+        '<ul><li>One view. Strategist owns strategy + global messaging; SMEs own and execute their pieces; <b>Content team</b> executes global content from the strategist\'s narrative; PM ships; Geo partners on timing.</li><li>Point at the <b>R\'s</b> — SMEs and Content team are the doers; the strategist directs.</li></ul>',
+        '<ul><li>Close with measurement. Lead with the <b>north-star</b> (productivity, adoption %, pipeline/win-rate in adopters). Each role owns a leading indicator that predicts it.</li><li>Be honest about the build: <b>baseline + PM tracking now</b>, normalize tool telemetry Q1, pulse survey Q1–Q2. For time-back, show the <b>chain</b> (time → selling → pipeline) and report a range, not false precision.</li></ul>'
     ];
 
     slides.forEach((_, i) => {
